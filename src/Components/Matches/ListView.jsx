@@ -33,7 +33,7 @@ class ListView extends Component {
             {matchInProgressList.length === 0 ? "" : matchInProgressList.map((match, index)=>{
               return(
                 <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index} style={{margin : "0 auto 50px"}}>
+                  <div className="match-card-row" key={index}>
                      <div className="country-card">
                         <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>

@@ -92,10 +92,12 @@ header{
 
 .match-container{
   background-color: #fbfbfb;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .match-container-button{
-  width: 1200px;
+  width: 80%;
   margin: 30px auto;
 }
 
@@ -109,6 +111,10 @@ header{
   margin-right: 20px
 }
 
+.match-container button:focus{
+  outline: none;
+}
+
 .match-container button:hover, .match-container-button-active{
   background: #F6D500 !important;
   color: #212121;
@@ -118,8 +124,8 @@ header{
 .match-container h1{
   color : #fbfbfb;
   background: #272b62;
-  width : 1200px;
-  margin: auto;
+  width : 80%;
+  margin: 40px auto 0px;
   padding: 15px;
   box-sizing: border-box;
   font-family: Oswald;
@@ -139,7 +145,7 @@ header{
 .match-card-row{
   display: flex;
   align-items: center;
-  width: 1200px;
+  width: 80%;
   justify-content: space-between;
   padding: 15px;
   border-bottom: solid 1px black;
@@ -156,7 +162,7 @@ header{
   display: flex;
   align-items: center;
   font-family: Raleway;
-  width: 400px;
+  width: 300px;
 }
 
 .country-card p{
