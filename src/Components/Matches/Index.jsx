@@ -10,27 +10,32 @@ class Match extends Component {
       view : "list",
       matchDataList : [],
     }
+    this.fetchMatchesData = this.fetchMatchesData.bind(this);
   }
 
   componentDidMount(){
-    fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res)=>{
-        if (res.status !== 200) {
-           return;
-        }
-        return res.json()
-      })
-      .then((data) => this.setState({ matchDataList : data }));
+    this.fetchMatchesData();
+     setInterval(this.fetchMatchesData, 20000);
   }
 
 
+fetchMatchesData(){
+  fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+  .then((res)=>{
+      if (res.status !== 200) {
+         return;
+      }
+      return res.json()
+    })
+    .then((data) => this.setState({ matchDataList : data }));
+}
+
   render() {
-    console.log(this.state.matchDataList);
     return (
           <div className="match-container">
             <div className="match-container-button">

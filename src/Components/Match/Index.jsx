@@ -7,7 +7,7 @@ class Match extends Component {
 
     console.log(match);
     return (
-          <div>
+          <div className="single-match-conatiner">
             <h1>Match</h1>
             <p>{match.home_team_country} : {match.home_team.goals}</p>
             <p>vs</p>

@@ -88,7 +88,7 @@ header{
   color: #E51C28;
 }
 
-/*////////// Match ////////////////*/
+/*////////// Matches ////////////////*/
 
 .match-container{
   background-color: #fbfbfb;
@@ -190,6 +190,12 @@ header{
 
 .match-card-row .country-card:nth-child(3){
   justify-content: flex-end;
+}
+
+/*//////////////// Match ///////////////*/
+
+.single-match-conatiner{
+  background: #272b62;
 }
 
 /************ Contact us*************/
