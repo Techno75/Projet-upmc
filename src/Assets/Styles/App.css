@@ -118,7 +118,7 @@ header{
 .match-container button:hover, .match-container-button-active{
   background: #F6D500 !important;
   color: #212121;
-  border: solid #F6D500 2px !important;
+  border: 1px solid #F6D500 !important;
 }
 
 .match-container h1{
@@ -190,6 +190,30 @@ header{
 
 .match-card-row .country-card:nth-child(3){
   justify-content: flex-end;
+}
+
+@media screen and (max-width: 1120px) {
+  .country-card, .match-card-row{
+    display: block;
+    text-align: center;
+  }
+
+  .match-card-row-score {
+    width: 40px;
+    margin: 0 auto;
+    line-height: 40px;
+  }
+
+  .country-card p {
+    margin: 15px;
+  }
+
+  .match-container h1, .match-container-button, .match-container button, .country-card, .match-card-row{
+    width: 100%;
+  }
+  .match-container button {
+    margin-bottom: 20px;
+  }
 }
 
 /*//////////////// Match ///////////////*/
