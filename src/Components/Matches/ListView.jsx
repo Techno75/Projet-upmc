@@ -39,7 +39,7 @@ class ListView extends Component {
                         <p>{match.home_team_country}</p>
                      </div>
                     <div className="match-card-row-date">
-                        <p>{match.time} Minutes</p>
+                        <p>{match.time} {match.time === 'half-time' ? '' : 'Minutes'}</p>
                         <p>{match.home_team.goals} - {match.away_team.goals}</p>
                      </div>
                      <div className="country-card">
@@ -90,7 +90,6 @@ class ListView extends Component {
                 </Link>
               )
             })}
-
           </div>
     )
   }

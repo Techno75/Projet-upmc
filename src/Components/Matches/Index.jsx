@@ -30,7 +30,6 @@ class Match extends Component {
 
 
   render() {
-    console.log(this.state.matchDataList);
     return (
           <div className="match-container">
             <div className="match-container-button">

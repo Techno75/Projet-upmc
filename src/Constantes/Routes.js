@@ -21,7 +21,7 @@ export const routesList = [
   { path: "/Statistics", name: "Statistics", component: Statistics },
   { path: "/Videos", name: "Videos", component: Videos },
   { path: "/LegalNotice", name: "LegalNotice", component: LegalNotice },
-  // Ajouter de nouvelle route à partir d'ici pour éviter des bug !!!!
   { path: "/Match", name: "Match", component: Match },
+  // Ajouter de nouvelle route à partir d'ici pour éviter des bug !!!!
   { redirect: true, path:"/", to:"/Home", name: "Home"}
 ];
