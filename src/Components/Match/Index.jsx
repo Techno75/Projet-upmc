@@ -1,53 +1,17 @@
 import React, { Component } from 'react';
-import { API_ROUTE } from '../../Constantes/ApiRoute.js'
-import ListView from './ListView';
-import BoardView from './BoardView';
 
 class Match extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      view : "list",
-      matchDataList : [],
-    }
-  }
-
-  componentDidMount(){
-    fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res)=>{
-        if (res.status !== 200) {
-           return;
-        }
-        return res.json()
-      })
-      .then((data) => this.setState({ matchDataList : data }));
-  }
-
-
   render() {
-    console.log(this.state.matchDataList);
+
+    const match = this.props.location.aboutProps.match;
+
+    console.log(match);
     return (
-          <div className="match-container">
-            <div className="match-container-button">
-            <button
-              className={this.state.view === "list" ? "match-container-button-active" : ""}
-              onClick={()=>this.setState({view : 'list'})}
-            >
-              Matches list
-            </button>
-            <button
-              className={this.state.view === "board" ? "match-container-button-active" : ""}
-              onClick={()=>this.setState({view : 'board'})}
-            >
-              Matches board
-            </button>
-            </div>
-            {this.state.view === "list" ? <ListView matchDataList={this.state.matchDataList}/> : <BoardView/>}
+          <div>
+            <h1>Match</h1>
+            <p>{match.home_team_country} : {match.home_team.goals}</p>
+            <p>vs</p>
+            <p>{match.away_team_country} : {match.away_team.goals}</p>
           </div>
     )
   }

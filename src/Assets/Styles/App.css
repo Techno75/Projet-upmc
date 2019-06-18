@@ -131,6 +131,11 @@ header{
   width: 90px
 }
 
+.match-container a{
+  text-decoration: none;
+  color : #212121;
+}
+
 .match-card-row{
   display: flex;
   align-items: center;
@@ -140,6 +145,7 @@ header{
   border-bottom: solid 1px black;
   margin: auto;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .match-card-row:hover{
