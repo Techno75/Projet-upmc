@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 
@@ -66,6 +65,7 @@ class ListView extends Component {
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
+                      <a href="/"><i class="fas fa-heart"></i></a>
                   </div>
                 </Link>
               )

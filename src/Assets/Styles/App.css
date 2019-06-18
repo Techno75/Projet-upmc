@@ -79,13 +79,13 @@ header{
   text-decoration: none;
   font-family: Oswald;
   font-size: 20px;
-  border-bottom: solid 1px #E51C28;
+  border-bottom: solid 1px #E52528;
 }
 
 .secondNav nav ul li a:hover, .secondNav .active{
   border-bottom: solid 1px white;
   border-top: solid 1px white;
-  color: #E51C28;
+  color: #E52528;
 }
 
 /*////////// Matches ////////////////*/
@@ -152,6 +152,12 @@ header{
   margin: auto;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.match-card-row i{
+  color: #E52528;
+  font-size: 30px;
+  margin: 15px;
 }
 
 .match-card-row:hover{
