@@ -15,7 +15,7 @@ export const routesList = [
   { path: "/About-us", name: "About us", component: AboutUs },
   { path: "/Sign-in", name: "Sign in", component: SignIn },
   { path: "/Sign-up", name: "Sign up", component: SignUp },
-  { path: "/Match", name: "Match", component: Match },
+  { path: "/Matches", name: "Matches", component: Match },
   { path: "/Groups", name: "Groups", component: Groups },
   { path: "/Statistics", name: "Statistics", component: Statistics },
   { path: "/Videos", name: "Videos", component: Videos },

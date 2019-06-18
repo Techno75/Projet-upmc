@@ -33,16 +33,20 @@ class Match extends Component {
     console.log(this.state.matchDataList);
     return (
           <div className="match-container">
+            <div className="match-container-button">
             <button
+              className={this.state.view === "list" ? "match-container-button-active" : ""}
               onClick={()=>this.setState({view : 'list'})}
             >
-              Matchs list
+              Matches list
             </button>
             <button
+              className={this.state.view === "board" ? "match-container-button-active" : ""}
               onClick={()=>this.setState({view : 'board'})}
             >
-              Matchs board
+              Matches board
             </button>
+            </div>
             {this.state.view === "list" ? <ListView matchDataList={this.state.matchDataList}/> : <BoardView/>}
           </div>
     )

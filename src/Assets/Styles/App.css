@@ -94,17 +94,41 @@ header{
   background-color: #fbfbfb;
 }
 
-.match-container img{
-  width: 90px
+.match-container-button{
+  width: 1200px;
+  margin: 30px auto;
 }
 
 .match-container button{
-  background: #F6D500;
+  background: #fbfbfb;
   padding: 8px 15px;
   color: #212121;
   font-size: 18px;
-  border: solid #F6D500 2px;
+  border: solid #272B62 2px;
   cursor: pointer;
+  margin-right: 20px
+}
+
+.match-container button:hover, .match-container-button-active{
+  background: #F6D500 !important;
+  color: #212121;
+  border: solid #F6D500 2px !important;
+}
+
+.match-container h1{
+  color : #fbfbfb;
+  background: #272b62;
+  width : 1200px;
+  margin: auto;
+  padding: 15px;
+  box-sizing: border-box;
+  font-family: Oswald;
+  font-weight: 200;
+  font-size: 45px
+}
+
+.match-container img{
+  width: 90px
 }
 
 .match-card-row{
@@ -115,6 +139,7 @@ header{
   padding: 15px;
   border-bottom: solid 1px black;
   margin: auto;
+  box-sizing: border-box;
 }
 
 .match-card-row:hover{
