@@ -139,6 +139,18 @@ header{
   font-weight: bold;
 }
 
+.match-card-row-date{
+  font-family: Oswald;
+  text-align: center;
+  font-size: 50px;
+}
+
+.match-card-row-date p:first-child{
+  font-size: 25px;
+  font-weight: 200;
+  font-style: italic;
+}
+
 .match-card-row .country-card:nth-child(3){
   justify-content: flex-end;
 }
