@@ -1,0 +1,137 @@
+/*//////// Header ///////////*/
+
+header{
+  position: sticky;
+  top: 0px;
+}
+
+.firstNav{
+  display: flex;
+  background: #fbfbfb;
+  padding: 10px;
+  align-items: center;
+}
+
+.firstNav nav{
+  display: flex;
+  justify-content: space-between;
+}
+
+.firstNav nav ul li{
+  font-family: Raleway;
+}
+
+.firstNav nav ul li a{
+  text-decoration: none;
+  padding: 0 10px ;
+  color : #212121;
+}
+
+.firstNav .active{
+  color : #272b62;
+}
+
+.firstNav nav ul:first-child{
+  display: flex;
+  list-style: none;
+}
+
+.firstNav nav ul:last-child{
+  position: absolute;
+  list-style: none;
+  right: 10px;
+  top: 15px
+}
+
+.firstNav nav ul:last-child li  {
+  padding-bottom: 8px
+}
+
+.firstNav img{
+  max-width: 80px;
+  max-height: 56px;
+  margin-right: 20px
+}
+
+.secondNav{
+  display: flex;
+  background: #272b62;
+  padding: 10px;
+  align-items: center;
+  color : white;
+  box-sizing: border-box;
+  padding-left: 120px
+}
+
+.secondNav nav {
+  margin: 15px 0;
+}
+
+.secondNav nav ul{
+  display: flex;
+  list-style: none;
+}
+
+.secondNav nav ul li a{
+  padding: 5px 0 ;
+  margin-right: 50px;
+  color: white;
+  text-decoration: none;
+  font-family: Oswald;
+  font-size: 20px;
+  border-bottom: solid 1px #E51C28;
+}
+
+.secondNav nav ul li a:hover, .secondNav .active{
+  border-bottom: solid 1px white;
+  border-top: solid 1px white;
+  color: #E51C28;
+}
+
+/*////////// Match ////////////////*/
+
+.match-container{
+  background-color: #fbfbfb;
+  margin: auto;
+}
+
+.match-card-row{
+  display: flex;
+  align-items: center;
+  width: 1200px;
+  justify-content: space-between;
+  padding: 10px
+}
+
+.country-card{
+  display: flex;
+  align-items: center;
+  font-family: Raleway;
+  width: 200px
+}
+
+.match-card-row-score{
+  font-family: Oswald
+}
+
+/************ Footer *************/
+
+footer{
+  background: #272b62;
+  color : white;
+  display: flex;
+  justify-content: center;
+  border-top: solid 2px white;
+  font-family: Oswald;
+  font-size: 18px;
+}
+
+footer a{
+     color : white;
+     padding: 20px;
+     text-decoration: none;
+}
+
+footer p{
+  padding: 20px;
+}
