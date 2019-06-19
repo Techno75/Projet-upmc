@@ -59,7 +59,7 @@ class ListView extends Component {
                         <p>{match.home_team_country}</p>
                      </div>
                     <div className="match-card-row-score">
-                        <p>{moment(match.datetime).format('MM/DD/YYYY')}</p>
+                        <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
                         <p>{match.home_team.goals} - {match.away_team.goals}</p>
                      </div>
                      <div className="country-card">
@@ -79,7 +79,7 @@ class ListView extends Component {
                         <p>{match.home_team_country}</p>
                      </div>
                     <div className="match-card-row-date">
-                        <p>{moment(match.datetime).format('MM/DD/YYYY')}</p>
+                        <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
                         <p>{moment(match.datetime).format('hh:mm a')}</p>
                      </div>
                      <div className="country-card">
