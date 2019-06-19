@@ -15,7 +15,7 @@ class Match extends Component {
               <img src={fieldImage} alt="football field"/>
               <div className="field-score-card">
                 <div className="field-country-card">
-                  <img src={require('./../../Assets/Images/Flags/' + match.home_team.code + ".jpg")} />
+                  <img src={require('./../../Assets/Images/Flags/' + match.home_team.code + ".jpg")} alt='flags-world-cup-home_team'/>
                   <p>{match.home_team.code}</p>
                 </div>
                 <div className="field-time-score-card">
@@ -23,7 +23,7 @@ class Match extends Component {
                   <p>{match.home_team.goals + "-" + match.away_team.goals }</p>
                 </div>
                 <div className="field-country-card">
-                  <img src={require('./../../Assets/Images/Flags/' + match.away_team.code + ".jpg")} />
+                  <img src={require('./../../Assets/Images/Flags/' + match.away_team.code + ".jpg")} alt='flags-world-cup-away_team' />
                   <p>{match.away_team.code}</p>
                 </div>
               </div>
