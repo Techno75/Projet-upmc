@@ -421,6 +421,18 @@ header{
     outline: none;
 }
 
+.content-signup select {
+    border: 0px;
+    background: none;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #F9D500;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #282B62;
+    transition: 0.5s;
+    width: 250px;
+}
+
 /************ Footer *************/
 
 footer{
