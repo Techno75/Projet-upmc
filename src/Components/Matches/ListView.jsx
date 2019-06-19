@@ -86,7 +86,7 @@ class ListView extends Component {
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
-                     
+
                   </div>
                 </Link>
               )
