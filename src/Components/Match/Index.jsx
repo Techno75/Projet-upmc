@@ -50,7 +50,6 @@ class Match extends Component {
         });
         this.setState({ match : match[0] });
       });
-
   }
 
   render() {

@@ -23,24 +23,23 @@ class Match extends Component {
     window.clearInterval(this.fetchUpdate)
   }
 
-fetchMatchesData(){
-  fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
-  .then((res)=>{
-      if (res.status !== 200) {
-         return;
+  fetchMatchesData(){
+    fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       }
-      return res.json()
     })
-    .then((data) => this.setState({ matchDataList : data }));
-}
+    .then((res)=>{
+        if (res.status !== 200) {
+           return;
+        }
+        return res.json()
+      })
+      .then((data) => this.setState({ matchDataList : data }));
+  }
 
   render() {
-
     return (
           <div className="match-container">
             <div className="match-container-button">
