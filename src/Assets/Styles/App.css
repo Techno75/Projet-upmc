@@ -252,6 +252,7 @@ header{
   align-items: center;
   color : white;
   font-family: Oswald;
+  box-shadow: 0 0 10px #212121;
 }
 
 .field-country-card{
