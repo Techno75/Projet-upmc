@@ -6,6 +6,7 @@ import BoardView from './BoardView';
 class Match extends Component {
   constructor(props){
     super(props)
+    this.fetchUpdate = null;
     this.state = {
       view : "list",
       matchDataList : [],
@@ -15,9 +16,12 @@ class Match extends Component {
 
   componentDidMount(){
     this.fetchMatchesData();
-     setInterval(this.fetchMatchesData, 20000);
+    this.fetchUpdate = setInterval(this.fetchMatchesData, 25000);
   }
 
+  componentWillUnmount(){
+    window.clearInterval(this.fetchUpdate)
+  }
 
 fetchMatchesData(){
   fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
@@ -36,6 +40,7 @@ fetchMatchesData(){
 }
 
   render() {
+
     return (
           <div className="match-container">
             <div className="match-container-button">

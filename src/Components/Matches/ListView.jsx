@@ -31,8 +31,8 @@ class ListView extends Component {
             {matchInProgressList.length === 0 ? "" : <h1>In Progress</h1>}
             {matchInProgressList.length === 0 ? "" : matchInProgressList.map((match, index)=>{
               return(
-                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index}>
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}} key={index}>
+                  <div className="match-card-row" >
                      <div className="country-card">
                         <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>
@@ -52,8 +52,8 @@ class ListView extends Component {
             <h1>Calendar</h1>
             {matchAlreadyPlayedList.map((match, index)=>{
               return(
-                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index}>
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}} key={index}>
+                  <div className="match-card-row" >
                      <div className="country-card">
                         <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>
@@ -72,8 +72,8 @@ class ListView extends Component {
             })}
             {matchNotPlayedList.map((match, index)=>{
               return(
-                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index}>
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}  key={index}>
+                  <div className="match-card-row">
                      <div className="country-card">
                       <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>
