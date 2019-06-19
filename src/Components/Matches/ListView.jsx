@@ -31,8 +31,8 @@ class ListView extends Component {
             {matchInProgressList.length === 0 ? "" : <h1>In Progress</h1>}
             {matchInProgressList.length === 0 ? "" : matchInProgressList.map((match, index)=>{
               return(
-                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index}>
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}} key={index}>
+                  <div className="match-card-row" >
                      <div className="country-card">
                         <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>
@@ -52,40 +52,41 @@ class ListView extends Component {
             <h1>Calendar</h1>
             {matchAlreadyPlayedList.map((match, index)=>{
               return(
-                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index}>
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}} key={index}>
+                  <div className="match-card-row" >
                      <div className="country-card">
                         <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>
                      </div>
                     <div className="match-card-row-score">
+                        <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
                         <p>{match.home_team.goals} - {match.away_team.goals}</p>
                      </div>
                      <div className="country-card">
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
-                      <a href="/"><i class="fas fa-heart"></i></a>
                   </div>
                 </Link>
               )
             })}
             {matchNotPlayedList.map((match, index)=>{
               return(
-                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                  <div className="match-card-row" key={index}>
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}  key={index}>
+                  <div className="match-card-row">
                      <div className="country-card">
                       <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
                         <p>{match.home_team_country}</p>
                      </div>
                     <div className="match-card-row-date">
-                        <p>{moment(match.datetime).format('MM/DD/YYYY')}</p>
+                        <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
                         <p>{moment(match.datetime).format('hh:mm a')}</p>
                      </div>
                      <div className="country-card">
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
+
                   </div>
                 </Link>
               )
