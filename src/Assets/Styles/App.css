@@ -302,6 +302,79 @@ header{
   outline: none;
 }
 
+/*************SignUp***************/
+.content-signup{
+    margin: 20px 0px 20px 120px;
+}
+.content-signup h2{
+    font-family: Oswald;
+    text-transform: uppercase;
+    font-style: italic;
+    color: #282B62;
+    font-size: 40px;
+}
+
+.content-signup form, .content-signup form .submit-content{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-top: 20px;
+}
+
+.content-signup form{
+    margin-top: 50px;
+}
+
+.content-signup form .submit-content{
+    align-items: flex-end;
+}
+
+.content-signup form input{
+    border: 0px;
+    background: none;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #F9D500;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #282B62;
+    transition: 0.5s;
+    width: 250px;
+}
+
+.content-signup form input::placeholder, .content-signup form textarea::placeholder{
+    color: #282B62;
+}
+
+.content-signup form input[type=submit]{
+    width: 200px;
+    border: 1px solid #282B62;
+    background: #282B62;
+    color: #F9D500;
+    font-weight: 300;
+    padding: 5px 0px;
+}
+
+.content-signup form textarea{
+    padding: 10px;
+    margin-top: 10px;
+    font-family: Raleway;
+    color: #212121;
+    border: 1px solid #282B62;
+    min-height: 150px;
+}
+
+.content-signup form input[type=submit]:hover{
+    background: none;
+    border: 1px solid #F9D500;
+    color: #282B62;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.content-signup form textarea:focus, .content-signup form input:focus{
+    outline: none;
+}
+
 /************ Footer *************/
 
 footer{
