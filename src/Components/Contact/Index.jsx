@@ -10,7 +10,7 @@ class Contact extends Component {
   }
 
   validateEmail = (elm, name) => {
-    if(!elm.match("[a-z0-9]+[_a-z0-9\.-]*[a-z0-9]+@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})")){
+    if(!elm.match("[a-z0-9]+[_a-z0-9.-]*[a-z0-9]+@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})")){
       this.setState({
         errorMessage: [...this.state.errorMessage, this.state.errorMessage.push('Your ' + name + ' is not valid.')]
       })
@@ -53,7 +53,8 @@ class Contact extends Component {
   }
 
   onSubmit = (e) =>{
-    // e.preventDefault();
+    e.preventDefault();
+    this.setState({errorMessage: []});
     if(this.validateEmpty(this.state.lastName, 'last name', this.state.errorMessage) === true){
       this.validateName(this.state.lastName, 'last name')
     }
@@ -66,7 +67,6 @@ class Contact extends Component {
     if(this.validateEmpty(this.state.message, 'message') === true){
       this.validateMessage(this.state.message, 'message')
     }
-
   }
 
   render() {
@@ -84,14 +84,14 @@ class Contact extends Component {
 
             <form onSubmit={this.onSubmit}>
               <input
-                type='texte'
+                type='text'
                 name='lastName'
                 placeholder='Last Name'
                 value = {this.state.lastName}
                 onChange = {(lastName)=>this.setState({lastName: lastName.target.value})}
                />
               <input
-                type='texte'
+                type='text'
                 name='firstName'
                 placeholder='First Name'
                 value={this.state.firstName}
