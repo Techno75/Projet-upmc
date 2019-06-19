@@ -180,6 +180,7 @@ header{
   font-family: Oswald;
   font-size: 40px;
   font-weight: bold;
+  text-align: center;
 }
 
 .match-card-row-date{
@@ -188,7 +189,7 @@ header{
   font-size: 40px;
 }
 
-.match-card-row-date p:first-child{
+.match-card-row-date p:first-child, .match-card-row-score p:first-child{
   font-size: 25px;
   font-weight: 200;
   font-style: italic;
@@ -205,7 +206,6 @@ header{
   }
 
   .match-card-row-score {
-    width: 40px;
     margin: 0 auto;
     line-height: 40px;
   }
@@ -288,6 +288,7 @@ header{
   color: #212121;
   border: 1px solid #282B62;
   min-height: 150px;
+  background: #FBFBFB;
 }
 
 .content-contact form input[type=submit]:hover{

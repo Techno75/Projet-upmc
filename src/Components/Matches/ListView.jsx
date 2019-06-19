@@ -59,13 +59,13 @@ class ListView extends Component {
                         <p>{match.home_team_country}</p>
                      </div>
                     <div className="match-card-row-score">
+                        <p>{moment(match.datetime).format('MM/DD/YYYY')}</p>
                         <p>{match.home_team.goals} - {match.away_team.goals}</p>
                      </div>
                      <div className="country-card">
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
-                      <a href="/"><i class="fas fa-heart"></i></a>
                   </div>
                 </Link>
               )
@@ -86,6 +86,7 @@ class ListView extends Component {
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
+                     
                   </div>
                 </Link>
               )
