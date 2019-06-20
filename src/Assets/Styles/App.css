@@ -364,9 +364,21 @@ header{
 }
 
 .single-match-conatiner h1{
-  color : white;
+  color : #F6D500;
   width: 1200px;
+  font-family: Oswald;
   margin: 15px auto;
+  font-size: 40px;
+  font-weight: 300;
+}
+
+.palyer-list h2{
+  font-family: Oswald;
+  font-weight: 500;
+}
+
+.palyer-list p, .statistics-colomn p{
+  font-family: Raleway;
 }
 
 .field{
@@ -400,7 +412,7 @@ header{
   flex-direction: column;
   font-size: 50px;
   text-align: center;
-  margin: 20px
+  margin: 20px;
 }
 
 .goal-conatiner{
@@ -419,12 +431,13 @@ header{
   width: 100px
 }
 
-.single-match-conatiner .palyer-list{
-  width: 1200px;
+.single-match-conatiner .palyer-list, .single-match-conatiner .statistics{
+  width: 80%;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  color: white;
+  color: #FBFBFB;
+  padding-bottom: 20px;
 }
 
 .single-match-conatiner .palyer-list .home, .single-match-conatiner .palyer-list .away{

@@ -187,6 +187,7 @@ class Match extends Component {
                 <p>Red cards : {homeStatistics.red_cards}</p>
                 <p>Fouls Committed : {homeStatistics.fouls_committed}</p>
               </div>
+              <hr />
               <div className='statistics-colomn'>
                 <p>Possession : {awayStatistics.ball_possession}%</p>
                 <p>Attempts : {awayStatistics.attempts_on_goal}</p>

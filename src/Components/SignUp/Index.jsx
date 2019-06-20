@@ -37,7 +37,7 @@ componentDidMount() {
               return {
                 value:country.id,
                 label:<div className='option-select-sign-up'>
-                        <img src={require(`./../../Assets/Images/Flags/${country.fifa_code}.jpg`)} />
+                        <img src={require(`./../../Assets/Images/Flags/${country.fifa_code}.jpg`)} alt={country.fifa_code + '_flag'}/>
                         <span>{country.country}</span>
                       </div>
                 }
