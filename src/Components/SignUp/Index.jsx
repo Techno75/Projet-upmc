@@ -35,7 +35,6 @@ componentDidMount() {
         .then((data) => {
             this.setState({ countries : data
             });
-            console.log(this.state.countries);
         });
 }
 confirmPasswordHandler = () => {
@@ -70,7 +69,7 @@ onSubmit = (e) => {
   render() {
     return (
           <div className='content-signup'>
-            <h2>SignUp</h2>
+            <h2>Sign Up</h2>
               <form onSubmit={this.onSubmit}>
                   <input
                       type='text'

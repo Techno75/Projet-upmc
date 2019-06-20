@@ -3,7 +3,6 @@
 header{
   position: sticky;
   top: 0px;
-  z-index: 1;
 }
 
 .firstNav{
@@ -252,7 +251,6 @@ header{
   align-items: center;
   color : white;
   font-family: Oswald;
-  box-shadow: 0 0 10px #212121;
 }
 
 .field-country-card{
@@ -433,6 +431,163 @@ header{
     color: #282B62;
     transition: 0.5s;
     width: 250px;
+}
+
+/*************AboutUs***************/
+
+.content-about-us{
+  margin: 20px 0px 20px 120px;
+}
+
+.content-about-us h2{
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #282B62;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+.content-about-us .text-about-us{
+  max-width: 500px;
+  font-family: Raleway;
+  text-align: justify;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 730px) {
+  .content-about-us{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .text-about-us{
+    width: 100%;
+  }
+}
+
+/*************SignIn***************/
+.content-signin{
+    margin: 20px 0px 20px 120px;
+}
+.content-signin h2{
+    font-family: Oswald;
+    text-transform: uppercase;
+    font-style: italic;
+    color: #282B62;
+    font-size: 40px;
+}
+
+.content-signin form, .content-signin form .submit-content{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-top: 20px;
+}
+
+.content-signin form{
+    margin-top: 50px;
+}
+
+.content-signin form .submit-content{
+    align-items: flex-end;
+}
+
+.content-signin form input{
+    border: 0px;
+    background: none;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #F9D500;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #282B62;
+    transition: 0.5s;
+    width: 250px;
+}
+
+.content-signin form input::placeholder, .content-signin form textarea::placeholder{
+    color: #282B62;
+}
+
+.content-signin form input[type=submit]{
+    width: 200px;
+    border: 1px solid #282B62;
+    background: #282B62;
+    color: #F9D500;
+    font-weight: 300;
+    padding: 5px 0px;
+}
+
+.content-signin form textarea{
+    padding: 10px;
+    margin-top: 10px;
+    font-family: Raleway;
+    color: #212121;
+    border: 1px solid #282B62;
+    min-height: 150px;
+}
+
+.content-signin form input[type=submit]:hover{
+    background: none;
+    border: 1px solid #F9D500;
+    color: #282B62;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.content-signin form textarea:focus, .content-signup form input:focus{
+    outline: none;
+}
+
+.content-signin select {
+    border: 0px;
+    background: none;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #F9D500;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #282B62;
+    transition: 0.5s;
+    width: 250px;
+}
+
+
+/*////////// Legals Notices ////////////////*/
+
+.content-legals-notices{
+  width: 80%;
+  margin: 0 auto;
+  font-family: Raleway;
+}
+
+.content-legals-notices h2{
+  font-family: Oswald;
+  color: #272b62;
+  margin: 40px 0px 0px 0px;
+}
+
+.content-legals-notices h3{
+  font-family: Oswald;
+  color: #272b62;
+  margin-top: 20px;
+}
+
+.content-legals-notices p:last-child{
+  margin-bottom: 20px;
+}
+
+.content-legals-notices ul{
+  margin-left: 20px;
+}
+
+.content-legals-notices .website_name{
+  font-weight: 700;
+}
+
+.content-legals-notices a{
+  text-decoration: none;
+  color: #E52528;
 }
 
 /************ Footer *************/
