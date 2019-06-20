@@ -361,11 +361,12 @@ header{
 .single-match-conatiner{
   background: #272b62;
   padding-top: 50px;
+  width: 100%;
 }
 
 .single-match-conatiner h1{
   color : #F6D500;
-  width: 1200px;
+  width: 80%;
   font-family: Oswald;
   margin: 15px auto;
   font-size: 40px;
@@ -382,23 +383,23 @@ header{
 }
 
 .field{
-  width: 1200px;
+  width: 80%;
   box-sizing: border-box;
   margin: auto;
   position: relative;
 }
 
 .field img{
-  width: 1200px;
+  width: 100%;
 }
 
 .field-score-card{
-  width: 700px;
+  width: 50%;
   background: #212121AD;
   box-sizing: border-box;
-  position: absolute;
-  bottom: 30px;
-  left : 250px;
+  position: relative;
+  margin: 0 auto;
+  bottom: 225px;
   display:flex;
   justify-content: space-between;
   align-items: center;
@@ -440,16 +441,8 @@ header{
   padding-bottom: 20px;
 }
 
-.single-match-conatiner .palyer-list .home, .single-match-conatiner .palyer-list .away{
-
-}
-
 .single-match-conatiner .palyer-list .firs-team{
   margin-bottom: 15px
-}
-
-.single-match-conatiner .palyer-list .sub{
-
 }
 
 .single-match-conatiner  .statistics {
@@ -461,6 +454,27 @@ header{
   display: flex;
   flex-direction: column;
   color: white
+}
+
+@media screen and (max-width: 1000px) {
+  .field-score-card{
+    flex-direction: column;
+    bottom: 0;
+  }
+
+  .field img[alt='football field']{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .palyer-list, .statistics{
+    flex-direction: column;
+  }
+
+  .single-match-conatiner .palyer-list hr, .single-match-conatiner .statistics hr{
+    margin: 20px 0px;
+  }
 }
 
 /************ Contact us*************/
