@@ -8,7 +8,7 @@ class Footer extends Component {
           <footer>
             <p>©2019 FootFem</p>
             <NavLink to={routesList[9].path} activeClassName="active">
-              Mentions Légales
+              Legales Notices
             </NavLink>
           </footer>
     )

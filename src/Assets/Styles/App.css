@@ -3,7 +3,9 @@
 header{
   position: sticky;
   top: 0px;
-  z-index: 1;
+
+  z-index: 10;
+
 }
 
 .firstNav{
@@ -87,6 +89,137 @@ header{
   border-bottom: solid 1px white;
   border-top: solid 1px white;
   color: #E52528;
+}
+
+/*////////// HOME ////////////////*/
+
+.content-home{
+  background: #272b62;
+  padding-top: 50px;
+}
+
+.content-home h1{
+  font-family: Oswald;
+  color: #FBFBFB;
+  font-style: italic;
+  font-weight: 500;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 45px;
+}
+
+.content-home .field {
+    width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+    position: relative;
+}
+
+.content-home .field img{
+  width: 100%;
+  height: auto;
+}
+
+.content-home-actu {
+  margin: 20px 0px 0px 120px;
+  padding-bottom: 20px;
+}
+
+.content-home-actu a{
+  text-decoration: none;
+}
+
+.content-home-actu hr{
+  border: 0.5px solid #FBFBFB;
+  width: 80%;
+  max-width: 700px;
+  margin: 20px 0px;
+}
+
+.content-home-actu h2{
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #FBFBFB;
+  margin-bottom: 30px;
+  font-size: 40px;
+}
+
+.content-home-actu .articles-box {
+    display: flex;
+    width: 80%;
+    max-width: 700px;
+    padding: 10px 10px 10px 0px;
+    transition: 0.5s;
+}
+
+.content-home-actu .articles-box:hover{
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(33,33,33,0.3);
+  -moz-box-shadow: 3px 3px 5px 3px rgba(33,33,33,0.3);
+  box-shadow: 3px 3px 5px 3px rgba(33,33,33,0.3);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.content-home-actu .articles-box img{
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.content-home-actu .articles-box .art-content-text h3{
+  font-family: Oswald;
+  font-style: italic;
+  font-weight: 500;
+  color: #FBFBFB;
+  font-size: 25px;
+}
+
+.content-home-actu .articles-box .art-content-text .art-author{
+  color: #F9D500;
+  font-family: Oswald;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.content-home-actu .articles-box .art-content-text .article-resume{
+  font-family: Raleway;
+  color: #FBFBFB;
+  text-align: justify;
+}
+
+@media screen and (max-width: 950px) {
+    .content-home-actu .articles-box{
+      display: block;
+    }
+
+    .content-home-actu .articles-box img{
+      width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .content-home h1{
+      font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .content-home h1{
+      font-size: 25px;
+      margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .content-home h1{
+      font-size: 20px;
+      margin-top: 5px;
+    }
 }
 
 /*////////// Matches ////////////////*/
@@ -227,6 +360,7 @@ header{
 
 .single-match-conatiner{
   background: #272b62;
+  padding-top: 50px;
 }
 
 .single-match-conatiner h1{
@@ -431,6 +565,21 @@ header{
     width: 250px;
 }
 
+.option-select-sign-up{
+  padding: 0px;
+  align-items: center;
+  display: flex;
+}
+
+.css-1hwfws3{
+  padding: 0px !important;
+}
+
+.option-select-sign-up img{
+  width: 50px;
+  margin-right: 10px;
+}
+
 .content-signup form input::placeholder, .content-signup form textarea::placeholder{
     color: #282B62;
 }
@@ -475,6 +624,174 @@ header{
     color: #282B62;
     transition: 0.5s;
     width: 250px;
+}
+
+.content-signup p {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: red;
+    font-family: Oswald;
+}
+
+/*************AboutUs***************/
+
+.content-about-us{
+  margin: 20px 0px 20px 120px;
+}
+
+.content-about-us h2{
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #282B62;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
+.content-about-us .text-about-us{
+  max-width: 500px;
+  font-family: Raleway;
+  text-align: justify;
+  margin-bottom: 50px;
+}
+
+.text-para{
+  margin: 20px 0px;
+}
+
+@media screen and (max-width: 730px) {
+  .content-about-us{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .content-about-us .text-about-us .text-about-us{
+    width: 100%;
+  }
+}
+
+/*************SignIn***************/
+.content-signin{
+    margin: 20px 0px 20px 120px;
+}
+.content-signin h2{
+    font-family: Oswald;
+    text-transform: uppercase;
+    font-style: italic;
+    color: #282B62;
+    font-size: 40px;
+}
+
+.content-signin form, .content-signin form .submit-content{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-top: 20px;
+}
+
+.content-signin form{
+    margin-top: 50px;
+}
+
+.content-signin form .submit-content{
+    align-items: flex-end;
+}
+
+.content-signin form input{
+    border: 0px;
+    background: none;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #F9D500;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #282B62;
+    transition: 0.5s;
+    width: 250px;
+}
+
+.content-signin form input::placeholder, .content-signin form textarea::placeholder{
+    color: #282B62;
+}
+
+.content-signin form input[type=submit]{
+    width: 200px;
+    border: 1px solid #282B62;
+    background: #282B62;
+    color: #F9D500;
+    font-weight: 300;
+    padding: 5px 0px;
+}
+
+.content-signin form textarea{
+    padding: 10px;
+    margin-top: 10px;
+    font-family: Raleway;
+    color: #212121;
+    border: 1px solid #282B62;
+    min-height: 150px;
+}
+
+.content-signin form input[type=submit]:hover{
+    background: none;
+    border: 1px solid #F9D500;
+    color: #282B62;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.content-signin form textarea:focus, .content-signup form input:focus{
+    outline: none;
+}
+
+.content-signin select {
+    border: 0px;
+    background: none;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #F9D500;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #282B62;
+    transition: 0.5s;
+    width: 250px;
+}
+
+
+/*////////// Legals Notices ////////////////*/
+
+.content-legals-notices{
+  width: 80%;
+  margin: 0 auto;
+  font-family: Raleway;
+}
+
+.content-legals-notices h2{
+  font-family: Oswald;
+  color: #272b62;
+  margin: 40px 0px 0px 0px;
+}
+
+.content-legals-notices h3{
+  font-family: Oswald;
+  color: #272b62;
+  margin-top: 20px;
+}
+
+.content-legals-notices p:last-child{
+  margin-bottom: 20px;
+}
+
+.content-legals-notices ul{
+  margin-left: 20px;
+}
+
+.content-legals-notices .website_name{
+  font-weight: 700;
+}
+
+.content-legals-notices a{
+  text-decoration: none;
+  color: #E52528;
 }
 
 /************ Footer *************/
