@@ -77,9 +77,6 @@ onSubmit = (e) => {
   render() {
 
     const selectOptionStyle = {
-        state:{
-          placeholder: 'Test'
-        },
         option: (provided, state) => ({
           ...provided,
           borderBottom: '1px solid lightgray',
@@ -91,19 +88,12 @@ onSubmit = (e) => {
           width: 250,
           padding: 0,
           fontFamily: 'Oswald',
-          borderBottom: '1px solid yellow'
+          borderBottom: '1px solid yellow',
         }),
         placeholder: () => ({
           color:'#282B62',
           fontSize:20,
-        }),
-        IndicatorsContainer: () => ({
-          display:'none'
-        }),
-        singleValue: (provided, state) => {
-
-          return { ...provided };
-        }
+        })
       }
 
     return (
