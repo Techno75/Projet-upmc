@@ -501,6 +501,13 @@ header{
     width: 250px;
 }
 
+.content-signup p {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: red;
+    font-family: Oswald;
+}
+
 /*************AboutUs***************/
 
 .content-about-us{
