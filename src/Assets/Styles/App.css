@@ -719,7 +719,15 @@ header{
 }
 
 .content-signin form{
-    margin-top: 50px;
+    margin-top: 30px;
+}
+
+.content-signin .error-form-signin {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #E52528;
+    margin-top: 20px;
+    font-family: Oswald;
 }
 
 .content-signin form .submit-content{

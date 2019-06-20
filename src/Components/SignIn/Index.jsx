@@ -50,6 +50,7 @@ state = {
     return (
       <div className='content-signin'>
         <h2>Sign In</h2>
+        <p className="error-form-signin">{this.state.errorMessage}</p>
           <form onSubmit={this.onSubmit}>
               <input
                   type='email'
@@ -65,7 +66,6 @@ state = {
                   value={this.state.userData.password}
                   onChange={(password)=>this.setState({userData:{...this.state.userData, password: password.target.value}})}
               />
-              <p>{this.state.errorMessage}</p>
               <div className='submit-content'>
                   <input
                       type='submit'
