@@ -573,7 +573,7 @@ header{
 }
 
 .content-signup form{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .content-signup form .submit-content{
@@ -653,10 +653,11 @@ header{
     width: 250px;
 }
 
-.content-signup p {
-    font-size: 14px;
+.content-signup .error-form-signup {
+    font-size: 16px;
     text-transform: uppercase;
-    color: red;
+    color: #E52528;
+    margin-top: 20px;
     font-family: Oswald;
 }
 
@@ -748,6 +749,10 @@ header{
     color: #F9D500;
     font-weight: 300;
     padding: 5px 0px;
+}
+
+.content-signin form input:focus{
+  outline: none;
 }
 
 .content-signin form textarea{
