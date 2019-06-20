@@ -17,7 +17,6 @@ state = {
     },
     confirmPassword: '',
     errorMessage: '',
-    globalErrorMessage: '',
 };
 
 componentDidMount() {
@@ -34,7 +33,6 @@ componentDidMount() {
             return res.json()
         })
         .then((data) => {
-<<<<<<< HEAD
             const countryOption = data.map((country)=>{
               return {
                 value:country.id,
@@ -45,11 +43,6 @@ componentDidMount() {
                 }
             })
             this.setState({countries : countryOption});
-=======
-            this.setState({ countries : data
-            });
-            console.log(this.state.countries);
->>>>>>> 16c5101c47b68f28d112ca73702c97007e30e414
         });
 }
 confirmPasswordHandler = () => {
