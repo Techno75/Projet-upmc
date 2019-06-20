@@ -88,6 +88,73 @@ header{
   color: #E52528;
 }
 
+/*////////// HOME ////////////////*/
+
+.content-home{
+  background: #272b62;
+  padding-top: 50px;
+}
+
+.content-home h1{
+  font-family: Oswald;
+  color: #FBFBFB;
+  font-style: italic;
+  font-weight: 500;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 45px;
+}
+
+.content-home .field {
+    width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+    position: relative;
+}
+
+.content-home .field img{
+  width: 100%;
+  height: auto;
+}
+
+.content-home-actu {
+  margin: 20px 0px 0px 120px;
+  padding-bottom: 20px;
+}
+
+.content-home-actu h2{
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #FBFBFB;
+  margin-bottom: 30px;
+  font-size: 40px;
+}
+
+@media screen and (max-width: 800px) {
+    .content-home h1{
+      font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .content-home h1{
+      font-size: 25px;
+      margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .content-home h1{
+      font-size: 20px;
+      margin-top: 5px;
+    }
+}
+
 /*////////// Matches ////////////////*/
 
 .match-container{
@@ -226,6 +293,7 @@ header{
 
 .single-match-conatiner{
   background: #272b62;
+  padding-top: 50px;
 }
 
 .field{
@@ -455,6 +523,10 @@ header{
   margin-bottom: 50px;
 }
 
+.text-para{
+  margin: 20px 0px;
+}
+
 @media screen and (max-width: 730px) {
   .content-about-us{
     margin: 0 auto;
@@ -462,7 +534,7 @@ header{
     margin-top: 20px;
   }
 
-  .text-about-us{
+  .content-about-us .text-about-us .text-about-us{
     width: 100%;
   }
 }
