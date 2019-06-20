@@ -3,6 +3,7 @@
 header{
   position: sticky;
   top: 0px;
+  z-index: 10;
 }
 
 .firstNav{
@@ -126,6 +127,17 @@ header{
   padding-bottom: 20px;
 }
 
+.content-home-actu a{
+  text-decoration: none;
+}
+
+.content-home-actu hr{
+  border: 0.5px solid #FBFBFB;
+  width: 80%;
+  max-width: 700px;
+  margin: 20px 0px;
+}
+
 .content-home-actu h2{
   font-family: Oswald;
   text-transform: uppercase;
@@ -133,6 +145,59 @@ header{
   color: #FBFBFB;
   margin-bottom: 30px;
   font-size: 40px;
+}
+
+.content-home-actu .articles-box {
+    display: flex;
+    width: 80%;
+    max-width: 700px;
+    padding: 10px 10px 10px 0px;
+    transition: 0.5s;
+}
+
+.content-home-actu .articles-box:hover{
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(33,33,33,0.3);
+  -moz-box-shadow: 3px 3px 5px 3px rgba(33,33,33,0.3);
+  box-shadow: 3px 3px 5px 3px rgba(33,33,33,0.3);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.content-home-actu .articles-box img{
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.content-home-actu .articles-box .art-content-text h3{
+  font-family: Oswald;
+  font-style: italic;
+  font-weight: 500;
+  color: #FBFBFB;
+  font-size: 25px;
+}
+
+.content-home-actu .articles-box .art-content-text .art-author{
+  color: #F9D500;
+  font-family: Oswald;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.content-home-actu .articles-box .art-content-text .article-resume{
+  font-family: Raleway;
+  color: #FBFBFB;
+  text-align: justify;
+}
+
+@media screen and (max-width: 950px) {
+    .content-home-actu .articles-box{
+      display: block;
+    }
+
+    .content-home-actu .articles-box img{
+      width: 100%;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -453,6 +518,21 @@ header{
     color: #282B62;
     transition: 0.5s;
     width: 250px;
+}
+
+.option-select-sign-up{
+  padding: 0px;
+  align-items: center;
+  display: flex;
+}
+
+.css-1hwfws3{
+  padding: 0px !important;
+}
+
+.option-select-sign-up img{
+  width: 50px;
+  margin-right: 10px;
 }
 
 .content-signup form input::placeholder, .content-signup form textarea::placeholder{

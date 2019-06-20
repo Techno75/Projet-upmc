@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import homeImage from './../../Assets/Images/home.jpg';
+import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
+import { Link } from 'react-router-dom';
+import {routesList} from '../../Constantes/Routes.js';
 
 class Home extends Component {
 
@@ -14,6 +17,17 @@ class Home extends Component {
             </div>
             <div className="content-home-actu">
               <h2>News</h2>
+              <Link to={{pathname : routesList[10].path}} key={'add_key_here'}>
+                <div className="articles-box">
+                  <img src={imgArticleDev} alt="img_article_a_remplacer_par_une_var_pour_le_referencement" />
+                  <div className="art-content-text">
+                    <h3>Lorem ipsum dolor sit emmet !</h3>
+                    <p className="art-author">by John Doe - 06-20-2019</p>
+                    <p className='article-resume'>Nulla facilisi. Duis eget risus feugiat, dictum augue sit amet, pellentesque purus. In dignissim commodo porta. Praesent efficitur hendrerit nulla porttitor laoreet. Etiam sodales tellus vitae sagittis tincidunt. Ut lobortis mauris vitae turpis iaculis, eu congue quam consectetur. Duis faucibus nisi ante, at dignissim nisi interdum ut. Nam varius orci ut augue malesuada mollis.</p>
+                  </div>
+                </div>
+                <hr />
+              </Link>
             </div>
           </div>
     )

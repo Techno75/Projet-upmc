@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import {API_ROUTE} from "../../Constantes/ApiRoute";
+import Select from 'react-select'
 
 class SignUp extends Component {
-
 state = {
     countries: null,
     userData: {
@@ -33,8 +33,16 @@ componentDidMount() {
             return res.json()
         })
         .then((data) => {
-            this.setState({ countries : data
-            });
+            const countryOption = data.map((country)=>{
+              return {
+                value:country.id,
+                label:<div className='option-select-sign-up'>
+                        <img src={require(`./../../Assets/Images/Flags/${country.fifa_code}.jpg`)} />
+                        <span>{country.country}</span>
+                      </div>
+                }
+            })
+            this.setState({countries : countryOption});
         });
 }
 confirmPasswordHandler = () => {
@@ -67,6 +75,37 @@ onSubmit = (e) => {
 };
 
   render() {
+
+    const selectOptionStyle = {
+        state:{
+          placeholder: 'Test'
+        },
+        option: (provided, state) => ({
+          ...provided,
+          borderBottom: '1px solid lightgray',
+          color: '#212121',
+          padding: 10,
+          fontFamily: 'Oswald',
+        }),
+        control: () => ({
+          width: 250,
+          padding: 0,
+          fontFamily: 'Oswald',
+          borderBottom: '1px solid yellow'
+        }),
+        placeholder: () => ({
+          color:'#282B62',
+          fontSize:20,
+        }),
+        IndicatorsContainer: () => ({
+          display:'none'
+        }),
+        singleValue: (provided, state) => {
+
+          return { ...provided };
+        }
+      }
+
     return (
           <div className='content-signup'>
             <h2>Sign Up</h2>
@@ -76,35 +115,35 @@ onSubmit = (e) => {
                       name='lastname'
                       placeholder='Last Name'
                       value = {this.state.userData.lastname}
-                      onChange = {(lastname)=>this.setState({userData: { lastname: lastname.target.value }})}
+                      onChange = {(lastname)=>this.setState({userData: {...this.state.userData, lastname: lastname.target.value }})}
                   />
                   <input
                       type='text'
                       name='firstname'
                       placeholder='First Name'
                       value={this.state.userData.firstname}
-                      onChange = {(firstname)=>this.setState({userData: { firstname: firstname.target.value }})}
+                      onChange = {(firstname)=>this.setState({userData: {...this.state.userData, firstname: firstname.target.value }})}
                   />
                   <input
                       type='text'
                       name='username'
                       placeholder='Username'
                       value={this.state.userData.username}
-                      onChange = {(username)=>this.setState({userData:{username: username.target.value}})}
+                      onChange = {(username)=>this.setState({userData:{...this.state.userData, username: username.target.value}})}
                   />
                   <input
                       type='email'
                       name='email'
                       placeholder='Email'
                       value={this.state.userData.email}
-                      onChange={(email)=>this.setState({userData:{email: email.target.value}})}
+                      onChange={(email)=>this.setState({userData:{...this.state.userData, email: email.target.value}})}
                   />
                   <input
                       type='password'
                       name='password'
                       placeholder='Password'
                       value={this.state.userData.password}
-                      onChange={(password)=>this.setState({userData:{password: password.target.value}})}
+                      onChange={(password)=>this.setState({userData:{...this.state.userData, password: password.target.value}})}
                   />
                   <input
                       type='password'
@@ -114,19 +153,13 @@ onSubmit = (e) => {
                       onChange={(confirmPassword)=>this.setState({confirmPassword: confirmPassword.target.value})}
                   />
                   <p>{this.state.errorMessage}</p>
-                  <select name="toto" id="">
-                      {
-                          this.state.countries && this.state.countries.map((countries, index) => {
-                              return(
-                                  <option key={index} value={countries.fifa_code}>
-                                      {countries.country}
-                                  </option>
-                              )
-                          })
-                      }
-                  </select>
-
-
+                      <Select
+                        options={this.state.countries}
+                        onChange={(team)=>this.setState({userData:{...this.state.userData, team : team.value}})}
+                        styles={selectOptionStyle}
+                        placeholder='Choose your favorite team'
+                        components={{ DropdownIndicator: () => null, IndicatorsContainer: () => null }}
+                      />
                   <div className='submit-content'>
                       <input
                           type='submit'
