@@ -3,6 +3,7 @@
 header{
   position: sticky;
   top: 0px;
+  z-index: 1;
 }
 
 .firstNav{
@@ -228,6 +229,12 @@ header{
   background: #272b62;
 }
 
+.single-match-conatiner h1{
+  color : white;
+  width: 1200px;
+  margin: 15px auto;
+}
+
 .field{
   width: 1200px;
   box-sizing: border-box;
@@ -251,6 +258,7 @@ header{
   align-items: center;
   color : white;
   font-family: Oswald;
+  box-shadow: 0 0 10px #212121;
 }
 
 .field-country-card{
@@ -259,6 +267,11 @@ header{
   font-size: 50px;
   text-align: center;
   margin: 20px
+}
+
+.goal-conatiner{
+  font-size: 15px;
+  text-align: left;
 }
 
 .field-time-score-card{
@@ -270,6 +283,37 @@ header{
 
 .field-country-card img{
   width: 100px
+}
+
+.single-match-conatiner .palyer-list{
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.single-match-conatiner .palyer-list .home, .single-match-conatiner .palyer-list .away{
+
+}
+
+.single-match-conatiner .palyer-list .firs-team{
+  margin-bottom: 15px
+}
+
+.single-match-conatiner .palyer-list .sub{
+
+}
+
+.single-match-conatiner  .statistics {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-match-conatiner  .statistics .statistics-colomn{
+  display: flex;
+  flex-direction: column;
+  color: white
 }
 
 /************ Contact us*************/
