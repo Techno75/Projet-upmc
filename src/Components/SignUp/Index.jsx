@@ -17,6 +17,7 @@ state = {
     },
     confirmPassword: '',
     errorMessage: '',
+    globalErrorMessage: '',
 };
 
 componentDidMount() {
@@ -61,13 +62,22 @@ onSubmit = (e) => {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
-        body : JSON.stringify(this.state.userData)})
-            .then(() => {
-                console.log('user has been created');
-                return(
-                    <Link to={{pathname : routesList[1].path}}/>
-                )
-            })
+        body : JSON.stringify(this.state.userData)
+    })
+     .then((response) => {
+                console.log(response);
+                if(!(response.status >= 200 && response.status <= 300)) {
+                    return response.json();
+                } else {
+                    alert('User succsessfully created')
+                    this.props.history.push(`${routesList[3].path}`);
+                    return response.json()
+                }
+     })
+        .then((data)=>{
+            this.setState({errorMessage: data.error});
+        })
+
             .catch((err) => {
                 console.log('error', err);
             })
@@ -150,6 +160,8 @@ onSubmit = (e) => {
                         placeholder='Choose your favorite team'
                         components={{ DropdownIndicator: () => null, IndicatorsContainer: () => null }}
                       />
+                  <p>{this.state.globalErrorMessage && this.state.globalErrorMessage}</p>
+
                   <div className='submit-content'>
                       <input
                           type='submit'
