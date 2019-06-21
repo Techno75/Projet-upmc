@@ -1,8 +1,30 @@
 import React, { Component } from 'react';
 import logo from '../../Assets/Images/Logo_FootFem.gif'
 import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import {routesList} from "../../Constantes/Routes";
 
 class FirstNav extends Component {
+    state= {
+        showSignOut: false,
+    };
+
+  componentDidMount() {
+      if(sessionStorage.getItem('userData')) {
+          this.setState({showSignOut: true});
+          console.log(this.state.showSignOut);
+      } else {
+          this.setState({showSignOut: false});
+          console.log(this.state.showSignOut);
+      }
+  }
+
+  signOut = () => {
+      sessionStorage.setItem('userData', '');
+      sessionStorage.clear();
+      this.setState({showSignOut: false});
+  };
+
   render() {
     return (
           <div className="firstNav">
@@ -24,18 +46,38 @@ class FirstNav extends Component {
                       {this.props.routesList[2].name}
                   </NavLink>
                 </li>
+                <li>
+                    {
+                        sessionStorage.getItem('userData') &&
+                        <NavLink to={this.props.routesList[12].path} activeClassName="active">
+                            {this.props.routesList[12].name}
+                        </NavLink>
+                    }
+                </li>
               </ul>
               <ul>
-                <li>
-                  <NavLink to={this.props.routesList[3].path} activeClassName="active">
-                      {this.props.routesList[3].name}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={this.props.routesList[4].path} activeClassName="active">
-                      {this.props.routesList[4].name}
-                  </NavLink>
-                </li>
+                  <li>
+                      {
+                          this.state.showSignOut === true &&
+                            <NavLink onClick={this.signOut} to={this.props.routesList[3].path} activeClassName="active">Sign out</NavLink>
+                      }
+                  </li>
+                  {
+                      this.state.showSignOut === false &&
+                      <li>
+                          <NavLink to={this.props.routesList[3].path} activeClassName="active">
+                              {this.props.routesList[3].name}
+                          </NavLink>
+                      </li>
+                  }
+                  {
+                      this.state.showSignOut === false &&
+                      <li>
+                          <NavLink to={this.props.routesList[4].path} activeClassName="active">
+                              {this.props.routesList[4].name}
+                          </NavLink>
+                      </li>
+                  }
               </ul>
             </nav>
           </div>

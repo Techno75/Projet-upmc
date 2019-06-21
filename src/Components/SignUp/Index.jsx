@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import {routesList} from '../../Constantes/Routes.js';
 import {API_ROUTE} from "../../Constantes/ApiRoute";
 import Select from 'react-select'
@@ -18,6 +19,7 @@ state = {
     confirmPassword: '',
     errorMessage: '',
     globalErrorMessage: '',
+    redirect: false,
 };
 
 componentDidMount() {
@@ -50,41 +52,53 @@ confirmPasswordHandler = () => {
     this.setState({errorMessage: ''});
     if(this.state.confirmPassword !== this.state.userData.password) {
         this.setState({errorMessage: 'Password doesn\'t match'});
+        return false;
+    } else {
+        return true;
     }
 };
 
 onSubmit = (e) => {
     e.preventDefault();
-    this.confirmPasswordHandler();
-    console.log(this.state);
-    fetch('http://localhost:8080/api/users/register', { mode: 'cors', method : 'post',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        body : JSON.stringify(this.state.userData)
-    })
-     .then((response) => {
+
+    if(this.confirmPasswordHandler() === true) {
+        console.log(this.state);
+        fetch('http://localhost:8080/api/users/register', { mode: 'cors', method : 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(this.state.userData)
+        })
+            .then((response) => {
                 console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
                     return response.json();
                 } else {
-                    alert('User succsessfully created')
-                    this.props.history.push(`${routesList[3].path}`);
+                    alert('User succsessfully created');
+                    this.setState({redirect: true});
+                    // this.props.history.push(`${routesList[3].path}`);
                     return response.json()
                 }
-     })
-        .then((data)=>{
-            this.setState({errorMessage: data.error});
-        })
+            })
+            .then((data)=>{
+                this.setState({errorMessage: data.error});
+            })
 
             .catch((err) => {
                 console.log('error', err);
-            })
+            });
+    }
+
 
 };
 
   render() {
+      if(this.state.redirect) {
+          return(
+              <Redirect to={routesList[3].path}/>
+          )
+      }
 
     const selectOptionStyle = {
         option: (provided, state) => ({
@@ -98,13 +112,13 @@ onSubmit = (e) => {
           width: 250,
           padding: 0,
           fontFamily: 'Oswald',
-          borderBottom: '1px solid yellow',
+          borderBottom: '1px solid #F6D500',
         }),
         placeholder: () => ({
           color:'#282B62',
           fontSize:20,
         })
-      }
+      };
 
     return (
           <div className='content-signup'>
