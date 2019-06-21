@@ -34,7 +34,7 @@ class Home extends Component {
             </div>
             <div className="content-home-actu">
               <h2>News</h2>
-              <Link to={{pathname : routesList[10].path}} key={'add_key_here'}>
+              <Link to={{pathname : routesList[13].path}} key={'add_key_here'}>
                 <div className="articles-box">
                   <img src={imgArticleDev} alt="img_article_a_remplacer_par_une_var_pour_le_referencement" />
                   <div className="art-content-text">

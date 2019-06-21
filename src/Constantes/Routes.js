@@ -11,6 +11,7 @@ import LegalNotice from '../Components/LegalNotice/Index.jsx';
 import Groups from '../Components/Groups/Index.jsx';
 import Pronostics from '../Components/Pronostics/Index.jsx';
 import Profil from '../Components/Profil/Index.jsx';
+import Article from '../Components/Article/Index.jsx';
 
 export const routesList = [
   { path: "/Home", name: "Home", component: Home },
@@ -26,6 +27,7 @@ export const routesList = [
   { path: "/Match", name: "Match", component: Match },
   { path: "/Pronostics", name: "Pronostics", component: Pronostics },
   { path: "/Profil", name: "Profil", component: Profil },
-  // Ajouter de nouvelle route à partir d'ici pour éviter des bug !!!!
+  { path: "/Article", name: "Article", component: Article },
+  // prochain à 14 | Ajouter de nouvelle route à partir d'ici pour éviter des bug !!!!
   { redirect: true, path:"/", to:"/Home", name: "Home"}
 ];
