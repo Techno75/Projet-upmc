@@ -29,13 +29,13 @@ inputChangeHandler = (e) => {
 onSubmit = (e) => {
   e.preventDefault();
   fetch("http://localhost:8080/api/contact", {
+            mode: 'cors',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
             method: 'POST',
-            body: JSON.stringify({
-              lastName : encodeURI(this.state.userData.lastName),
-              firstName: encodeURI(this.state.userData.firstName),
-              email: encodeURI(this.state.userData.email),
-              message: encodeURI(this.state.userData.message)
-              })
+            body: JSON.stringify(this.state.userData)
             })
               .catch(function(err) {
                 console.log(err)
