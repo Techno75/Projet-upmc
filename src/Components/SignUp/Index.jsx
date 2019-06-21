@@ -109,6 +109,8 @@ onSubmit = (e) => {
     return (
           <div className='content-signup'>
             <h2>Sign Up</h2>
+            <p className='error-form-signup'>{this.state.globalErrorMessage && this.state.globalErrorMessage}</p>
+            <p className='error-form-signup'>{this.state.errorMessage}</p>
               <form onSubmit={this.onSubmit}>
                   <input
                       type='text'
@@ -152,7 +154,6 @@ onSubmit = (e) => {
                       value={this.state.confirmPassword}
                       onChange={(confirmPassword)=>this.setState({confirmPassword: confirmPassword.target.value})}
                   />
-                  <p>{this.state.errorMessage}</p>
                       <Select
                         options={this.state.countries}
                         onChange={(team)=>this.setState({userData:{...this.state.userData, team : team.value}})}
@@ -160,7 +161,6 @@ onSubmit = (e) => {
                         placeholder='Choose your favorite team'
                         components={{ DropdownIndicator: () => null, IndicatorsContainer: () => null }}
                       />
-                  <p>{this.state.globalErrorMessage && this.state.globalErrorMessage}</p>
 
                   <div className='submit-content'>
                       <input
