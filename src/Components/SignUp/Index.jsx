@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import {routesList} from '../../Constantes/Routes.js';
 import {API_ROUTE} from "../../Constantes/ApiRoute";
 import Select from 'react-select'
@@ -18,6 +19,7 @@ state = {
     confirmPassword: '',
     errorMessage: '',
     globalErrorMessage: '',
+    redirect: false,
 };
 
 componentDidMount() {
@@ -69,8 +71,9 @@ onSubmit = (e) => {
                 if(!(response.status >= 200 && response.status <= 300)) {
                     return response.json();
                 } else {
-                    alert('User succsessfully created')
-                    this.props.history.push(`${routesList[3].path}`);
+                    alert('User succsessfully created');
+                    this.setState({redirect: true});
+                    // this.props.history.push(`${routesList[3].path}`);
                     return response.json()
                 }
      })
@@ -85,6 +88,11 @@ onSubmit = (e) => {
 };
 
   render() {
+      if(this.state.redirect) {
+          return(
+              <Redirect to={routesList[3].path}/>
+          )
+      }
 
     const selectOptionStyle = {
         option: (provided, state) => ({
@@ -104,7 +112,7 @@ onSubmit = (e) => {
           color:'#282B62',
           fontSize:20,
         })
-      }
+      };
 
     return (
           <div className='content-signup'>

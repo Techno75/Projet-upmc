@@ -27,6 +27,14 @@ class SecondeNav extends Component {
                       {this.props.routesList[8].name}
                   </NavLink>
                 </li>
+                  <li>
+                      {
+                          sessionStorage.getItem('userData') &&
+                          <NavLink to={this.props.routesList[11].path} activeClassName="active">
+                              {this.props.routesList[11].name}
+                          </NavLink>
+                      }
+                  </li>
               </ul>
             </nav>
           </div>

@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
 import homeImage from './../../Assets/Images/home.jpg';
 import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
-import { Link } from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 
 class Home extends Component {
+    state = {
+        redirect: false,
+    };
 
+    componentWillMount() {
+        if(sessionStorage.getItem('userData')) {
+            console.log('show user datas');
+        } else {
+            this.setState({redirect: false});
+        }
+    }
 
 
   render() {
+
+    if(this.state.redirect) {
+      return(
+          <Redirect to={routesList[0].path}/>
+      )
+    }
+
     return (
           <div className="content-home">
             <div className="field">

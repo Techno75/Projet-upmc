@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router';
 import {routesList} from "../../Constantes/Routes";
 
 class SignIn extends Component {
 
-state = {
-    userData: {
-        email: '',
-        password: '',
-    },
-    errorMessage: '',
-};
+    state = {
+        userData: {
+            email: '',
+            password: '',
+        },
+        errorMessage: '',
+        redirect: false,
+        logoutToggler: false,
+    };
 
     onSubmit = (e) => {
         this.setState({errorMessage: ''});
@@ -36,8 +39,12 @@ state = {
             .then((data)=>{
                 if ('error' in data) {
                     this.setState({errorMessage: data.error});
+                } else {
+                    console.log(data);
+                    sessionStorage.setItem('userData', data);
+                    this.setState({redirect: true});
+                    window.location.reload()
                 }
-                console.log(data);
             })
 
             .catch((err) => {
@@ -47,6 +54,18 @@ state = {
     };
 
   render() {
+    if(this.state.redirect) {
+        return(
+            <Redirect to={{pathName: routesList[0].path}} />
+        )
+    }
+
+    if(sessionStorage.getItem('userData')) {
+        return(
+            <Redirect to={routesList[0].path}/>
+        )
+    }
+
     return (
       <div className='content-signin'>
         <h2>Sign In</h2>
