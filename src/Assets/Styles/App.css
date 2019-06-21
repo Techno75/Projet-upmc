@@ -95,7 +95,7 @@ header{
 
 .content-home{
   background: #272b62;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .content-home h1{
@@ -360,7 +360,7 @@ header{
 
 .single-match-conatiner{
   background: #272b62;
-  padding-top: 50px;
+  padding-top: 20px;
   width: 100%;
 }
 
@@ -397,12 +397,11 @@ header{
   width: 50%;
   background: #212121AD;
   box-sizing: border-box;
-  position: relative;
-  margin: 0 auto;
-  bottom: 225px;
+  position: absolute;
+  bottom: 30px;
+  left : 250px;
   display:flex;
   justify-content: space-between;
-  align-items: center;
   color : white;
   font-family: Oswald;
   box-shadow: 0 0 10px #212121;
@@ -414,6 +413,7 @@ header{
   font-size: 50px;
   text-align: center;
   margin: 20px;
+  align-items: center;
 }
 
 .goal-conatiner{
@@ -459,7 +459,10 @@ header{
 @media screen and (max-width: 1000px) {
   .field-score-card{
     flex-direction: column;
+    position: relative;
     bottom: 0;
+    left: 0;
+    margin: 0 auto;
   }
 
   .field img[alt='football field']{
