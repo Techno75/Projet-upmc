@@ -5,7 +5,18 @@ import { Link } from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 
 class Home extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
 
+    }
+  }
+
+  componentDidMount(){
+    fetch("", {})
+    .then((res)=>{})
+    .then((data)=>{})
+  }
 
 
   render() {
@@ -14,6 +25,7 @@ class Home extends Component {
             <div className="field">
               <img src={homeImage} alt="home-footfem-img" />
               <h1>FootFem supports women's soccer !</h1>
+              <div>test</div>
             </div>
             <div className="content-home-actu">
               <h2>News</h2>
