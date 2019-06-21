@@ -1,21 +1,9 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
 import {Redirect} from 'react-router';
->>>>>>> 48b45d74e7cdeb8a547f23e236c4618efb95805c
 import {routesList} from "../../Constantes/Routes";
 
 class SignIn extends Component {
 
-<<<<<<< HEAD
-state = {
-    userData: {
-        email: '',
-        password: '',
-    },
-    errorMessage: '',
-};
-=======
     state = {
         userData: {
             email: '',
@@ -25,7 +13,6 @@ state = {
         redirect: false,
         logoutToggler: false,
     };
->>>>>>> 48b45d74e7cdeb8a547f23e236c4618efb95805c
 
     onSubmit = (e) => {
         this.setState({errorMessage: ''});
@@ -50,22 +37,21 @@ state = {
                 }
             })
             .then((data)=>{
+                console.log(data);
                 if ('error' in data) {
                     this.setState({errorMessage: data.error});
-<<<<<<< HEAD
                 }
-                console.log(data);
+               else {
+                  console.log(data);
+                  sessionStorage.setItem('userData', data);
+                  this.setState({redirect: true});
+                  window.location.reload();
+              }
             })
 
-=======
-                } else {
-                    console.log(data);
-                    sessionStorage.setItem('userData', data);
-                    this.setState({redirect: true});
-                    window.location.reload()
-                }
-            })
->>>>>>> 48b45d74e7cdeb8a547f23e236c4618efb95805c
+
+
+
             .catch((err) => {
                 console.log('error', err);
             })

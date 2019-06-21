@@ -5,20 +5,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 
 class Home extends Component {
-<<<<<<< HEAD
-  constructor(props){
-    super(props);
-    this.state = {
 
-    }
-  }
-
-  componentDidMount(){
-    fetch("", {})
-    .then((res)=>{})
-    .then((data)=>{})
-  }
-=======
     state = {
         redirect: false,
     };
@@ -30,7 +17,7 @@ class Home extends Component {
             this.setState({redirect: false});
         }
     }
->>>>>>> 48b45d74e7cdeb8a547f23e236c4618efb95805c
+
 
 
   render() {
