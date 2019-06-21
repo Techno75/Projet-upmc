@@ -98,7 +98,7 @@ onSubmit = (e) => {
           width: 250,
           padding: 0,
           fontFamily: 'Oswald',
-          borderBottom: '1px solid yellow',
+          borderBottom: '1px solid #F6D500',
         }),
         placeholder: () => ({
           color:'#282B62',
