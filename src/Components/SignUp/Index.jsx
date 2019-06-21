@@ -52,21 +52,25 @@ confirmPasswordHandler = () => {
     this.setState({errorMessage: ''});
     if(this.state.confirmPassword !== this.state.userData.password) {
         this.setState({errorMessage: 'Password doesn\'t match'});
+        return false;
+    } else {
+        return true;
     }
 };
 
 onSubmit = (e) => {
     e.preventDefault();
-    this.confirmPasswordHandler();
-    console.log(this.state);
-    fetch('http://localhost:8080/api/users/register', { mode: 'cors', method : 'post',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-        body : JSON.stringify(this.state.userData)
-    })
-     .then((response) => {
+
+    if(this.confirmPasswordHandler() === true) {
+        console.log(this.state);
+        fetch('http://localhost:8080/api/users/register', { mode: 'cors', method : 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(this.state.userData)
+        })
+            .then((response) => {
                 console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
                     return response.json();
@@ -76,14 +80,16 @@ onSubmit = (e) => {
                     // this.props.history.push(`${routesList[3].path}`);
                     return response.json()
                 }
-     })
-        .then((data)=>{
-            this.setState({errorMessage: data.error});
-        })
+            })
+            .then((data)=>{
+                this.setState({errorMessage: data.error});
+            })
 
             .catch((err) => {
                 console.log('error', err);
-            })
+            });
+    }
+
 
 };
 

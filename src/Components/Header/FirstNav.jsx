@@ -62,23 +62,22 @@ class FirstNav extends Component {
                             <NavLink onClick={this.signOut} to={this.props.routesList[3].path} activeClassName="active">Sign out</NavLink>
                       }
                   </li>
-                <li>
-                    {
-                        this.state.showSignOut === false &&
-                        <NavLink to={this.props.routesList[3].path} activeClassName="active">
-                            {this.props.routesList[3].name}
-                        </NavLink>
-                    }
-                </li>
-                <li>
-                    {
-                        this.state.showSignOut === false &&
-                        <NavLink to={this.props.routesList[4].path} activeClassName="active">
-                            {this.props.routesList[4].name}
-                        </NavLink>
-                    }
-
-                </li>
+                  {
+                      this.state.showSignOut === false &&
+                      <li>
+                          <NavLink to={this.props.routesList[3].path} activeClassName="active">
+                              {this.props.routesList[3].name}
+                          </NavLink>
+                      </li>
+                  }
+                  {
+                      this.state.showSignOut === false &&
+                      <li>
+                          <NavLink to={this.props.routesList[4].path} activeClassName="active">
+                              {this.props.routesList[4].name}
+                          </NavLink>
+                      </li>
+                  }
               </ul>
             </nav>
           </div>
