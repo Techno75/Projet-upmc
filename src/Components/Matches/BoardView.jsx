@@ -70,10 +70,10 @@ class BoardView extends Component {
                 match={quaterFinalList[1]}
               />
               <BoardViewMatchCard
-                match={quaterFinalList[2]}
+                match={quaterFinalList[3]}
               />
               <BoardViewMatchCard
-                match={quaterFinalList[3]}
+                match={quaterFinalList[2]}
               />
               <BoardViewMatchCard
                 match={semiFinalList[0]}
