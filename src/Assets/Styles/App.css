@@ -426,7 +426,7 @@ header{
   box-sizing: border-box;
   position: absolute;
   bottom: 30px;
-  left : 250px;
+  left : 25%;
   display:flex;
   justify-content: space-between;
   color : #FBFBFB;
