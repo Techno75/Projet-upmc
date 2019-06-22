@@ -4,6 +4,64 @@ import { Link } from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 
 class ListView extends Component {
+
+  state = {
+      storage: null,
+      Authorization: '',
+  };
+
+    componentWillMount() {
+        if(sessionStorage.getItem('userData')) {
+            this.getStorageData();
+        }
+    }
+
+    getStorageData() {
+        const testData = JSON.parse(sessionStorage.getItem('userData'));
+        console.log(sessionStorage.getItem('userData'));
+        this.setState({storage: testData});
+        this.setState({Authorization: testData.token});
+        console.log(testData.token);
+        console.log(this.state.storage);
+    }
+
+    createNotification = (venue, datetime, matchId) => {
+        const testData = JSON.parse(sessionStorage.getItem('userData'));
+        fetch('http://localhost:8080/api/notifications/new',  { mode: 'cors', method : 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer' + testData.token,
+            },
+            body : JSON.stringify({
+                venue: venue,
+                datetime: datetime,
+                isFavorite: 1,
+                matchId: matchId,
+                UserId: this.state.storage.UserId,
+            })
+        })
+            .then((response) => {
+                console.log(response);
+                if(!(response.status >= 200 && response.status <= 300)) {
+                    console.log(response.json());
+                    return response.json();
+                } else {
+                    console.log('notification created');
+                    console.log(response.json());
+                    return response.json()
+                }
+            })
+            .then((data)=>{
+                this.setState({errorMessage: data.error});
+            })
+
+            .catch((err) => {
+                console.log('error', err);
+            })
+    }
+
+
   render() {
     const matchAlreadyPlayedList = this.props.matchDataList.filter((match)=>{
       if(match.status === "completed"){
@@ -89,7 +147,6 @@ class ListView extends Component {
                         <p>{match.away_team_country}</p>
                         <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
                      </div>
-
                   </div>
                 </Link>
               )
