@@ -3,20 +3,24 @@ import homeImage from './../../Assets/Images/home.jpg';
 import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
 import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
+import { API_ROUTE } from '../../Constantes/ApiRoute.js'
+import ScoreTimeCard from './../Match/ScoreTimeCard.jsx'
 
 class Home extends Component {
 
     state = {
         redirect: false,
         storage: null,
+        matchToDisplay : {home_team:{code : "TBD", goals : ""}, away_team_events: [], away_team:{code : "TBD", goals : ""}, home_team_events : [], time : ""},
     };
 
-    componentWillMount() {
+     componentWillMount() {
         if(sessionStorage.getItem('userData')) {
             this.getStorageData();
         } else {
             this.setState({redirect: false});
         }
+        this.fetchMatchesData();
     }
 
     getStorageData() {
@@ -28,14 +32,45 @@ class Home extends Component {
 
 
 
-  render() {
+    fetchMatchesData(){
+      fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res)=>{
+          if (res.status !== 200) {
+             return;
+          }
+          return res.json()
+        })
+        .then((data) => {
+          const curentMatchList = data.filter((match)=>{
+            if (match.status === 'in progress') {
+              return match;
+            }
+          })
+          const matchOfTheFuturList = data.filter((match)=>{
+            if (match.status === "future") {
+              return match;
+            }
+          })
+          if(curentMatchList.length === 0){
+            this.setState({matchToDisplay : matchOfTheFuturList[0]})
+          }
+          else {
+            this.setState({matchToDisplay : curentMatchList[0]})
+          }
+        })
+    }
 
+  render() {
     if(this.state.redirect) {
       return(
           <Redirect to={routesList[0].path}/>
       )
     }
-
     return (
           <div className="content-home">
             <div className="field">
@@ -45,7 +80,11 @@ class Home extends Component {
                     this.state.storage &&
                     <h1 className="welcomeMessage">Welcome {this.state.storage.username.toUpperCase()} !</h1>
                 }
-              <div>test</div>
+                <ScoreTimeCard
+                  match={this.state.matchToDisplay}
+                  homeGoalList={[]}
+                  awayGoalList={[]}
+                />
             </div>
             <div className="content-home-actu">
               <h2>News</h2>
