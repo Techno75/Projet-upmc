@@ -9,7 +9,9 @@ class Match extends Component {
     this.fetchUpdate = null;
     this.state = {
       match : {home_team:{code : "TBD", goals : ""}, away_team_events: [], away_team:{code : "TBD", goals : ""}, home_team_events : [], time : ""},
-      fifaId : null
+      fifaId : null,
+      pseudo : "",
+      message : "",
     }
     this.fetchMatchData = this.fetchMatchData.bind(this);
   }
@@ -49,8 +51,13 @@ class Match extends Component {
             return matchToFilter;
           }
         });
-        this.setState({ match : match[0] });
+        this.setState({ match : match[0], matchId : match[0].fifa_id});
     });
+  }
+
+  submitForm(evt){
+      evt.preventDefault()  ;
+      const {fifaId, pseudo, message} = this.state;
   }
 
   render() {
@@ -58,22 +65,16 @@ class Match extends Component {
 
     //////////////////// buteur ///////////////////
 
-    let homeEvent : [];
-    let awayEvent : [];
+    let homeEvent = match.home_team_events === undefined ? [] : match.home_team_events;
+    let awayEvent = match.away_team_events === undefined ? [] : match.away_team_events;
 
-    homeEvent = match.home_team_events === undefined ? [] : match.home_team_events;
-    awayEvent = match.away_team_events === undefined ? [] : match.away_team_events;
-
-    let homeGoalList = [];
-    let awayGoalList = [];
-
-    homeGoalList = homeEvent.filter((evt)=>{
+    let homeGoalList = homeEvent.filter((evt)=>{
       if (evt.type_of_event === "goal" || evt.type_of_event === "goal-penalty") {
         return evt
       }
     })
 
-    awayGoalList = awayEvent.filter((evt)=>{
+    let awayGoalList = awayEvent.filter((evt)=>{
       if (evt.type_of_event === "goal" || evt.type_of_event === "goal-penalty") {
         return evt
       }
@@ -81,15 +82,10 @@ class Match extends Component {
 
 /////////////////// list equipe ////////////////////
 
-    let homePlayerList = [];
-    let awayPlayerList = [];
-    let homeSubstitutesList = [];
-    let awaySubstitutesList = [];
-
-    homePlayerList = match.home_team_statistics === undefined ? [] : match.home_team_statistics.starting_eleven;
-    homeSubstitutesList = match.home_team_statistics === undefined ? [] : match.home_team_statistics.substitutes;
-    awayPlayerList = match.away_team_statistics === undefined ? [] : match.away_team_statistics.starting_eleven;
-    awaySubstitutesList = match.away_team_statistics === undefined ? [] : match.away_team_statistics.substitutes;
+    let homePlayerList = match.home_team_statistics === undefined ? [] : match.home_team_statistics.starting_eleven;
+    let homeSubstitutesList = match.home_team_statistics === undefined ? [] : match.home_team_statistics.substitutes;
+    let awayPlayerList = match.away_team_statistics === undefined ? [] : match.away_team_statistics.starting_eleven;
+    let awaySubstitutesList = match.away_team_statistics === undefined ? [] : match.away_team_statistics.substitutes;
 
 //////////////////////////// Satistics /////////////
 
@@ -183,6 +179,24 @@ class Match extends Component {
                 <p>Red cards : {awayStatistics.red_cards}</p>
                 <p>Fouls Committed : {awayStatistics.fouls_committed}</p>
               </div>
+            </div>
+            <h1>Comments</h1>
+            <div className="content-signup specialForm">
+              <form onSubmit={this.submitForm.bind(this)}>
+                <input
+                  type="text"
+                  value={this.state.pseudo}
+                  onChange={(pseudo)=>this.setState({pseudo : pseudo.target.value})}
+                  placeholder="Pseudo"
+                  style={{color :"#F9D500"}}
+                />
+                <textarea
+                  value={this.state.message}
+                  onChange={(message)=>{this.setState({message : message.target.value})}}
+                  placeholder="comment"
+                />
+                <button type="submit">Submit</button>
+              </form>
             </div>
           </div>
     )

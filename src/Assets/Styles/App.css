@@ -3,9 +3,7 @@
 header{
   position: sticky;
   top: 0px;
-
   z-index: 10;
-
 }
 
 .firstNav{
@@ -92,6 +90,7 @@ header{
 }
 
 /*////////// ARTICLE ////////////////*/
+
 .content-article{
   margin: 20px 0px 0px 120px;
   padding-bottom: 20px;
@@ -704,6 +703,25 @@ width: 30px
   display: flex;
   flex-direction: column;
   color: #FBFBFB
+}
+
+.specialForm form input::placeholder{
+    color: #F9D500 !important;
+}
+
+.specialForm form textarea{
+  background: none;
+  border:solid 1px #F9D500 !important;
+  color: white !important;
+  margin-bottom: 30px
+}
+
+.specialForm form button{
+  background: none;
+  color: #F9D500;
+  padding: 10px 0;
+  border : 1px solid #F9D500;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1000px) {

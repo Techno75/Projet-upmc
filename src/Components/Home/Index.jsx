@@ -80,11 +80,13 @@ class Home extends Component {
                     this.state.storage &&
                     <h1 className="welcomeMessage">Welcome {this.state.storage.username.toUpperCase()} !</h1>
                 }
-                <ScoreTimeCard
-                  match={this.state.matchToDisplay}
-                  homeGoalList={[]}
-                  awayGoalList={[]}
-                />
+                <Link to={{pathname : routesList[10].path, aboutProps : {match : this.state.matchToDisplay}}}>
+                  <ScoreTimeCard
+                    match={this.state.matchToDisplay}
+                    homeGoalList={[]}
+                    awayGoalList={[]}
+                  />
+                </Link>
             </div>
             <div className="content-home-actu">
               <h2>News</h2>
