@@ -63,7 +63,7 @@ header{
   align-items: center;
   color : #FBFBFB;
   box-sizing: border-box;
-  padding-left: 120px
+  padding-left: 120px;
 }
 
 .secondNav nav {
@@ -123,6 +123,10 @@ header{
 .content-home{
   background: #282B62;
   padding-top: 20px;
+}
+
+.content-home .welcomeMessage {
+    margin-top: 100px;
 }
 
 .content-home h1{
@@ -249,7 +253,7 @@ header{
     }
 }
 
-/*////////// Matches ////////////////*/
+/*////////// Matches List ////////////////*/
 
 .match-container{
   background-color: #fbfbfb;
@@ -381,6 +385,225 @@ header{
   .match-container button {
     margin-bottom: 20px;
   }
+}
+
+/*/////////// Matches Board View //////////*/
+
+.board-view .table{
+  position : relative;
+  width: 1200px;
+  margin :auto;
+  height: 800px;
+}
+
+.board-view .table .match-card {
+  border: solid 1px grey;
+  background: white;
+  padding: 10px;
+  font-family: Oswald;
+  width: 150px
+}
+
+.board-view .table a {
+  position: absolute;
+  z-index: 20;
+}
+
+.board-view .table a:nth-child(1) {
+  top : 0px
+}
+
+.board-view .table a:nth-child(2) {
+  top : 150px
+}
+
+.board-view .table a:nth-child(3) {
+  top : 300px
+}
+
+.board-view .table a:nth-child(4) {
+  top : 450px
+}
+
+.board-view .table a:nth-child(5) {
+   right: 0px
+}
+
+.board-view .table a:nth-child(6) {
+   right: 0px;
+   top : 150px
+}
+
+.board-view .table a:nth-child(7) {
+   right: 0px;
+   top : 300px
+}
+
+.board-view .table a:nth-child(8) {
+   right: 0px;
+   top : 450px
+}
+
+.board-view .table a:nth-child(9) {
+   left: 200px;
+   top : 78px
+}
+
+.board-view .table a:nth-child(10) {
+   left: 200px;
+   top : 375px
+}
+
+.board-view .table a:nth-child(11) {
+   right: 200px;
+   top : 78px
+}
+
+.board-view .table a:nth-child(12) {
+   right: 200px;
+   top : 375px;
+}
+
+.board-view .table a:nth-child(13) {
+   left: 400px;
+   top : 230px;
+}
+
+.board-view .table a:nth-child(14) {
+   right: 400px;
+   top : 230px;
+}
+
+.board-view .table a:nth-child(15) {
+   left: 450px;
+   top: 480px;
+}
+
+.board-view .table .final-card{
+  background: red;
+  width : 280px
+}
+
+.board-view .table .match-card img{
+width: 30px
+}
+
+.board-view .table .horizontal-line{
+  height: 1px;
+  background: black;
+  position: absolute;
+  width: 120px;
+}
+
+.board-view .table .vertical-line{
+  width: 1px;
+  background: black;
+  position: absolute;
+}
+
+.board-view .table .horizontal-line:nth-child(16){
+  top : 60px;
+  left : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(17){
+  top : 215px;
+  left : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(18){
+  top : 360px;
+  left : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(19){
+  top : 510px;
+  left : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(20){
+  top : 510px;
+  right : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(21){
+  top : 360px;
+  right : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(22){
+  top : 60px;
+  right : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(23){
+  top : 215px;
+  right : 170px
+}
+
+.board-view .table .horizontal-line:nth-child(24){
+  top : 138px;
+  left : 372px
+}
+.board-view .table .horizontal-line:nth-child(25){
+  top : 435px;
+  left : 372px
+}
+
+.board-view .table .horizontal-line:nth-child(26){
+  top : 138px;
+  right : 372px
+}
+.board-view .table .horizontal-line:nth-child(27){
+  top : 435px;
+  right : 372px
+}
+
+.board-view .table .horizontal-line:nth-child(28){
+  top : 290px;
+  left: 530px
+}
+
+.board-view .table .vertical-line:nth-child(29){
+  height: 156px;
+  top : 60px;
+  left: 290px
+}
+
+.board-view .table .vertical-line:nth-child(30){
+  height: 151px;
+  top : 360px;
+  left: 290px
+}
+
+.board-view .table .vertical-line:nth-child(31){
+  height: 156px;
+  top : 60px;
+  right: 290px
+}
+
+.board-view .table .vertical-line:nth-child(32){
+  height: 151px;
+  top : 360px;
+  right: 290px
+}
+
+.board-view .table .vertical-line:nth-child(33){
+  height: 298px;
+  top : 138px;
+  left: 492px
+}
+
+.board-view .table .vertical-line:nth-child(34){
+  height: 298px;
+  top : 138px;
+  right: 492px
+}
+
+.board-view .table .vertical-line:nth-child(35){
+  height: 200px;
+  top : 290px;
+  left: 598px
 }
 
 /*//////////////// Match ///////////////*/
@@ -824,6 +1047,48 @@ header{
     color: #282B62;
     transition: 0.5s;
     width: 250px;
+}
+/*////////// Profil /////////////////////////*/
+
+.content-profil {
+    background-color: #282B62;
+    padding-left: 120px;
+    font-family: Oswald;
+    font-weight: lighter;
+    height: 68.5vh;
+}
+.content-profil h1 {
+    color: #F9D500;
+    text-transform: capitalize;
+    font-size: 3rem;
+    font-weight: lighter;
+}
+.content-profil .lineData {
+    width: 500px;
+}
+
+.content-profil .lineData .label {
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 20px;
+    text-transform: capitalize;
+    width: 150px;
+    padding-bottom: 5px;
+}
+
+.content-profil .lineData .labelData {
+    color: #F6D500;
+    font-size: 18px;
+}
+
+.content-profil .lineData .teamCode {
+    color: #F6D500;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.content-profil span {
+    text-transform: none;
 }
 
 

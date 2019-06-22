@@ -37,14 +37,16 @@ class SignIn extends Component {
                 }
             })
             .then((data)=>{
+                // console.log(data);
                 if ('error' in data) {
                     this.setState({errorMessage: data.error});
-                } else {
-                    console.log(data);
-                    sessionStorage.setItem('userData', data);
-                    this.setState({redirect: true});
-                    window.location.reload()
                 }
+               else {
+                  const stringifiedUserData = JSON.stringify(data);
+                  sessionStorage.setItem('userData', stringifiedUserData);
+                  this.setState({redirect: true});
+                  window.location.reload();
+              }
             })
             .catch((err) => {
                 console.log('error', err);

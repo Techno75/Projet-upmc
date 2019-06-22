@@ -56,7 +56,7 @@ class Match extends Component {
               Matches board
             </button>
             </div>
-            {this.state.view === "list" ? <ListView matchDataList={this.state.matchDataList}/> : <BoardView/>}
+            {this.state.view === "list" ? <ListView matchDataList={this.state.matchDataList}/> : <BoardView matchDataList={this.state.matchDataList}/>}
           </div>
     )
   }
