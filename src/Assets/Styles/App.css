@@ -125,6 +125,10 @@ header{
   padding-top: 20px;
 }
 
+.content-home .welcomeMessage {
+    margin-top: 100px;
+}
+
 .content-home h1{
   font-family: Oswald;
   color: #FBFBFB;

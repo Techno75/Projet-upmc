@@ -8,14 +8,22 @@ class Home extends Component {
 
     state = {
         redirect: false,
+        storage: null,
     };
 
     componentWillMount() {
         if(sessionStorage.getItem('userData')) {
-            console.log('show user datas');
+            this.getStorageData();
         } else {
             this.setState({redirect: false});
         }
+    }
+
+    getStorageData() {
+        const testData = JSON.parse(sessionStorage.getItem('userData'));
+        console.log(sessionStorage.getItem('userData'));
+        this.setState({storage: testData});
+        console.log(testData);
     }
 
 
@@ -33,6 +41,10 @@ class Home extends Component {
             <div className="field">
               <img src={homeImage} alt="home-footfem-img" />
               <h1>FootFem supports women's soccer !</h1>
+                {
+                    this.state.storage &&
+                    <h1 className="welcomeMessage">Welcome {this.state.storage.username.toUpperCase()} !</h1>
+                }
               <div>test</div>
             </div>
             <div className="content-home-actu">
