@@ -5,8 +5,9 @@ import {routesList} from '../../Constantes/Routes.js';
 
 class ListView extends Component {
   render() {
+    console.log(this.props.matchDataList);
     const matchAlreadyPlayedList = this.props.matchDataList.filter((match)=>{
-      if(match.status === "completed"){
+      if(match.status === "completed" || match.status === "end of time"){
         return match
       }
       return false;
@@ -20,7 +21,7 @@ class ListView extends Component {
     })
 
     const matchInProgressList = this.props.matchDataList.filter((match)=>{
-      if(match.status === "in progress"){
+      if(match.status === "in progress" || match.status === "pending correction"){
         return match
       }
       return false;

@@ -47,7 +47,7 @@ class Home extends Component {
         })
         .then((data) => {
           const curentMatchList = data.filter((match)=>{
-            if (match.status === 'in progress') {
+            if (match.status === 'in progress' || match.status === "pending correction") {
               return match;
             }
           })
