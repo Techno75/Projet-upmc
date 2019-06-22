@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import BoardViewMatchCard from './BoardViewMatchCard.jsx';
 
 class BoardView extends Component {
   render() {
     let matchList = this.props.matchDataList;
-    console.log(matchList);
 
-    let eighthFinalList = [];
-    let quaterFinalList = [];
-    let semiFinalList = [];
-    let final = {};
-    eighthFinalList = matchList.filter((match)=>{
+    let eighthFinalList = matchList.filter((match)=>{
       if (match.stage_name === "Round of 16") {
         return match;
       }
     });
 
-    quaterFinalList = matchList.filter((match)=>{
+    let quaterFinalList = matchList.filter((match)=>{
       if (match.stage_name === "Quarter-final") {
         return match;
       }
     })
 
-    semiFinalList = matchList.filter((match)=>{
+    let semiFinalList = matchList.filter((match)=>{
       if (match.stage_name === "Semi-final") {
         return match;
       }
@@ -35,7 +29,7 @@ class BoardView extends Component {
       }
     })
 
-    final = finalTmp[0];
+    let final = finalTmp[0];
     return (
           <div className="board-view">
             <div className="table">

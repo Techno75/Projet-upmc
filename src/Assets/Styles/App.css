@@ -722,6 +722,33 @@ width: 30px
   padding: 10px 0;
   border : 1px solid #F9D500;
   cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.comment{
+  width: 1200px;
+  box-sizing: border-box;
+  padding: 20px 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin: auto;
+  color: white
+}
+
+.comment p{
+font-family: Raleway;
+}
+
+.comment div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-family: Oswald;
+}
+
+.comment div p:first-child{
+  font-size: 30px;
+  font-weight: 200;
 }
 
 @media screen and (max-width: 1000px) {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fieldImage from './../../Assets/Images/field.jpg';
 import { API_ROUTE } from '../../Constantes/ApiRoute.js'
 import ScoreTimeCard from './ScoreTimeCard.jsx';
+import moment from 'moment';
 
 class Match extends Component {
   constructor(props){
@@ -12,6 +13,7 @@ class Match extends Component {
       fifaId : null,
       pseudo : "",
       message : "",
+      commentsOfTheMatchList : [{date: new Date(), pseudo : "Toto", message: "Hello world, Robin is a noob"}, {date: new Date(), pseudo : "Toto", message: "Hello world, Mueen is a noob"}]
     }
     this.fetchMatchData = this.fetchMatchData.bind(this);
   }
@@ -181,7 +183,22 @@ class Match extends Component {
               </div>
             </div>
             <h1>Comments</h1>
-            <div className="content-signup specialForm">
+            <div>
+              {
+                this.state.commentsOfTheMatchList.map((comment, index )=>{
+                  return(
+                    <div className="comment" key={index}>
+                      <div>
+                        <p>{comment.pseudo}</p>
+                        <p>{moment(comment.date).format("MM/DD/YYYY")} at {moment(comment.date).format("hh:mm a")}</p>
+                      </div>
+                      <p>{comment.message}</p>
+                    </div>
+                  )
+                })
+              }
+            </div>
+            <div className="content-signup specialForm" style={{marginBottom : "0"}}>
               <form onSubmit={this.submitForm.bind(this)}>
                 <input
                   type="text"

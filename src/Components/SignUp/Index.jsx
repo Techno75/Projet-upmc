@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import {routesList} from '../../Constantes/Routes.js';
 import {API_ROUTE} from "../../Constantes/ApiRoute";
