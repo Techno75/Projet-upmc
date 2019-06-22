@@ -63,7 +63,7 @@ header{
   align-items: center;
   color : #FBFBFB;
   box-sizing: border-box;
-  padding-left: 120px
+  padding-left: 120px;
 }
 
 .secondNav nav {
@@ -1043,6 +1043,48 @@ width: 30px
     color: #282B62;
     transition: 0.5s;
     width: 250px;
+}
+/*////////// Profil /////////////////////////*/
+
+.content-profil {
+    background-color: #282B62;
+    padding-left: 120px;
+    font-family: Oswald;
+    font-weight: lighter;
+    height: 68.5vh;
+}
+.content-profil h1 {
+    color: #F9D500;
+    text-transform: capitalize;
+    font-size: 3rem;
+    font-weight: lighter;
+}
+.content-profil .lineData {
+    width: 500px;
+}
+
+.content-profil .lineData .label {
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 20px;
+    text-transform: capitalize;
+    width: 150px;
+    padding-bottom: 5px;
+}
+
+.content-profil .lineData .labelData {
+    color: #F6D500;
+    font-size: 18px;
+}
+
+.content-profil .lineData .teamCode {
+    color: #F6D500;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.content-profil span {
+    text-transform: none;
 }
 
 
