@@ -14,7 +14,9 @@ class Match extends Component {
       fifaId : null,
       pseudo : "",
       message : "",
-      commentsOfTheMatchList : [{date: new Date(), firstName:"John", lastName:"Doe", pseudo : "Toto", message: "Hello world, Robin is a noob"}, {date: new Date(), firstName:"John", lastName:"Doe", pseudo : "Toto", message: "Hello world, Mueen is a noob"}]
+      errorMessage: null,
+      commentsData: {description: "", matchId: null, comment_author: "", date: '06-06-2019'},
+      commentsOfTheMatchList : [],
     }
     this.fetchMatchData = this.fetchMatchData.bind(this);
   }
@@ -36,8 +38,8 @@ class Match extends Component {
 
   getStorageData(value) {
       const testData = JSON.parse(sessionStorage.getItem('userData'));
-      console.log(sessionStorage.getItem('userData'));
-      console.log(testData.token);
+      //console.log(sessionStorage.getItem('userData'));
+      //console.log(testData.token);
       value = testData[value];
       return value;
   }
@@ -63,12 +65,78 @@ class Match extends Component {
           }
         });
         this.setState({ match : match[0], matchId : match[0].fifa_id});
+        this.setState({commentsData: {...this.state.commentsData, matchId: this.state.fifaId}});
+        this.getMatchComments(this.state.fifaId);
     });
   }
 
+  getMatchComments(matchId) {
+    fetch(`http://localhost:8080/api/comments/match/${matchId}`, { mode: 'cors', method : 'get',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    })
+        .then((response) => {
+            // console.log(response.json());
+            if(!(response.status >= 200 && response.status <= 300)) {
+              // console.log(response.json());
+              return response.json();
+            } else {
+              // console.log(response.json());
+              return response.json();
+            }
+        })
+        .then((data)=>{
+            // this.setState({errorMessage: data.error});
+            console.log(data);
+            this.setState({commentsOfTheMatchList: data});
+            console.log(this.state.commentsOfTheMatchList);
+        })
+
+        .catch((err) => {
+            console.log('error', err);
+        });
+  }
+
   submitForm(evt){
-      evt.preventDefault()  ;
-      const {fifaId, pseudo, message} = this.state;
+      evt.preventDefault();
+      console.log(this.state.commentsData);
+      if(this.state.commentsData.description === '') {
+        this.setState({errorMessage: 'Your comment is empty, please enter something.'});
+      } else {
+        this.setState({errorMessage: ''});
+        fetch('http://localhost:8080/api/comments/new', { mode: 'cors', method : 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body : JSON.stringify(this.state.commentsData)
+        })
+            .then((response) => {
+                console.log(response);
+                if(!(response.status >= 200 && response.status <= 300)) {
+                  console.log(response.json());
+                  return response.json();
+                } else {
+                    //alert('User succsessfully created');
+                    console.log(response);
+                    // this.setState({redirect: true});
+                    // this.props.history.push(`${routesList[3].path}`);
+                    return response;
+                }
+            })
+            .then((data)=>{
+                // this.setState({errorMessage: data.error});
+                console.log(data.error);
+            })
+
+            .catch((err) => {
+                console.log('error', err);
+            });
+      }
+      // const {fifaId, pseudo, message} = this.state;
+    this.setState({commentsData: {...this.state.commentsData, description: ''}});
   }
 
   render() {
@@ -212,16 +280,19 @@ class Match extends Component {
               <form onSubmit={this.submitForm.bind(this)}>
                 <input
                   type="text"
-                  value={sessionStorage.getItem('userData') ? this.getStorageData('username') : this.state.pseudo}
-                  onChange={(pseudo)=>this.setState({pseudo : pseudo.target.value})}
+                  value={this.state.commentsData.comment_author}
+                  onChange={(pseudo)=>this.setState({commentsData: {...this.state.commentsData, comment_author : pseudo.target.value}})}
                   placeholder="Pseudo"
                   style={{color :"#F9D500"}}
                 />
                 <textarea
-                  value={this.state.message}
-                  onChange={(message)=>{this.setState({message : message.target.value})}}
+                  value={this.state.commentsData.description}
+                  onChange={(message)=>{this.setState({commentsData: {...this.state.commentsData, description : message.target.value}})}}
                   placeholder="comment"
                 />
+              {this.state.errorMessage &&
+                <p>{this.state.errorMessage}</p>
+              }
                 <button type="submit">Submit</button>
               </form>
             </div>
