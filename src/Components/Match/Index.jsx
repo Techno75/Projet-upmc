@@ -8,6 +8,7 @@ class Match extends Component {
   constructor(props){
     super(props);
     this.fetchUpdate = null;
+    this.storage = null;
     this.state = {
       match : {home_team:{code : "TBD", goals : ""}, away_team_events: [], away_team:{code : "TBD", goals : ""}, home_team_events : [], time : ""},
       fifaId : null,
@@ -31,6 +32,14 @@ class Match extends Component {
 
   componentWillUnmount(){
     window.clearInterval(this.fetchUpdate)
+  }
+
+  getStorageData(value) {
+      const testData = JSON.parse(sessionStorage.getItem('userData'));
+      console.log(sessionStorage.getItem('userData'));
+      console.log(testData.token);
+      value = testData[value];
+      return value;
   }
 
   fetchMatchData(){
@@ -203,7 +212,7 @@ class Match extends Component {
               <form onSubmit={this.submitForm.bind(this)}>
                 <input
                   type="text"
-                  value={this.state.pseudo}
+                  value={sessionStorage.getItem('userData') ? this.getStorageData('username') : this.state.pseudo}
                   onChange={(pseudo)=>this.setState({pseudo : pseudo.target.value})}
                   placeholder="Pseudo"
                   style={{color :"#F9D500"}}
