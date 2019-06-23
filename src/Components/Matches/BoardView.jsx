@@ -46,10 +46,10 @@ class BoardView extends Component {
                 match={eighthFinalList[4]}
               />
               <BoardViewMatchCard
-                match={eighthFinalList[5]}
+                match={eighthFinalList[0]}
               />
               <BoardViewMatchCard
-                match={eighthFinalList[0]}
+                match={eighthFinalList[5]}
               />
               <BoardViewMatchCard
                 match={eighthFinalList[7]}
