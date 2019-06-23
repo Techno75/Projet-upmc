@@ -830,6 +830,14 @@ font-family: Raleway;
   }
 }
 
+.content-signup form p {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #E52528;
+  margin-top: 20px;
+  font-family: Oswald;
+}
+
 @media screen and (max-width: 600px) {
   .palyer-list, .statistics{
     flex-direction: column;
