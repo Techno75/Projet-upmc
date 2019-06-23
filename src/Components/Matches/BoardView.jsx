@@ -30,6 +30,7 @@ class BoardView extends Component {
     })
 
     let final = finalTmp[0];
+
     return (
           <div className="board-view">
             <div className="table">

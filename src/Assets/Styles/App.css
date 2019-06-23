@@ -408,7 +408,7 @@ header{
 
 .board-view .table .match-card {
   border: solid 1px grey;
-  background: white;
+  background: #FBFBFB;
   padding: 10px;
   font-family: Oswald;
   width: 150px
@@ -416,7 +416,16 @@ header{
 
 .board-view .table a {
   position: absolute;
-  z-index: 20;
+  z-index: 1;
+}
+
+.board-view .content-board{
+  display: flex;
+  justify-content: space-between;
+}
+
+.board-view .timer-board{
+  text-align: right;
 }
 
 .board-view .table a:nth-child(1) {
@@ -490,24 +499,43 @@ header{
 }
 
 .board-view .table .final-card{
-  background: red;
-  width : 280px
+  width : 280px;
+  padding: 0px;
+}
+
+.board-view .table .final-card .final{
+  background: #F6D500;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: Oswald;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.board-view .table .final-card .content-board, .board-view .table .final-card .timer-board{
+  padding: 0px 10px;
+}
+
+.board-view .table .final-card .content-board:last-child{
+  margin-bottom: 10px;
 }
 
 .board-view .table .match-card img{
-width: 30px
+width: 30px;
+margin-right:10px;
 }
 
 .board-view .table .horizontal-line{
   height: 1px;
-  background: black;
+  background: lightgray;
   position: absolute;
   width: 120px;
 }
 
 .board-view .table .vertical-line{
   width: 1px;
-  background: black;
+  background: lightgray;
   position: absolute;
 }
 
@@ -789,7 +817,7 @@ font-family: Raleway;
 }
 
 @media screen and (max-width: 1000px) {
-  .field-score-card{
+  .single-match-conatiner .field-score-card{
     flex-direction: column;
     position: relative;
     bottom: 0;
