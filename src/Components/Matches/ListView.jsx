@@ -133,8 +133,8 @@ class ListView extends Component {
             })}
             {matchNotPlayedList.map((match, index)=>{
               return(
-                <div className="match-card-row-with-button">
-                  <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}  key={index}>
+                <div className="match-card-row-with-button" key={index}>
+                  <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
                     <div className="match-card-row">
                        <div className="country-card">
                         <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>

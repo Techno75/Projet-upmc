@@ -7,21 +7,29 @@ class Groups extends Component {
     super(props)
     this.state = {
       groupList : [],
-      groupIdToDisplay : 2,
-      groupeTodisplay : {letter : "", ordered_teams:[{country : "", games_played : 0, draws : 0, }]}
+      groupIdToDisplay : 0,
+      groupeTodisplay : {letter : "", ordered_teams : [{country : "", games_played : 0, draws : 0, fifa_code : "TBD"}]}
     }
   }
   componentDidMount(){
     fetchDataToApi(API_ROUTE + 'teams/group_results', 'GET')
     .then((groupList)=>{
-      this.setState({groupList,})
+      this.setState({groupList, groupeTodisplay : groupList[this.state.groupIdToDisplay]})
     });
   }
 
-  render() {
-    let group = {ordered_teams:[]};
-    group = this.state.groupList[this.state.groupIdToDisplay];
+  goNext(){
+    const groupIdToDisplay = this.state.groupIdToDisplay + 1;
+    this.setState({groupIdToDisplay, groupeTodisplay : this.state.groupList[groupIdToDisplay]})
+  }
 
+  goPrevious(){
+    const groupIdToDisplay = this.state.groupIdToDisplay - 1;
+    this.setState({groupIdToDisplay, groupeTodisplay : this.state.groupList[groupIdToDisplay]})
+  }
+
+  render() {
+    console.log(this.state.groupeTodisplay.ordered_teams);
 
     return (
           <div>
@@ -29,13 +37,60 @@ class Groups extends Component {
             <table>
               <thead>
                 <tr>
+                  <th>Rank</th>
                   <th>Country</th>
+                  <th>Games Played</th>
+                  <th>Win</th>
+                  <th>Draw</th>
+                  <th>Loose</th>
+                  <th>Goal For</th>
+                  <th>Goal Against</th>
+                  <th>+/-</th>
+                  <th>Points</th>
                 </tr>
               </thead>
               <tbody>
-
+                {this.state.groupeTodisplay.ordered_teams.map((team, index)=>{
+                  return(
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>
+                          <img src={require('./../../Assets/Images/Flags/' + team.fifa_code + ".jpg")} alt="flag"/>{team.country}
+                      </td>
+                      <td>
+                        {team.games_played}
+                      </td>
+                      <td>
+                        {team.wins}
+                      </td>
+                      <td>
+                        {team.draws}
+                      </td>
+                      <td>
+                        {team.losses}
+                      </td>
+                      <td>
+                        {team.goals_for}
+                      </td>
+                      <td>
+                        {team.goals_against}
+                      </td>
+                      <td>
+                        {team.goal_differential}
+                      </td>
+                      <td>
+                        {team.points}
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
+            {this.state.groupIdToDisplay > 0 ? <button onClick={this.goPrevious.bind(this)}>Previous</button> : ""}
+            {this.state.groupIdToDisplay < 5 ? <button onClick={this.goNext.bind(this)}>Next</button> : ""}
+
+
+
           </div>
     )
   }
