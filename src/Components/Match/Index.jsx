@@ -186,7 +186,6 @@ class Match extends Component {
             <div>
               {
                 this.state.commentsOfTheMatchList.map((comment, index )=>{
-                  console.log(comment);
                   return(
                     <div className="comment" key={index}>
                       <div>

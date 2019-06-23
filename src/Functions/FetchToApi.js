@@ -4,11 +4,9 @@
 *** body = object     // si utilisation de méthode Post
 */
 
-import { API_ROUTE } from './../Constantes/ApiRoute.js'
-
 export const fetchDataToApi = (route, method, body) => {
     if (body === undefined) {
-      return fetch(API_ROUTE + route,  {mode: 'cors', method: method,
+      return fetch(route,  {mode: 'cors', method: method,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -22,7 +20,7 @@ export const fetchDataToApi = (route, method, body) => {
         })
     }
     else {
-      return fetch(API_ROUTE + route,  {mode: 'cors', method: method,
+      return fetch(route,  {mode: 'cors', method: method,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'

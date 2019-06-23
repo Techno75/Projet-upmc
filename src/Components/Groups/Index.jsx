@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
+import { API_ROUTE } from './../../Constantes/ApiRoute.js';
 
 class Groups extends Component {
   constructor(props){
@@ -10,7 +11,7 @@ class Groups extends Component {
     }
   }
   componentDidMount(){
-    fetchDataToApi('teams/group_results', 'GET')
+    fetchDataToApi(API_ROUTE + 'teams/group_results', 'GET')
     .then((groupList)=>{
       this.setState({groupList})
     });
