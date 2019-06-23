@@ -31,11 +31,9 @@ class Groups extends Component {
   }
 
   render() {
-    console.log(this.state.groupeTodisplay.ordered_teams);
-
     return (
           <div>
-            <h1>Groupes</h1>
+            <h1>Group {this.state.groupeTodisplay.letter}</h1>
             <table>
               <thead>
                 <tr>

@@ -76,10 +76,10 @@ class Home extends Component {
             <div className="field">
               <img src={homeImage} alt="home-footfem-img" />
               <h1>FootFem supports women's soccer !</h1>
-                {
-                    this.state.storage &&
-                    <h1 className="welcomeMessage">Welcome {this.state.storage.username.toUpperCase()} !</h1>
-                }
+                 {
+                //     this.state.storage &&
+                //     <h1 className="welcomeMessage">Welcome {this.state.storage.username.toUpperCase()} !</h1>
+                 }
                 <Link to={{pathname : routesList[10].path, aboutProps : {match : this.state.matchToDisplay}}}>
                   <ScoreTimeCard
                     match={this.state.matchToDisplay}
