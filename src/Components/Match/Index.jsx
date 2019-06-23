@@ -15,7 +15,7 @@ class Match extends Component {
       pseudo : "",
       message : "",
       errorMessage: null,
-      commentsData: {description: "", matchId: null, comment_author: "", date: '06-06-2019'},
+      commentsData: {description: "", matchId: null, comment_author: "", date: moment()},
       commentsOfTheMatchList : [],
     }
     this.fetchMatchData = this.fetchMatchData.bind(this);
@@ -266,11 +266,14 @@ class Match extends Component {
                   return(
                     <div className="comment" key={index}>
                       <div>
-                        <p>{comment.firstName} {comment.lastName}</p>
-                        <p>{moment(comment.date).format("MM/DD/YYYY")} at {moment(comment.date).format("hh:mm a")}</p>
+                        <span></span>
+                        <p>{moment(comment.date).format("MM-DD-YYYY")} at {moment(comment.date).format("hh:mm a")}</p>
                       </div>
-                      <p className='username'>@{comment.pseudo}</p>
-                      <p>{comment.message}</p>
+                      {
+                        sessionStorage.getItem('userData') &&
+                          <p className='username'>@{comment.comment_author ? comment.comment_author : 'unknown' }</p>
+                      }
+                      <p>{comment.description}</p>
                     </div>
                   )
                 })

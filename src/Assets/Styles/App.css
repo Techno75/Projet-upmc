@@ -805,12 +805,6 @@ font-family: Raleway;
 }
 
 .comment div p:first-child{
-  font-size: 30px;
-  font-weight: 200;
-  font-family: Oswald;
-}
-
-.comment div p:last-child{
   font-family: Oswald;
   font-weight: 300;
   font-style: italic;
