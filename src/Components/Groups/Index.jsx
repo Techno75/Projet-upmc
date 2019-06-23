@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import { API_ROUTE } from './../../Constantes/ApiRoute.js';
+import { Link } from 'react-router-dom';
+import {routesList} from '../../Constantes/Routes.js';
 
 class Groups extends Component {
   constructor(props){
@@ -52,45 +54,44 @@ class Groups extends Component {
               <tbody>
                 {this.state.groupeTodisplay.ordered_teams.map((team, index)=>{
                   return(
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>
-                          <img src={require('./../../Assets/Images/Flags/' + team.fifa_code + ".jpg")} alt="flag"/>{team.country}
-                      </td>
-                      <td>
-                        {team.games_played}
-                      </td>
-                      <td>
-                        {team.wins}
-                      </td>
-                      <td>
-                        {team.draws}
-                      </td>
-                      <td>
-                        {team.losses}
-                      </td>
-                      <td>
-                        {team.goals_for}
-                      </td>
-                      <td>
-                        {team.goals_against}
-                      </td>
-                      <td>
-                        {team.goal_differential}
-                      </td>
-                      <td>
-                        {team.points}
-                      </td>
-                    </tr>
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>
+                            <Link to={{pathname : routesList[14].path, aboutProps : {team : team}}} >
+                              <img src={require('./../../Assets/Images/Flags/' + team.fifa_code + ".jpg")} alt="flag"/>{team.country}
+                            </Link>
+                        </td>
+                        <td>
+                          {team.games_played}
+                        </td>
+                        <td>
+                          {team.wins}
+                        </td>
+                        <td>
+                          {team.draws}
+                        </td>
+                        <td>
+                          {team.losses}
+                        </td>
+                        <td>
+                          {team.goals_for}
+                        </td>
+                        <td>
+                          {team.goals_against}
+                        </td>
+                        <td>
+                          {team.goal_differential}
+                        </td>
+                        <td>
+                          {team.points}
+                        </td>
+                      </tr>
                   )
                 })}
               </tbody>
             </table>
             {this.state.groupIdToDisplay > 0 ? <button onClick={this.goPrevious.bind(this)}>Previous</button> : ""}
             {this.state.groupIdToDisplay < 5 ? <button onClick={this.goNext.bind(this)}>Next</button> : ""}
-
-
-
           </div>
     )
   }
