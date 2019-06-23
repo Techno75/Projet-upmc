@@ -840,6 +840,30 @@ font-family: Raleway;
   }
 }
 
+/************ Groups *************/
+.content-groups{
+  margin: 20px 0px 20px 120px
+}
+
+.content-groups table{
+  width: 100%;
+  border-spacing: 0px;
+  font-family: Oswald;
+}
+
+.content-groups table thead{
+  background: #282B62;
+  color: #FBFBFB;
+}
+
+.content-groups table thead th{
+  font-weight: 300;
+}
+
+.content-groups table thead tr th:first-child{
+  font-size: 30px;
+}
+
 /************ Contact us*************/
 
 .content-contact{

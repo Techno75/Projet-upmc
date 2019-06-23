@@ -32,11 +32,11 @@ class Groups extends Component {
 
   render() {
     return (
-          <div>
-            <h1>Group {this.state.groupeTodisplay.letter}</h1>
+          <div className="content-groups">
             <table>
               <thead>
                 <tr>
+                  <th>Group {this.state.groupeTodisplay.letter}</th>
                   <th>Rank</th>
                   <th>Country</th>
                   <th>Games Played</th>
