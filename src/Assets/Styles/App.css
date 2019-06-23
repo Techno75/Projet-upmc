@@ -353,6 +353,16 @@ header{
   font-size: 40px;
 }
 
+.match-card-row-with-button{
+  position: relative;
+}
+
+.match-card-row-with-button .follow-match-button{
+  position: absolute;
+  right: 0;
+  top : 43px
+}
+
 .match-card-row-date p:first-child, .match-card-row-score p:first-child{
   font-size: 25px;
   font-weight: 200;
