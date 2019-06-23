@@ -63,7 +63,6 @@ class ListView extends Component {
 
 
   render() {
-    console.log(this.props.matchDataList);
     const matchAlreadyPlayedList = this.props.matchDataList.filter((match)=>{
       if(match.status === "completed" || match.status === "end of time"){
         return match

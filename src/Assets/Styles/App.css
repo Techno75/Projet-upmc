@@ -675,7 +675,7 @@ width: 30px
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-size: 50px
+  font-size: 40px
 }
 
 .field-country-card img{
@@ -706,8 +706,22 @@ width: 30px
   color: #FBFBFB
 }
 
+.specialForm{
+  margin: 20px 0px 0px 0px !important;
+}
+
+.specialForm form{
+  margin: 0 auto;
+  width: 80% !important;
+}
+
 .specialForm form input::placeholder{
     color: #F9D500 !important;
+    font-weight: 300;
+}
+
+.specialForm form input{
+  font-weight: 300;
 }
 
 .specialForm form textarea{
@@ -727,7 +741,7 @@ width: 30px
 }
 
 .comment{
-  width: 1200px;
+  width: 80%;
   box-sizing: border-box;
   padding: 20px 0;
   border-top: 1px solid white;
@@ -743,13 +757,25 @@ font-family: Raleway;
 .comment div {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   font-family: Oswald;
+}
+
+.comment .username{
+  margin-bottom: 20px;
+  color: #F9D500;
+  font-style: italic;
 }
 
 .comment div p:first-child{
   font-size: 30px;
   font-weight: 200;
+  font-family: Oswald;
+}
+
+.comment div p:last-child{
+  font-family: Oswald;
+  font-weight: 300;
+  font-style: italic;
 }
 
 @media screen and (max-width: 1000px) {

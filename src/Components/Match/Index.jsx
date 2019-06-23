@@ -14,7 +14,7 @@ class Match extends Component {
       fifaId : null,
       pseudo : "",
       message : "",
-      commentsOfTheMatchList : [{date: new Date(), pseudo : "Toto", message: "Hello world, Robin is a noob"}, {date: new Date(), pseudo : "Toto", message: "Hello world, Mueen is a noob"}]
+      commentsOfTheMatchList : [{date: new Date(), firstName:"John", lastName:"Doe", pseudo : "Toto", message: "Hello world, Robin is a noob"}, {date: new Date(), firstName:"John", lastName:"Doe", pseudo : "Toto", message: "Hello world, Mueen is a noob"}]
     }
     this.fetchMatchData = this.fetchMatchData.bind(this);
   }
@@ -198,16 +198,17 @@ class Match extends Component {
                   return(
                     <div className="comment" key={index}>
                       <div>
-                        <p>{comment.pseudo}</p>
+                        <p>{comment.firstName} {comment.lastName}</p>
                         <p>{moment(comment.date).format("MM/DD/YYYY")} at {moment(comment.date).format("hh:mm a")}</p>
                       </div>
+                      <p className='username'>@{comment.pseudo}</p>
                       <p>{comment.message}</p>
                     </div>
                   )
                 })
               }
             </div>
-            <div className="content-signup specialForm" style={{marginBottom : "0"}}>
+            <div className="content-signup specialForm">
               <form onSubmit={this.submitForm.bind(this)}>
                 <input
                   type="text"
