@@ -53,7 +53,6 @@ class Groups extends Component {
                 {this.state.groupeTodisplay.ordered_teams.map((team, index)=>{
                   return(
                       <tr key={index}>
-                        <td>{index + 1}</td>
                         <td>
                             <Link to={{pathname : routesList[14].path, aboutProps : {team : team}}} >
                               <img src={require('./../../Assets/Images/Flags/' + team.fifa_code + ".jpg")} alt="flag"/>{team.country}
@@ -83,6 +82,8 @@ class Groups extends Component {
                         <td>
                           {team.points}
                         </td>
+                        <td></td>
+                        <td></td>
                       </tr>
                   )
                 })}
