@@ -842,6 +842,135 @@ font-family: Raleway;
   }
 }
 
+/************ Groups *************/
+.content-groups{
+  margin: 20px 0px 20px 120px;
+  width: 80%;
+}
+/*
+.content-groups table{
+  width: 100%;
+  border-spacing: 0px;
+  font-family: Oswald;
+}
+
+.content-groups table thead{
+  background: #282B62;
+  color: #FBFBFB;
+}
+
+.content-groups table thead th{
+  font-weight: 300;
+}
+
+.content-groups table thead tr th:first-child{
+  font-size: 30px;
+}
+
+.content-groups table tbody tr td img{
+width: 70px;
+margin-right: 10px;
+}
+*/
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  background-color: #282B62;
+  font-weight: 300;
+  font-family: Oswald;
+  color: #FBFBFB;
+  font-size: 20px;
+}
+
+th:first-child{
+  font-size: 30px;
+}
+
+tbody tr{
+  border-bottom: 1px solid lightgray;
+}
+
+th, td {
+  line-height: 1.5;
+  padding: 0.75em;
+  text-align: left;
+}
+
+td a{
+align-items: center;
+display: flex;
+}
+
+td a img{
+  width: 70px;
+  margin-right: 10px;
+}
+
+tbody{
+  font-family: Oswald;
+}
+
+tbody tr td, tbody tr td a{
+  text-align: center;
+  color: #212121;
+}
+
+tbody tr:hover{
+  box-shadow: grey 0px 0px 8px;
+}
+
+@media (max-width: 1070px) {
+  .content-groups{
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 20px;
+  }
+}
+
+/* Stack rows vertically on small screens */
+@media (max-width: 960px) {
+  /* Hide column labels */
+	thead tr {
+		position: absolute;
+		top: -9999em;
+		left: -9999em;
+	}
+  tbody tr td{
+        border-bottom: 1px solid lightgray;
+  }
+	/* Leave a space between table rows */
+  tr + tr {
+    margin-top: 1.5em;
+  }
+  /* Get table cells to act like rows */
+  tr,
+  td {
+		display: block;
+	}
+	/* Add data labels */
+  td:before {
+    content: attr(data-label);
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: -100%;
+    width: 100%;
+  }
+}
+/* Stack labels vertically on smaller screens */
+@media (max-width: 20em) {
+  td {
+    padding-left: 0.75em;
+  }
+  td:before {
+    display: block;
+    margin-bottom: 0.75em;
+    margin-left: 0;
+  }
+}
 /************ Contact us*************/
 
 .content-contact{
