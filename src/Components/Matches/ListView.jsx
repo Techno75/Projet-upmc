@@ -68,6 +68,38 @@ class ListView extends Component {
 
     }
 
+    deleteNotification(fifa_id) {
+      console.log(fifa_id)
+      this.state.matchFollowed.map((matchFollowed) => {
+        if(matchFollowed.matchId == fifa_id) {
+          fetch('http://localhost:8080/api/notifications/delete/' + fifa_id,  { mode: 'cors', method : 'post',
+              headers: {
+                  'Accept': 'application/json, text/plain, */*',
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' +  this.getStorageData('token'),
+              },
+          })
+              .then((response) => {
+                  if(!(response.status >= 200 && response.status <= 300)) {
+                      return response.json();
+                  } else {
+                    this.getNotifications();
+                    return response.json()
+                  }
+              })
+              .then((data)=>{
+                  this.setState({errorMessage: data.error});
+                  console.log(this.state.matchFollowed);
+              })
+
+              .catch((err) => {
+                  console.log('error', err);
+              })
+        }
+      })
+
+    }
+
     getNotifications = () => {
       const recupUsername = JSON.parse(sessionStorage.getItem('userData'));
         fetch('http://localhost:8080/api/notifications/' + recupUsername.username,  { mode: 'cors', method : 'get',
@@ -111,7 +143,7 @@ class ListView extends Component {
         )
       } else {
         return(
-          <button className="follow-match-button followed">Follow</button>
+          <button onClick={() => this.deleteNotification(match.fifa_id)} className="follow-match-button followed">Follow</button>
         )
       }
     }
