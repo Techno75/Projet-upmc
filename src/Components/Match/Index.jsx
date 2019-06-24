@@ -302,6 +302,9 @@ class Match extends Component {
               }
             </div>
             <div className="content-signup specialForm">
+            {this.state.errorMessage &&
+              <p>{this.state.errorMessage}</p>
+            }
               <form onSubmit={this.submitForm.bind(this)}>
                 <input
                   type="text"
@@ -315,9 +318,6 @@ class Match extends Component {
                   onChange={(message)=>{this.setState({commentsData: {...this.state.commentsData, description : message.target.value}})}}
                   placeholder="comment"
                 />
-              {this.state.errorMessage &&
-                <p>{this.state.errorMessage}</p>
-              }
                 <button type="submit">Submit</button>
               </form>
             </div>

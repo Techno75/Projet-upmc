@@ -50,7 +50,7 @@ class Match extends Component {
               Matches list
             </button>
             <button
-              className={this.state.view === "board" ? "match-container-button-active" : ""}
+              className={this.state.view === "board" ? "match-container-button-active" : "board-rsp"}
               onClick={()=>this.setState({view : 'board'})}
             >
               Matches board

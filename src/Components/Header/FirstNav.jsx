@@ -12,10 +12,8 @@ class FirstNav extends Component {
   componentDidMount() {
       if(sessionStorage.getItem('userData')) {
           this.setState({showSignOut: true});
-          console.log(this.state.showSignOut);
       } else {
           this.setState({showSignOut: false});
-          console.log(this.state.showSignOut);
       }
   }
 
