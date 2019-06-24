@@ -75,8 +75,8 @@ onSubmit = (e) => {
                     return response.json();
                 } else {
                     alert('User succsessfully created');
-                    this.setState({redirect: true});
-                    // this.props.history.push(`${routesList[3].path}`);
+                    // this.setState({redirect: true});
+                    this.props.history.push(`${routesList[3].path}`);
                     return response.json()
                 }
             })
