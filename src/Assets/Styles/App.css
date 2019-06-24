@@ -847,31 +847,6 @@ font-family: Raleway;
   margin: 20px 0px 20px 120px;
   width: 80%;
 }
-/*
-.content-groups table{
-  width: 100%;
-  border-spacing: 0px;
-  font-family: Oswald;
-}
-
-.content-groups table thead{
-  background: #282B62;
-  color: #FBFBFB;
-}
-
-.content-groups table thead th{
-  font-weight: 300;
-}
-
-.content-groups table thead tr th:first-child{
-  font-size: 30px;
-}
-
-.content-groups table tbody tr td img{
-width: 70px;
-margin-right: 10px;
-}
-*/
 
 table {
   border-collapse: collapse;
@@ -894,8 +869,7 @@ tbody tr{
 }
 
 th, td {
-  line-height: 1.5;
-  padding: 0.75em;
+  padding: 15px;
   text-align: left;
 }
 
@@ -918,8 +892,41 @@ tbody tr td, tbody tr td a{
   color: #212121;
 }
 
+.content-groups .rsp-table-group{
+  display: none;
+}
+
 tbody tr:hover{
   box-shadow: grey 0px 0px 8px;
+}
+
+.content-groups button:focus{
+  outline: none;
+}
+
+.content-groups .prev-button-group, .content-groups .next-button-group{
+  background: #282B62;
+  padding: 10px 20px;
+  border: 0px;
+  color: #FBFBFB;
+}
+
+.content-groups .prev-button-group svg{
+  margin-right: 20px;
+}
+
+.content-groups .next-button-group svg{
+  margin-left: 20px;
+}
+
+.content-groups .picto-groups{
+  color:#F9D500;
+}
+
+.content-groups .content-button{
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0px;
 }
 
 @media (max-width: 1070px) {
@@ -930,46 +937,33 @@ tbody tr:hover{
   }
 }
 
-/* Stack rows vertically on small screens */
 @media (max-width: 960px) {
-  /* Hide column labels */
 	thead tr {
 		position: absolute;
 		top: -9999em;
 		left: -9999em;
 	}
+
   tbody tr td{
         border-bottom: 1px solid lightgray;
   }
-	/* Leave a space between table rows */
-  tr + tr {
-    margin-top: 1.5em;
-  }
-  /* Get table cells to act like rows */
-  tr,
-  td {
+
+  tr, td {
 		display: block;
 	}
-	/* Add data labels */
-  td:before {
-    content: attr(data-label);
-    display: inline-block;
-    font-weight: bold;
-    line-height: 1.5;
-    margin-left: -100%;
-    width: 100%;
+
+  .content-groups .rsp-table-group{
+    display: flex;
   }
-}
-/* Stack labels vertically on smaller screens */
-@media (max-width: 20em) {
-  td {
-    padding-left: 0.75em;
+
+  .content-groups h1{
+    color: #282B62;
+    font-family: Oswald;
+    font-size: 40px;
+    font-weight: 300;
+    margin-bottom: 30px;
   }
-  td:before {
-    display: block;
-    margin-bottom: 0.75em;
-    margin-left: 0;
-  }
+
 }
 /************ Contact us*************/
 
