@@ -18,7 +18,7 @@ class ScoreTimeCard  extends Component {
             <div className="field-time-score-card">
               <p>{this.props.match.time}</p>
               <p>{this.props.match.status === "future" ? moment(this.props.match.datetime).format("hh:mm a"): ""}</p>
-              <p>{this.props.match.status === "future" ? moment(this.props.match.datetime).format("MM/DD/YYYY"): ""}</p>
+              <p>{this.props.match.status === "future" ? moment(this.props.match.datetime).format("MM-DD-YYYY"): ""}</p>
               <p>{this.props.match.home_team.goals === undefined || this.props.match.status === "future" ? "" : this.props.match.home_team.goals + " - "}{this.props.match.away_team.goals === undefined || this.props.match.status === "future" ? "" : this.props.match.away_team.goals }</p>
             </div>
             <div className="field-country-card">

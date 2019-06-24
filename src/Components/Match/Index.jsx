@@ -12,8 +12,6 @@ class Match extends Component {
     this.state = {
       match : {home_team:{code : "TBD", goals : ""}, away_team_events: [], away_team:{code : "TBD", goals : ""}, home_team_events : [], time : ""},
       fifaId : null,
-      pseudo : "",
-      message : "",
       errorMessage: null,
       commentsData: {description: "", matchId: null, comment_author: "", date: moment()},
       commentsOfTheMatchList : [],
@@ -22,6 +20,10 @@ class Match extends Component {
   }
 
   componentDidMount(){
+    if(sessionStorage.getItem('username')) {
+      this.setState({commentsData: {...this.state.commentsData, comment_author: this.getStorageData('userdata')}});
+      console.log(this.state.commentsData.comment_author);
+    }
     if (this.props.location.aboutProps === undefined) {
       window.location="http://localhost:3000/Matches"
     }
@@ -38,8 +40,6 @@ class Match extends Component {
 
   getStorageData(value) {
       const testData = JSON.parse(sessionStorage.getItem('userData'));
-      //console.log(sessionStorage.getItem('userData'));
-      //console.log(testData.token);
       value = testData[value];
       return value;
   }
@@ -102,8 +102,8 @@ class Match extends Component {
   submitForm(evt){
       evt.preventDefault();
       console.log(this.state.commentsData);
-      if(this.state.commentsData.description === '') {
-        this.setState({errorMessage: 'Your comment is empty, please enter something.'});
+      if(this.state.commentsData.description === '' || this.state.commentsData.comment_author === '') {
+        this.setState({errorMessage: 'Please complete all the fields.'});
       } else {
         this.setState({errorMessage: ''});
         fetch('http://localhost:8080/api/comments/new', { mode: 'cors', method : 'post',
@@ -114,30 +114,55 @@ class Match extends Component {
             body : JSON.stringify(this.state.commentsData)
         })
             .then((response) => {
+                this.setState({commentsData: {...this.state.commentsData, description: ''}});
                 console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
                   console.log(response.json());
                   return response.json();
                 } else {
-                    //alert('User succsessfully created');
                     console.log(response);
-                    // this.setState({redirect: true});
-                    // this.props.history.push(`${routesList[3].path}`);
-                    return response;
+                    return response.json();
                 }
             })
             .then((data)=>{
-                // this.setState({errorMessage: data.error});
                 console.log(data.error);
             })
-
             .catch((err) => {
                 console.log('error', err);
             });
       }
-      // const {fifaId, pseudo, message} = this.state;
-    this.setState({commentsData: {...this.state.commentsData, description: ''}});
+    this.getMatchComments(this.state.fifaId);
   }
+
+  setCommentAuthor() {
+    if(sessionStorage.getItem('userData')) {
+      if(this.getStorageData('username') !== this.state.commentsData.comment_author) {
+        return this.state.commentsData.comment_author
+      } else {
+        return this.getStorageData('username');
+      }
+  } else {
+      return this.state.commentsData.comment_author;
+    }
+  }
+
+  displayCommentAuthor(comment_author) {
+    if(sessionStorage.getItem('userData')) {
+      if(this.getStorageData('username') !== comment_author) {
+        return(
+          <p className="username">@{comment_author}</p>
+        )
+      } else {
+        return(
+          <p className="username">@{this.getStorageData('username')}</p>
+        )
+      }
+  } else {
+    return(
+      <p className="username">@{comment_author}</p>
+    )
+  }
+}
 
   render() {
     let match = this.state.match;
@@ -269,10 +294,7 @@ class Match extends Component {
                         <span></span>
                         <p>{moment(comment.date).format("MM-DD-YYYY")} at {moment(comment.date).format("hh:mm a")}</p>
                       </div>
-                      {
-                        sessionStorage.getItem('userData') &&
-                          <p className='username'>@{comment.comment_author ? comment.comment_author : 'unknown' }</p>
-                      }
+                      {this.displayCommentAuthor(comment.comment_author)}
                       <p>{comment.description}</p>
                     </div>
                   )
@@ -280,6 +302,9 @@ class Match extends Component {
               }
             </div>
             <div className="content-signup specialForm">
+            {this.state.errorMessage &&
+              <p>{this.state.errorMessage}</p>
+            }
               <form onSubmit={this.submitForm.bind(this)}>
                 <input
                   type="text"
@@ -293,9 +318,6 @@ class Match extends Component {
                   onChange={(message)=>{this.setState({commentsData: {...this.state.commentsData, description : message.target.value}})}}
                   placeholder="comment"
                 />
-              {this.state.errorMessage &&
-                <p>{this.state.errorMessage}</p>
-              }
                 <button type="submit">Submit</button>
               </form>
             </div>
