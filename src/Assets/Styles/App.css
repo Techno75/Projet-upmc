@@ -139,7 +139,7 @@ header{
   left: 0px;
   right: 0px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 5px;
   font-size: 45px;
 }
 
@@ -223,9 +223,24 @@ header{
   text-align: justify;
 }
 
+
+@media screen and (max-width: 1100px) {
+    .content-home .field-time-score-card{
+      font-size: 30px;
+    }
+
+    .content-home .field-country-card{
+      zoom:0.8;
+    }
+  }
+
 @media screen and (max-width: 950px) {
     .content-home-actu .articles-box{
       display: block;
+    }
+
+    .content-home .field-time-score-card{
+      font-size: 20px;
     }
 
     .content-home-actu .articles-box img{
@@ -236,6 +251,9 @@ header{
 @media screen and (max-width: 800px) {
     .content-home h1{
       font-size: 35px;
+    }
+    .content-home .field-country-card{
+      zoom:0.5;
     }
 }
 
@@ -644,6 +662,12 @@ margin-right:10px;
   left: 598px
 }
 
+@media screen and (max-width: 1100px) {
+    .board-rsp{
+      display: none;
+    }
+  }
+
 /*//////////////// Match ///////////////*/
 
 .single-match-conatiner{
@@ -778,6 +802,10 @@ margin-right:10px;
   margin-bottom: 30px;
 }
 
+.specialForm form button:focus{
+  outline: none;
+}
+
 .comment{
   width: 80%;
   box-sizing: border-box;
@@ -824,12 +852,14 @@ font-family: Raleway;
   }
 }
 
-.content-signup form p {
+.specialForm p {
   font-size: 16px;
   text-transform: uppercase;
   color: #E52528;
   margin-top: 20px;
   font-family: Oswald;
+  width: 80%;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 600px) {
@@ -925,7 +955,7 @@ tbody tr:hover{
 
 .content-groups .content-button{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 40px 0px;
 }
 

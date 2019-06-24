@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import BoardViewMatchCard from './BoardViewMatchCard.jsx';
+import { routesList } from '../../Constantes/Routes.js';
+import { Redirect } from 'react-router';
 
 class BoardView extends Component {
   render() {
+
     let matchList = this.props.matchDataList;
 
     let eighthFinalList = matchList.filter((match)=>{

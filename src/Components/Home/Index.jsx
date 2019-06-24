@@ -66,6 +66,7 @@ class Home extends Component {
     }
 
   render() {
+
     if(this.state.redirect) {
       return(
           <Redirect to={routesList[0].path}/>
