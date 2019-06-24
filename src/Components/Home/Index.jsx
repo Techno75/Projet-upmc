@@ -25,9 +25,7 @@ class Home extends Component {
 
     getStorageData() {
         const testData = JSON.parse(sessionStorage.getItem('userData'));
-        console.log(sessionStorage.getItem('userData'));
         this.setState({storage: testData});
-        console.log(testData);
     }
 
 

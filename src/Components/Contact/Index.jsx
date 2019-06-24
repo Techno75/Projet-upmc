@@ -12,10 +12,8 @@ class Contact extends Component {
   }
 
 validateEmpty = (e) => {
-  console.log(e);
   if(!e) {
     this.setState({errorMessage: 'Veuillez remplir la case'});
-    console.log(this.state.errorMessage);
   }
 }
 

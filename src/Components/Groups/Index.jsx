@@ -52,7 +52,6 @@ class Groups extends Component {
               </thead>
               <tbody>
                 {this.state.groupeTodisplay.ordered_teams.map((team, index)=>{
-                  console.log(team);
                   return(
                       <tr key={index}>
                         <td>
