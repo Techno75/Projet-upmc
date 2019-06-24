@@ -8,7 +8,15 @@ class ListView extends Component {
   state = {
       storage: null,
       Authorization: '',
+      matchFollowed: null
   };
+
+
+  componentDidMount() {
+    if(sessionStorage.getItem('userData')) {
+      this.getNotifications();
+    }
+  }
 
     componentWillMount() {
         if(sessionStorage.getItem('userData')) {
@@ -16,13 +24,11 @@ class ListView extends Component {
         }
     }
 
-    getStorageData() {
+    getStorageData(value) {
         const testData = JSON.parse(sessionStorage.getItem('userData'));
-        console.log(sessionStorage.getItem('userData'));
-        this.setState({storage: testData});
-        this.setState({Authorization: testData.token});
-        console.log(testData.token);
-        console.log(this.state.storage);
+        console.log(testData);
+        value = testData[value];
+        return value;
     }
 
     createNotification = (venue, datetime, matchId) => {
@@ -31,24 +37,23 @@ class ListView extends Component {
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
-                'Authorization': 'bearer' + testData.token,
+                'Authorization': 'Bearer ' +  this.getStorageData('token'),
             },
             body : JSON.stringify({
                 venue: venue,
                 datetime: datetime,
                 isFavorite: 1,
                 matchId: matchId,
-                UserId: this.state.storage.UserId,
             })
         })
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
-                    console.log(response.json());
                     return response.json();
                 } else {
-                    console.log('notification created');
-                    console.log(response.json());
+                    //console.log('notification created');
+                    //console.log(response.json());
+                    this.getNotifications();
                     return response.json()
                 }
             })
@@ -59,8 +64,57 @@ class ListView extends Component {
             .catch((err) => {
                 console.log('error', err);
             })
+
+
     }
 
+    getNotifications = () => {
+      const recupUsername = JSON.parse(sessionStorage.getItem('userData'));
+        fetch('http://localhost:8080/api/notifications/' + recupUsername.username,  { mode: 'cors', method : 'get',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' +  this.getStorageData('token'),
+            },
+        })
+            .then((response) => {
+                if(!(response.status >= 200 && response.status <= 300)) {
+                    return response.json();
+                } else {
+                    return response.json()
+                }
+            })
+            .then((data)=>{
+                this.setState({errorMessage: data.error});
+                this.setState({matchFollowed: data})
+                console.log(this.state.matchFollowed);
+            })
+
+            .catch((err) => {
+                console.log('error', err);
+            })
+    }
+
+    dynamicFollowButtons(match) {
+      let matchIsFollowed = false;
+      if(sessionStorage.getItem('userData')) {
+        this.state.matchFollowed.forEach((matchFollowed) => {
+          if(matchFollowed.matchId == match.fifa_id) {
+            matchIsFollowed = true;
+            console.log('followed');
+          }
+        })
+      }
+      if (!matchIsFollowed) {
+        return(
+          <button onClick={() => this.createNotification(match.venue, moment(match.datetime).format('MM-DD-YYYY hh:mm a'), match.fifa_id)} className="follow-match-button">Follow</button>
+        )
+      } else {
+        return(
+          <button className="follow-match-button followed">Follow</button>
+        )
+      }
+    }
 
   render() {
     const matchAlreadyPlayedList = this.props.matchDataList.filter((match)=>{
@@ -151,7 +205,7 @@ class ListView extends Component {
 
                     </div>
                   </Link>
-                  <button className="follow-match-button">follow</button>
+                  {this.dynamicFollowButtons(match)}
                 </div>
               )
             })}

@@ -378,6 +378,12 @@ header{
   position: relative;
 }
 
+.match-card-row-with-button .followed{
+  background: #F6D500 !important;
+  color: #212121;
+  border: 1px solid #F6D500 !important;
+}
+
 .match-card-row-with-button .follow-match-button{
   position: absolute;
   right: 0;
