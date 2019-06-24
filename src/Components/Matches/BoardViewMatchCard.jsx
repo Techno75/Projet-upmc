@@ -20,7 +20,7 @@ class BoardViewMatchCard extends Component {
               {this.props.match.home_team.goals}
             </div>
             <div className="timer-board">
-              {this.props.match.status === "future"?  <div><p>{moment(this.props.match.datetime).format('MM/DD/YYYY')}</p><p>{moment(this.props.match.datetime).format('hh:mm a')}</p></div> : <p>{this.props.match.time}</p>}
+              {this.props.match.status === "future"?  <div><p>{moment(this.props.match.datetime).format('MM-DD-YYYY')}</p><p>{moment(this.props.match.datetime).format('hh:mm a')}</p></div> : <p>{this.props.match.time}</p>}
             </div>
             <div className="content-board">
               <div>
