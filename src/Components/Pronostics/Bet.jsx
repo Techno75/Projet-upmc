@@ -5,10 +5,6 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-
-
-
-
 class Bet extends Component {
 
   state = {
