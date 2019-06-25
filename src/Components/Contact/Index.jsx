@@ -46,9 +46,6 @@ onSubmit = (e) => {
                  });
     this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.'});
     this.setState({isSent: true});
-    this.setState({userData: {...this.state.userData, firstName: ''}});
-    this.setState({userData: {...this.state.userData, lastName: ''}});
-    this.setState({userData: {...this.state.userData, email: ''}});
     this.setState({userData: {...this.state.userData, message: ''}});
   }
 }
