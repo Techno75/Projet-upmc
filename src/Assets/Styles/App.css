@@ -103,6 +103,90 @@ header{
   color: #E52528;
 }
 
+/*////////// Statistics ////////////////*/
+
+.content-statistics-bck{
+  background: #282B62;
+  width: 100%;
+}
+
+.content-statistics{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content-statistics h3{
+  font-family: Oswald;
+  color: #F9D500;
+  font-weight: 300;
+  font-size: 30px;
+}
+
+.content-statistics .content-top6{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal{
+  display: flex;
+  margin: 20px;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal img{
+  width: 100px;
+  border: 1px solid #F9D500;
+  margin-right: 10px;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse{
+    font-family: Oswald;
+    font-weight: 300;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .name{
+  font-size: 20px;
+  color: #FBFBFB;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .country{
+  font-style: italic;
+  color: #F9D500;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .nbGoal{
+      margin-top: 18px;
+      color: #FBFBFB;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .nbGoal .goal{
+  color: #F9D500;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.content-statistics .content-global-stats{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.content-statistics .content-global-stats .stat-global{
+  font-family: Oswald;
+}
+
+.content-statistics .content-global-stats .stat-global h2{
+  color: #F9D500;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.content-statistics .content-global-stats .stat-global p{
+  color: #FBFBFB;
+  font-size: 100px;
+}
+
 /*////////// ARTICLE ////////////////*/
 
 .content-article{

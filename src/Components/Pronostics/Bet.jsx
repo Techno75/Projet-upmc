@@ -3,10 +3,6 @@ import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import moment from 'moment';
 
-
-
-
-
 class Bet extends Component {
 
   state = {
