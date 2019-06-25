@@ -44,14 +44,16 @@ class Videos extends Component {
     return (
           <div>
             <h1>Vidéos</h1>
-            <video src="https://www.youtube.com/watch?v=QrOuS48v_M8&list=PLCGIzmTE4d0ic-x5M9c0C1MvQla301_zo" controls={true}></video>
-              {/*this.state.youtubePlaylistDatas &&
+              {this.state.youtubePlaylistDatas &&
                 this.state.youtubePlaylistDatas.map((video, index) => {
                   return(
-                    <video key={index} src={"https://www.youtube.com/watch?v="+ video.snippet.resourceId.videoId + "&list=PLCGIzmTE4d0ic-x5M9c0C1MvQla301_zo"} controls={true}></video>
+                    <div>
+                      <iframe width="560" height="315" src={"https://www.youtube.com/embed/"+ video.snippet.resourceId.videoId} frameborder={"0"} allow={"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"} allowfullscreen></iframe>
+                      <h3>{video.snippet.title}</h3>
+                    </div>
                   )
                 })
-              */}
+              }
           </div>
     )
   }
