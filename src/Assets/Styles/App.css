@@ -1,12 +1,16 @@
 
 /*///////// errorMessage ////////*/
 
-.errorMessage {
+.errorMessage, .successMessage {
   font-size: 16px;
   text-transform: uppercase;
   color: #E52528;
   margin-top: 20px;
   font-family: Oswald;
+}
+
+.successMessage{
+  color: #00AB66;
 }
 
 /*//////// Header ///////////*/
@@ -282,6 +286,63 @@ header{
       font-size: 20px;
       margin-top: 5px;
     }
+}
+
+/*////////// Team ////////////////*/
+.team-container{
+  background-color: #fbfbfb;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.team-container .team-statistics{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.team-container .team-statistics p{
+  font-family: Oswald;
+  font-size: 20px;
+}
+
+.team-container .team-name{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team-container .team-name img{
+  margin-right: 20px;
+}
+
+.team-container .team-name h1{
+  font-family: Oswald;
+  font-weight: 500;
+  color: #212121;
+  font-size: 50px;
+  text-transform: uppercase;
+}
+
+.team-container .team-players h1{
+  font-family: Oswald;
+  font-weight: 500;
+  font-size: 30px;
+  color: #282B62;
+  text-transform: uppercase;
+}
+
+.team-container .team-players h2{
+  font-family: Oswald;
+  font-weight: 500;
+  font-size: 20px;
+  color: #282B62;
+  text-transform: uppercase;
+}
+
+.team-container .team-players p{
+
 }
 
 /*////////// Matches List ////////////////*/
@@ -1036,7 +1097,7 @@ tbody tr:hover{
 }
 
 .content-contact form{
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .content-contact form .submit-content{

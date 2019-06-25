@@ -95,10 +95,12 @@ class Team extends Component {
     });
 
     return (
-          <div>
-            <div>
-              <h1>{team.country}</h1>
-              <img src={require('./../../Assets/Images/Flags/' + team.fifa_code + ".jpg")} alt="flag"/>
+          <div className='team-container'>
+              <div className='team-name'>
+                <img src={require('./../../Assets/Images/Flags/' + team.fifa_code + ".jpg")} alt="flag"/>
+                <h1>{team.country}</h1>
+              </div>
+              <div className='team-statistics'>
               <p>Games played : {team.games_played}</p>
               <p>Wins : {team.wins}</p>
               <p>Draws : {team.draws}</p>
@@ -106,30 +108,30 @@ class Team extends Component {
               <p>Goals Scored : {team.goals_for}</p>
               <p>Goals Agaisnt : {team.goals_against}</p>
             </div>
-            <div>
-              <h1>Players :</h1>
+            <div className='team-players'>
+              <h1>Players List</h1>
               <h2>Goalies</h2>
               {goalList.map((player, index)=>{
                 return(
-                  <div key={index}>{player.shirt_number} {player.name}</div>
+                  <p key={index}>{player.shirt_number} <span className='player-name'>{player.name}</span></p>
                 )
               })}
               <h2>Defenders</h2>
               {defender.map((player, index)=>{
                 return(
-                  <div key={index}>{player.shirt_number} {player.name}</div>
+                  <p key={index}>{player.shirt_number} <span className='player-name'>{player.name}</span></p>
                 )
               })}
               <h2>Midlefields</h2>
               {midlefield.map((player, index)=>{
                 return(
-                  <div key={index}>{player.shirt_number} {player.name}</div>
+                  <p key={index}>{player.shirt_number} <span className='player-name'>{player.name}</span></p>
                 )
               })}
               <h2>Forwards</h2>
               {forward.map((player, index)=>{
                 return(
-                  <div key={index}>{player.shirt_number} {player.name}</div>
+                  <p key={index}>{player.shirt_number} <span className='player-name'>{player.name}</span></p>
                 )
               })}
             </div>
