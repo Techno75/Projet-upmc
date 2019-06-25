@@ -50,6 +50,7 @@ class SignIn extends Component {
             })
             .catch((err) => {
                 console.log('error', err);
+                this.setState({errorMessage: 'Connexion au server impossible.'});
             })
 
     };
