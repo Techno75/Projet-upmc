@@ -56,6 +56,10 @@ onSubmit = (e) => {
           <div className='content-contact'>
             <h2>Contact us</h2>
 
+            {this.state.errorMessage &&
+              <p className="errorMessage">{this.state.errorMessage}</p>
+            }
+
             <form onSubmit={this.onSubmit}>
                 <input
                   type='text'
@@ -84,9 +88,6 @@ onSubmit = (e) => {
                   value={this.state.userData.message}
                   onChange={(message)=>this.setState({userData : {...this.state.userData, message: message.target.value}})}
                 />
-                {this.state.errorMessage &&
-                  <p className="errorMessage">{this.state.errorMessage}</p>
-                }
                 <div className='submit-content'>
                   <input
                     type='submit'
