@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 class ListView extends Component {
 
@@ -128,23 +130,23 @@ class ListView extends Component {
     }
 
     dynamicFollowButtons(match) {
-      let matchIsFollowed = false;
       if(sessionStorage.getItem('userData')) {
-        this.state.matchFollowed.forEach((matchFollowed) => {
-          if(matchFollowed.matchId == match.fifa_id) {
-            matchIsFollowed = true;
-            console.log('followed');
-          }
-        })
-      }
-      if (!matchIsFollowed) {
-        return(
-          <button onClick={() => this.createNotification(match.venue, moment(match.datetime).format('MM-DD-YYYY hh:mm a'), match.fifa_id)} className="follow-match-button">Follow</button>
-        )
-      } else {
-        return(
-          <button onClick={() => this.deleteNotification(match.fifa_id)} className="follow-match-button followed">Follow</button>
-        )
+        let matchIsFollowed = false;
+          this.state.matchFollowed.forEach((matchFollowed) => {
+            if(matchFollowed.matchId == match.fifa_id) {
+              matchIsFollowed = true;
+              console.log('followed');
+            }
+          })
+        if (!matchIsFollowed) {
+          return(
+            <button onClick={() => this.createNotification(match.venue, moment(match.datetime).format('MM-DD-YYYY hh:mm a'), match.fifa_id)} className="follow-match-button"><FontAwesomeIcon icon={faBell} /></button>
+          )
+        } else {
+          return(
+            <button onClick={() => this.deleteNotification(match.fifa_id)} className="follow-match-button followed"><FontAwesomeIcon icon={faBell} /></button>
+          )
+        }
       }
     }
 
