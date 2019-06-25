@@ -356,6 +356,62 @@ header{
   color: #212121;
 }
 
+/*////////// Video ////////////////*/
+
+.content-video{
+  width: 100%;
+  padding: 20px 0px 50px 120px;
+  box-sizing: border-box;
+  background: #282B62;
+}
+
+.content-video .video-content-fetch{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-video .video-content-fetch .video-box{
+  box-sizing: border-box;
+  padding: 20px 20px 20px 50px;
+  border-left: 1px solid #F9D500;
+  margin: 20px 50px 20px 50px;
+  width: 400px;
+}
+
+.content-video .video-content-fetch .video-box iframe{
+  width: 400px;
+  height: 250px;
+}
+
+.content-video .video-content-fetch .video-box h3{
+  font-family: Oswald;
+  color: #FBFBFB;
+  font-weight: 300;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .content-video .video-content-fetch .video-box iframe{
+    width: 100%;
+    height: 250px;
+  }
+
+  .content-video .video-content-fetch .video-box{
+    width: 100%;
+  }
+
+  .content-video{
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .content-video .video-content-fetch .video-box iframe{
+    height: 70%;
+  }
+}
+
 /*////////// Matches List ////////////////*/
 
 .match-container{
