@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Contact extends Component {
   state = {
     errorMessage: '',
+    successMessage: '',
     userData:{
       lastName: '',
       firstName: '',
@@ -42,7 +43,7 @@ onSubmit = (e) => {
                 .catch(function(err) {
                   console.log(err)
                  });
-    alert('Your message has been sent successfully, thank you for your feedback.');
+    this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.');
     this.setState({userData: {...this.state.userData, firstName: ''}});
     this.setState({userData: {...this.state.userData, lastName: ''}});
     this.setState({userData: {...this.state.userData, email: ''}});
@@ -54,6 +55,10 @@ onSubmit = (e) => {
     return (
           <div className='content-contact'>
             <h2>Contact us</h2>
+
+            {this.state.errorMessage &&
+              <p className="errorMessage">{this.state.errorMessage}</p>
+            }
 
             <form onSubmit={this.onSubmit}>
                 <input
@@ -83,9 +88,6 @@ onSubmit = (e) => {
                   value={this.state.userData.message}
                   onChange={(message)=>this.setState({userData : {...this.state.userData, message: message.target.value}})}
                 />
-                {this.state.errorMessage &&
-                  <p className="errorMessage">{this.state.errorMessage}</p>
-                }
                 <div className='submit-content'>
                   <input
                     type='submit'
