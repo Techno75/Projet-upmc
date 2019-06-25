@@ -42,18 +42,19 @@ class Videos extends Component {
 
   render() {
     return (
-          <div>
-            <h1>Vidéos</h1>
+          <div className='content-video'>
+            <div className='video-content-fetch'>
               {this.state.youtubePlaylistDatas &&
                 this.state.youtubePlaylistDatas.map((video, index) => {
                   return(
-                    <div>
-                      <iframe width="560" height="315" src={"https://www.youtube.com/embed/"+ video.snippet.resourceId.videoId} frameborder={"0"} allow={"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"} allowfullscreen></iframe>
+                    <div className='video-box'>
+                      <iframe src={"https://www.youtube.com/embed/"+ video.snippet.resourceId.videoId} frameborder={"0"} allow={"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"} allowfullscreen></iframe>
                       <h3>{video.snippet.title}</h3>
                     </div>
                   )
                 })
               }
+              </div>
           </div>
     )
   }

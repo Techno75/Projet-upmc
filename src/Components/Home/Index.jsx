@@ -5,6 +5,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import { API_ROUTE } from '../../Constantes/ApiRoute.js'
 import ScoreTimeCard from './../Match/ScoreTimeCard.jsx'
+import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 
 class Home extends Component {
 
@@ -21,6 +22,11 @@ class Home extends Component {
             this.setState({redirect: false});
         }
         this.fetchMatchesData();
+
+        fetchDataToApi('https://graph.facebook.com/fifawomensworldcup?access_token=2521098678176560|f21696bdede8996577ce11eba8995034', "GET")
+        .then((article)=>{
+
+        })
     }
 
     getStorageData() {
