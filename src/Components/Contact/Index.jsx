@@ -4,6 +4,7 @@ class Contact extends Component {
   state = {
     errorMessage: '',
     successMessage: '',
+    isSent: false,
     userData:{
       lastName: '',
       firstName: '',
@@ -43,7 +44,8 @@ onSubmit = (e) => {
                 .catch(function(err) {
                   console.log(err)
                  });
-    this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.');
+    this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.'});
+    this.setState({isSent: true});
     this.setState({userData: {...this.state.userData, firstName: ''}});
     this.setState({userData: {...this.state.userData, lastName: ''}});
     this.setState({userData: {...this.state.userData, email: ''}});
@@ -59,43 +61,50 @@ onSubmit = (e) => {
             {this.state.errorMessage &&
               <p className="errorMessage">{this.state.errorMessage}</p>
             }
-
-            <form onSubmit={this.onSubmit}>
-                <input
-                  type='text'
-                  name='lastName'
-                  placeholder='Last Name'
-                  value = {this.state.userData.lastName}
-                  onChange = {(lastName)=>this.setState({userData : {...this.state.userData, lastName: lastName.target.value}})}
-                 />
-                <input
-                  type='text'
-                  name='firstName'
-                  placeholder='First Name'
-                  value={this.state.userData.firstName}
-                  onChange = {(firstName)=>this.setState({userData : {...this.state.userData, firstName: firstName.target.value}})}
-                />
-                <input
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                  value={this.state.userData.email}
-                  onChange={(email)=>this.setState({userData : {...this.state.userData, email: email.target.value}})}
-                />
-                <textarea
-                  name='message'
-                  placeholder='Your message...'
-                  value={this.state.userData.message}
-                  onChange={(message)=>this.setState({userData : {...this.state.userData, message: message.target.value}})}
-                />
-                <div className='submit-content'>
+            {
+              this.state.successMessage &&
+                <p className="successMessage">{this.state.successMessage}</p>
+            }
+            {
+              !this.state.isSent &&
+              <form onSubmit={this.onSubmit}>
                   <input
-                    type='submit'
-                    name='submit'
-                    value='Submit'
+                    type='text'
+                    name='lastName'
+                    placeholder='Last Name'
+                    value = {this.state.userData.lastName}
+                    onChange = {(lastName)=>this.setState({userData : {...this.state.userData, lastName: lastName.target.value}})}
+                   />
+                  <input
+                    type='text'
+                    name='firstName'
+                    placeholder='First Name'
+                    value={this.state.userData.firstName}
+                    onChange = {(firstName)=>this.setState({userData : {...this.state.userData, firstName: firstName.target.value}})}
                   />
-                </div>
-              </form>
+                  <input
+                    type='email'
+                    name='email'
+                    placeholder='Email'
+                    value={this.state.userData.email}
+                    onChange={(email)=>this.setState({userData : {...this.state.userData, email: email.target.value}})}
+                  />
+                  <textarea
+                    name='message'
+                    placeholder='Your message...'
+                    value={this.state.userData.message}
+                    onChange={(message)=>this.setState({userData : {...this.state.userData, message: message.target.value}})}
+                  />
+                  <div className='submit-content'>
+                    <input
+                      type='submit'
+                      name='submit'
+                      value='Submit'
+                    />
+                  </div>
+                </form>
+            }
+
           </div>
     )
   }
