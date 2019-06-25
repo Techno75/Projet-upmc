@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import { API_ROUTE } from '../../Constantes/ApiRoute.js';
 import homeImage from './../../Assets/Images/home.jpg';
 import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
-import {Link, Redirect} from 'react-router-dom';
-import {routesList} from '../../Constantes/Routes.js';
 import moment from 'moment';
 import MyBets from './MyBets';
-import TopBetter from './TopBettor';
+import TopBettor from './TopBettor';
 import Bet from './Bet';
 
 
@@ -15,7 +13,7 @@ class Pronostics extends Component {
     super(props)
     this.fetchUpdate = null;
     this.state = {
-      view : "list",
+      view : "bet",
       matchDataList : [],
     }
     this.fetchMatchesData = this.fetchMatchesData.bind(this);
@@ -46,72 +44,51 @@ class Pronostics extends Component {
       .then((data) => this.setState({ matchDataList : data }));
   }
 
+  smallRouter() {
+    if (this.state.view === 'bet') {
+      return(
+        <Bet matchDataList={this.state.matchDataList}/>
+      )
+    } else if(this.state.view === 'mybets') {
+      return(
+        <MyBets/>
+      )
+    } else if(this.state.view === 'topbettor'){
+      return(
+        <TopBettor/>
+      )
+    } else {
+      return false;
+    }
+  }
+
   render() {
 
-    const matchNotPlayedList = this.state.matchDataList.filter((match)=>{
-      if(match.status === "future"){
-        return match
-      }
-      return false;
-    })
-
-    console.log(matchNotPlayedList);
 
     return (
       <div className="content-pronostics">
-        <div>
+        <div className="content-pronostics-buttons">
           <button
             className={this.state.view === "bet" ? "match-container-button-active" : ""}
-            onClick={()=>this.setState({view : 'list'})}
+            onClick={()=>this.setState({view : 'bet'})}
           >
-            Matches list
+            Bet
           </button>
           <button
-            className={this.state.view === "mybets" ? "match-container-button-active" : "board-rsp"}
-            onClick={()=>this.setState({view : 'board'})}
+            className={this.state.view === "mybets" ? "match-container-button-active" : ""}
+            onClick={()=>this.setState({view : 'mybets'})}
           >
-            Matches board
+            My Bets
           </button>
           <button
-            className={this.state.view === "mybets" ? "match-container-button-active" : "board-rsp"}
-            onClick={()=>this.setState({view : 'board'})}
+            className={this.state.view === "topbettor" ? "match-container-button-active" : ""}
+            onClick={()=>this.setState({view : 'topbettor'})}
           >
-            Matches board
+            Top Bettors
           </button>
         </div>
-      {
-        matchNotPlayedList.map((match, index) => {
-          return(
-            <div className="match-card-row-with-button" key={index}>
-              <Link to={{pathname : routesList[10].path, aboutProps : {match : match}}}>
-                <div className="match-card-row">
-                   <div className="country-card">
-                    <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
-                      <p>{match.home_team_country}</p>
-                   </div>
-                  <div className="match-card-row-date">
-                      <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
-                      <p>{moment(match.datetime).format('hh:mm a')}</p>
-                   </div>
-                   <div className="country-card">
-                      <p>{match.away_team_country}</p>
-                      <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
-                   </div>
 
-                </div>
-              </Link>
-              <div>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-              </div>
-            </div>
-          )
-        })
-      }
-
-
-
+          {this.smallRouter()}
       </div>
     )
   }
