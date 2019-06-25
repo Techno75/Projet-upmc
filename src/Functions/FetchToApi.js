@@ -9,7 +9,8 @@ export const fetchDataToApi = (route, method, body) => {
       return fetch(route,  {mode: 'cors', method: method,
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : "*"
         },
       })
       .then((res)=>{
@@ -23,7 +24,8 @@ export const fetchDataToApi = (route, method, body) => {
       return fetch(route,  {mode: 'cors', method: method,
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin' : "*"
         },
         body : JSON.stringify(body)
       })

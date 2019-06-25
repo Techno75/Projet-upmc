@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_ROUTE } from '../../Constantes/ApiRoute.js'
+import { API_ROUTE } from '../../Constantes/ApiRoute.js';
 import ListView from './ListView';
 import BoardView from './BoardView';
 
