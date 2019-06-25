@@ -114,19 +114,19 @@ class Team extends Component {
                   <div key={index}>{player.shirt_number} {player.name}</div>
                 )
               })}
-              <h2>Defender</h2>
+              <h2>Defenders</h2>
               {defender.map((player, index)=>{
                 return(
                   <div key={index}>{player.shirt_number} {player.name}</div>
                 )
               })}
-              <h2>Midlefield</h2>
+              <h2>Midlefields</h2>
               {midlefield.map((player, index)=>{
                 return(
                   <div key={index}>{player.shirt_number} {player.name}</div>
                 )
               })}
-              <h2>Forward</h2>
+              <h2>Forwards</h2>
               {forward.map((player, index)=>{
                 return(
                   <div key={index}>{player.shirt_number} {player.name}</div>
