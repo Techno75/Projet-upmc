@@ -45,10 +45,7 @@ onSubmit = (e) => {
                   console.log(err)
                  });
     this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.'});
-<<<<<<< HEAD
     this.setState({isSent: true});
-=======
->>>>>>> db6ae110684c13627ecfc50f76e04bb805884e0a
     this.setState({userData: {...this.state.userData, firstName: ''}});
     this.setState({userData: {...this.state.userData, lastName: ''}});
     this.setState({userData: {...this.state.userData, email: ''}});
