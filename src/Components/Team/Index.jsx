@@ -13,7 +13,6 @@ class Team extends Component {
     };
   }
 
-
   componentWillMount(){
     if (this.props.location.aboutProps === undefined) {
       window.location="http://localhost:3000/Matches"

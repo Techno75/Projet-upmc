@@ -37,8 +37,8 @@ class Statistics extends Component {
 
           const allEventList = [];
 
-          allMatchOfHomeTeamAlreadyPlayedReformatList.forEach((evtList)=>{allEventList.push(...evtList);})
-          allMatchOfAwayTeamAlreadyPlayedReformatList.forEach((evtList)=>{allEventList.push(...evtList);})
+          allMatchOfHomeTeamAlreadyPlayedReformatList.forEach((evtList)=>allEventList.push(...evtList))
+          allMatchOfAwayTeamAlreadyPlayedReformatList.forEach((evtList)=>allEventList.push(...evtList))
 
           const allGoals = allEventList.filter((evt)=>{if (evt.type_of_event === "goal" || evt.type_of_event === "goal-penalty") {return evt}})
 
@@ -49,9 +49,8 @@ class Statistics extends Component {
               return goal
             }
           })
-          const scorerList = scorerNameListTmp.map((goal)=>{
-            return {name : goal.player, country : goal.country, goalList: []};
-          })
+          
+          const scorerList = scorerNameListTmp.map((goal)=>({name : goal.player, country : goal.country, goalList : []}));
 
           allGoals.forEach((goal)=>{
             scorerList.forEach((scorer)=>{
@@ -60,7 +59,6 @@ class Statistics extends Component {
               }
             })
           })
-
           this.setState({scorerList : scorerList.sort(this.compare), numberOfMatchPlayed : allMatchAlreadyPlayed.length, numberOfGoalScored : allGoals.length, goalList : allGoals})
       })
     }
@@ -81,9 +79,10 @@ class Statistics extends Component {
                   if (index < 6) {
                     return(
                       <div key={index}>
+                        <p>#{index + 1}</p>
                         <p>{scorer.name}</p>
                         <p>{scorer.country}</p>
-                        <p>{scorer.goalList.length}</p>
+                        <p>{scorer.goalList.length} goals</p>
                       </div>
                     )
                   }
