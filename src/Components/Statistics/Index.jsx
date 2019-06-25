@@ -61,26 +61,32 @@ class Statistics extends Component {
             })
           })
 
-          this.setState({scorerList : scorerList, numberOfMatchPlayed : allMatchAlreadyPlayed.length, numberOfGoalScored : allGoals.length, goalList : allGoals})
+          this.setState({scorerList : scorerList.sort(this.compare), numberOfMatchPlayed : allMatchAlreadyPlayed.length, numberOfGoalScored : allGoals.length, goalList : allGoals})
       })
     }
 
+    compare (a, b) {
+      return (a.goalList.length - b.goalList.length) * -1;
+    }
+
+
   render() {
     const goalPerMatch = Math.round((this.state.numberOfGoalScored / this.state.numberOfMatchPlayed) * 10) / 10;
-
     return (
           <div>
             <h1>Statistics</h1>
             <div>
               {
-                this.state.scorerList.map((scorer)=>{
-                  return(
-                    <div>
-                      <p>{scorer.name}</p>
-                      <p>{scorer.country}</p>
-                      <p>{scorer.goalList.length}</p>
-                    </div>
-                  )
+                this.state.scorerList.map((scorer, index)=>{
+                  if (index < 6) {
+                    return(
+                      <div key={index}>
+                        <p>{scorer.name}</p>
+                        <p>{scorer.country}</p>
+                        <p>{scorer.goalList.length}</p>
+                      </div>
+                    )
+                  }
                 })
               }
             </div>

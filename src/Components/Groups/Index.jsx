@@ -3,8 +3,8 @@ import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import { API_ROUTE } from './../../Constantes/ApiRoute.js';
 import { Link } from 'react-router-dom';
 import { routesList } from '../../Constantes/Routes.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 class Groups extends Component {
   constructor(props){
