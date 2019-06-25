@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 
 class Bet extends Component {
 
   state = {
+    errorMessage: '',
+    matchPronosticed: null,
+  }
 
+  componentDidMount() {
+    this.getPronostics();
   }
 
   getStorageData(value) {
@@ -16,7 +23,7 @@ class Bet extends Component {
     return value;
   }
 
-  bet(home_team, away_team, datetime, betTeam) {
+  bet(home_team, away_team, datetime, betTeam, matchId) {
     fetch('http://localhost:8080/api/pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -28,6 +35,7 @@ class Bet extends Component {
           away_team: away_team,
           datetime: datetime,
           pronostic: betTeam,
+          matchId: 23335432
         })
     })
         .then((response) => {
@@ -36,9 +44,10 @@ class Bet extends Component {
                 return response.json();
             } else {
                 //alert('User succsessfully created');
-                console.log('notification created');
+                console.log('pronostic created');
                 // this.setState({redirect: true});
                 // this.props.history.push(`${routesList[3].path}`);
+                this.getPronostics();
                 return response.json()
             }
         })
@@ -50,8 +59,88 @@ class Bet extends Component {
         .catch((err) => {
             console.log('error', err);
         });
+
   }
 
+  getPronostics() {
+    const recupUsername = JSON.parse(sessionStorage.getItem('userData'));
+    fetch('http://localhost:8080/api/pronostics/' + recupUsername.username,  { mode: 'cors', method : 'get',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' +  this.getStorageData('token'),
+        },
+    })
+        .then((response) => {
+            if(!(response.status >= 200 && response.status <= 300)) {
+                return response.json();
+            } else {
+                return response.json()
+            }
+        })
+        .then((data)=>{
+            this.setState({errorMessage: data.error});
+            this.setState({matchPronosticed: data})
+            console.log(this.state.matchPronosticed);
+        })
+
+        .catch((err) => {
+            console.log('error', err);
+        })
+  }
+
+  deletePronostic(id) {
+    console.log(id)
+    this.state.matchPronosticed.map((matchPronosticed) => {
+      if(matchPronosticed.matchId == id) {
+        fetch('http://localhost:8080/api/pronostics/delete/' + id,  { mode: 'cors', method : 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' +  this.getStorageData('token'),
+            },
+        })
+            .then((response) => {
+                if(!(response.status >= 200 && response.status <= 300)) {
+                    return response.json();
+                } else {
+                  this.getPronostics();
+                  return response.json()
+                }
+            })
+            .then((data)=>{
+                this.setState({errorMessage: data.error});
+                // console.log(this.state.matchFollowed);
+            })
+
+            .catch((err) => {
+                console.log('error', err);
+            })
+      }
+    })
+
+  }
+
+  dynamicFollowButtons(match, bet) {
+    if(sessionStorage.getItem('userData')) {
+      let matchIsPronosticed = false;
+        this.state.matchPronosticed.forEach((matchPronosticed) => {
+          if(matchPronosticed.matchId == match.matchId) {
+            matchIsPronosticed = true;
+            console.log('pronosticed');
+          }
+        })
+      if (!matchIsPronosticed) {
+        return(
+          <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), bet)} className="betButtons">{bet}</button>
+        )
+      } else {
+        return(
+          <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed">{bet}</button>
+        )
+      }
+    }
+  }
 
 
   render() {
@@ -89,9 +178,9 @@ class Bet extends Component {
                      </div>
                    </div>
                      <div className="content-betButtons">
-                       <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), match.home_team.code)} className="betButtons">{match.home_team.code}</button>
-                       <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), '0')} className="betButtons">Draw</button>
-                       <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), match.away_team.code)} className="betButtons">{match.away_team.code}</button>
+                       {this.dynamicFollowButtons(match, match.home_team.code)}
+                       {this.dynamicFollowButtons(match, '0')}
+                       {this.dynamicFollowButtons(match, match.away_team.code)}
                      </div>
                   </div>
               </div>
