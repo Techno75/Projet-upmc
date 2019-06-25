@@ -1,3 +1,14 @@
+
+/*///////// errorMessage ////////*/
+
+.errorMessage {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #E52528;
+  margin-top: 20px;
+  font-family: Oswald;
+}
+
 /*//////// Header ///////////*/
 
 header{

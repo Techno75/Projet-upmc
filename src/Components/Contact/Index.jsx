@@ -11,47 +11,49 @@ class Contact extends Component {
     }
   }
 
-validateEmpty = (e) => {
-  if(!e) {
-    this.setState({errorMessage: 'Veuillez remplir la case'});
-  }
-}
+// validateEmpty = (e) => {
+//   if(!e) {
+//     this.setState({errorMessage: 'Veuillez remplir la case'});
+//   }
+// }
 
-inputChangeHandler = (e) => {
-  if(e.target.name === 'lastName') {
-    this.setState({userData:{lastName: e.target.value}});
-  }
-  this.validateEmpty(e.target.value);
-}
+// inputChangeHandler = (e) => {
+//   if(e.target.name === 'lastName') {
+//     this.setState({userData:{lastName: e.target.value}});
+//   }
+//   this.validateEmpty(e.target.value);
+// }
 
 onSubmit = (e) => {
   e.preventDefault();
-  fetch("http://localhost:8080/api/contact", {
-            mode: 'cors',
-            headers: {
-              'Accept': 'application/json, text/plain, */*',
-              'Content-Type': 'application/json'
-            },
-            method: 'POST',
-            body: JSON.stringify(this.state.userData)
-            })
-              .catch(function(err) {
-                console.log(err)
-               });
+  if(!this.state.userData.firstName || !this.state.userData.lastName || !this.state.userData.email || !this.state.userData.message) {
+    this.setState({errorMessage: 'Please complete all the fields'})
+  } else {
+    this.setState({errorMessage: ''})
+    fetch("http://localhost:8080/api/contact", {
+              mode: 'cors',
+              headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+              },
+              method: 'POST',
+              body: JSON.stringify(this.state.userData)
+              })
+                .catch(function(err) {
+                  console.log(err)
+                 });
+    alert('Your message has been sent successfully, thank you for your feedback.');
+    this.setState({userData: {...this.state.userData, firstName: ''}});
+    this.setState({userData: {...this.state.userData, lastName: ''}});
+    this.setState({userData: {...this.state.userData, email: ''}});
+    this.setState({userData: {...this.state.userData, message: ''}});
+  }
 }
 
   render() {
     return (
           <div className='content-contact'>
             <h2>Contact us</h2>
-            {/*
-              this.state.errorMessage.map((message, index) => {
-                return(
-                  <p key={index}>{message}</p>
-                )
-              })
-            */}
-
 
             <form onSubmit={this.onSubmit}>
                 <input
@@ -81,6 +83,9 @@ onSubmit = (e) => {
                   value={this.state.userData.message}
                   onChange={(message)=>this.setState({userData : {...this.state.userData, message: message.target.value}})}
                 />
+                {this.state.errorMessage &&
+                  <p className="errorMessage">{this.state.errorMessage}</p>
+                }
                 <div className='submit-content'>
                   <input
                     type='submit'
