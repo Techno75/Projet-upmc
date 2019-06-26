@@ -29,7 +29,7 @@ class Profil extends Component {
     }
 
     getUserNotifications(){
-      fetchDataToApi('http://localhost:8080/api/notifications/' + JSON.parse(sessionStorage.getItem('userData')).username , 'GET')
+      fetchDataToApi(REST_ROUTE + 'notifications/' + JSON.parse(sessionStorage.getItem('userData')).username , 'GET')
       .then((matchLiked)=>{
           const allMatchIdList = matchLiked.map((match)=>{
             return match.matchId;
@@ -121,7 +121,7 @@ class Profil extends Component {
                 <div className="lineData">
                     <span className="label">favorite team</span><img src={require("./../../Assets/Images/Flags/" + this.teamCode() + ".jpg")} width="40px" height="25px" alt="flag"/><span className="teamCode">{' ' + this.teamCode()}</span>
                 </div>
-                <button onClick={this.changeNotificationsDisplay.bind(this)}>Display your favorite matches</button>
+                <button onClick={this.changeNotificationsDisplay.bind(this)} className="toggle-button">Display your favorite matches</button>
                 <div className={this.state.notificationIsOpen === true ? "notif-open" : "notif-closed"}>
                   {
                     this.state.favoriteMatchListToDisplay.map((match, index)=>{
