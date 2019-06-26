@@ -129,13 +129,9 @@ class Bet extends Component {
 
   }
 
-<<<<<<< HEAD
-  dynamicPronoButtons(match, bet) {
-    if(sessionStorage.getItem('userData')) {
-=======
+
   dynamicFollowButtons(match, bet) {
     if(sessionStorage.getItem('userData') && this.state.matchPronosticed) {
->>>>>>> 87921ebb9f290cfcc7028fcae63b96b74077d335
       let matchIsPronosticed = false;
         this.state.matchPronosticed.forEach((matchPronosticed) => {
           if(matchPronosticed.matchId == match.fifa_id) {
