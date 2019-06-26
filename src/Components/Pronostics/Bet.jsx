@@ -4,6 +4,7 @@ import {routesList} from '../../Constantes/Routes.js';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class Bet extends Component {
 
@@ -32,7 +33,7 @@ class Bet extends Component {
   }
 
   bet(home_team, away_team, datetime, betTeam, matchId) {
-    fetch('http://localhost:8080/api/pronostics/new', { mode: 'cors', method : 'post',
+    fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json',
@@ -72,7 +73,7 @@ class Bet extends Component {
 
   getPronostics() {
     const recupUsername = JSON.parse(sessionStorage.getItem('userData'));
-    fetch('http://localhost:8080/api/pronostics/' + recupUsername.username,  { mode: 'cors', method : 'get',
+    fetch(REST_ROUTE + 'pronostics/' + recupUsername.username,  { mode: 'cors', method : 'get',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ class Bet extends Component {
     console.log(matchId)
     this.state.matchPronosticed.map((matchPronosticed) => {
       if(matchPronosticed.matchId == matchId) {
-        fetch('http://localhost:8080/api/pronostics/delete/' + matchId,  { mode: 'cors', method : 'post',
+        fetch(REST_ROUTE + 'pronostics/delete/' + matchId,  { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class Contact extends Component {
   state = {
@@ -32,7 +33,7 @@ onSubmit = (e) => {
     this.setState({errorMessage: 'Please complete all the fields'})
   } else {
     this.setState({errorMessage: ''})
-    fetch("http://localhost:8080/api/contact", {
+    fetch(REST_ROUTE + "contact", {
               mode: 'cors',
               headers: {
                 'Accept': 'application/json, text/plain, */*',

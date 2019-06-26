@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
+import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class ListView extends Component {
 
@@ -35,7 +36,7 @@ class ListView extends Component {
 
     createNotification = (venue, datetime, matchId) => {
         const testData = JSON.parse(sessionStorage.getItem('userData'));
-        fetch('http://localhost:8080/api/notifications/new',  { mode: 'cors', method : 'post',
+        fetch(REST_ROUTE + 'notifications/new',  { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ class ListView extends Component {
       console.log(fifa_id)
       this.state.matchFollowed.map((matchFollowed) => {
         if(matchFollowed.matchId == fifa_id) {
-          fetch('http://localhost:8080/api/notifications/delete/' + fifa_id,  { mode: 'cors', method : 'post',
+          fetch(REST_ROUTE + 'notifications/delete/' + fifa_id,  { mode: 'cors', method : 'post',
               headers: {
                   'Accept': 'application/json, text/plain, */*',
                   'Content-Type': 'application/json',
@@ -104,7 +105,7 @@ class ListView extends Component {
 
     getNotifications = () => {
       const recupUsername = JSON.parse(sessionStorage.getItem('userData'));
-        fetch('http://localhost:8080/api/notifications/' + recupUsername.username,  { mode: 'cors', method : 'get',
+        fetch(REST_ROUTE + 'notifications/' + recupUsername.username,  { mode: 'cors', method : 'get',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',

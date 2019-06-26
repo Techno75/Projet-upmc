@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import fieldImage from './../../Assets/Images/field.jpg';
-import { API_ROUTE } from '../../Constantes/ApiRoute.js'
+import { API_ROUTE, REST_ROUTE, URL } from '../../Constantes/ApiRoute.js'
 import ScoreTimeCard from './ScoreTimeCard.jsx';
 import moment from 'moment';
 
@@ -25,7 +25,7 @@ class Match extends Component {
       console.log(this.state.commentsData.comment_author);
     }
     if (this.props.location.aboutProps === undefined) {
-      window.location="http://localhost:3000/Matches"
+      window.location= URL + "Matches"
     }
     else {
       this.setState({fifaId : this.props.location.aboutProps.match.fifa_id})
@@ -71,7 +71,7 @@ class Match extends Component {
   }
 
   getMatchComments(matchId) {
-    fetch(`http://localhost:8080/api/comments/match/${matchId}`, { mode: 'cors', method : 'get',
+    fetch(REST_ROUTE + `comments/match/${matchId}`, { mode: 'cors', method : 'get',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ class Match extends Component {
         this.setState({errorMessage: 'Please complete all the fields.'});
       } else {
         this.setState({errorMessage: ''});
-        fetch('http://localhost:8080/api/comments/new', { mode: 'cors', method : 'post',
+        fetch(REST_ROUTE + 'comments/new', { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'

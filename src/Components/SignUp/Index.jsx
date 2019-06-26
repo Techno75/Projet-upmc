@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import {routesList} from '../../Constantes/Routes.js';
-import {API_ROUTE} from "../../Constantes/ApiRoute";
+import {API_ROUTE, REST_ROUTE} from "../../Constantes/ApiRoute";
 import Select from 'react-select'
 
 class SignUp extends Component {
@@ -62,7 +62,7 @@ onSubmit = (e) => {
 
     if(this.confirmPasswordHandler() === true) {
         console.log(this.state);
-        fetch('http://localhost:8080/api/users/register', { mode: 'cors', method : 'post',
+        fetch(REST_ROUTE + 'users/register', { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListComment from './ListComment';
 import UserUpdate from './UserUpdate';
+import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class AdministrativePanel extends Component {
   constructor(props){
@@ -16,7 +17,7 @@ class AdministrativePanel extends Component {
 
   getAllComments () {
     console.log('true');
-    fetch('http://localhost:8080/api/comments/',  { mode: 'cors', method : 'get',
+    fetch(REST_ROUTE + 'comments/',  { mode: 'cors', method : 'get',
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json',
