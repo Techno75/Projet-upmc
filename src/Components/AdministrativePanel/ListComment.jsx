@@ -22,7 +22,6 @@ class ListComment extends Component {
   }
 
   render() {
-    console.log(this.props.listComments);
     return(
       <div className='wrapper-listComments'>
         <table>

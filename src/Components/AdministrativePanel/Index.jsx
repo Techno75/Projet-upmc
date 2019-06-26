@@ -10,18 +10,41 @@ class AdministrativePanel extends Component {
     this.state = {
       viewAdmin: 'ListComment',
       listComments: [],
+      listUsers: [],
     }
   }
 
   componentDidMount() {
     this.getAllComments();
+    this.getAllUsers();
   }
 
   getAllComments () {
-    console.log('true');
     fetchDataToApi(REST_ROUTE + 'comments/', 'GET')
     .then((listComments)=>{
       this.setState({listComments});
+    })
+        .then((response) => {
+          console.log(response);
+            if(!(response.status >= 200 && response.status <= 300)) {
+                return response.json();
+            } else {
+                return response.json()
+            }
+        })
+        .then((data)=>{
+            console.log(data);
+        })
+
+        .catch((err) => {
+            console.log('error', err);
+        })
+  }
+
+  getAllUsers(){
+    fetchDataToApi(REST_ROUTE + 'users/', 'GET')
+    .then((listUsers)=>{
+      this.setState({listUsers});
     })
         .then((response) => {
           console.log(response);
@@ -59,7 +82,7 @@ class AdministrativePanel extends Component {
             Update user
           </button>
 
-          {this.state.viewAdmin === "ListComment" ? <ListComment getAllComments={this.getAllComments.bind(this)} listComments={this.state.listComments} /> : <UserUpdate />}
+          {this.state.viewAdmin === "ListComment" ? <ListComment getAllComments={this.getAllComments.bind(this)} listComments={this.state.listComments} /> : <UserUpdate getAllUsers={this.getAllUsers.bind(this)} listUsers={this.state.listUsers}/>}
       </div>
     )
   }
