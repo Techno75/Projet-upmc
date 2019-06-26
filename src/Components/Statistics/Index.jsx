@@ -49,7 +49,7 @@ class Statistics extends Component {
               return goal
             }
           })
-          
+
           const scorerList = scorerNameListTmp.map((goal)=>({name : goal.player, country : goal.country, goalList : []}));
 
           allGoals.forEach((goal)=>{
