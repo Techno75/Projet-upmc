@@ -13,6 +13,7 @@ import Pronostics from '../Components/Pronostics/Index.jsx';
 import Profil from '../Components/Profil/Index.jsx';
 import Article from '../Components/Article/Index.jsx';
 import Team from '../Components/Team/Index.jsx';
+import AdministrativePanel from  '../Components/AdministrativePanel/Index.jsx';
 
 export const routesList = [
   { path: "/Home", name: "Home", component: Home },
@@ -30,6 +31,7 @@ export const routesList = [
   { path: "/Profil", name: "Profil", component: Profil },
   { path: "/Article", name: "Article", component: Article },
   { path: "/Team", name: "Team", component: Team },
-  // prochain à 15 | Ajouter de nouvelle route à partir d'ici pour éviter des bug !!!!
+  { path: "/AdministrativePanel", name: "Administrative Panel", component: AdministrativePanel },
+  // prochain à 16 | Ajouter de nouvelle route à partir d'ici pour éviter des bug !!!!
   { redirect: true, path:"/", to:"/Home", name: "Home"}
 ];

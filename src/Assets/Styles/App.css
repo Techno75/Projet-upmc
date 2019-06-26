@@ -578,6 +578,10 @@ header{
   cursor: pointer;
 }
 
+.content-pronostics .content-groupe-general .match-card-row-with-button .match-card-row .content-betButtons .betButtons:focus{
+  outline: none;
+}
+
 .content-pronostic .content-group-pronostic{
   display: flex !important;
   justify-content: space-between;
@@ -640,6 +644,10 @@ header{
   color: #E52528;
   font-size: 30px;
   margin: 15px;
+}
+
+.pronosticed-true{
+  background: #E52528;
 }
 
 .content-pronostics .match-card-row:hover{
@@ -733,7 +741,7 @@ header{
   margin: 30px auto;
 }
 
-.match-container button{
+.match-container .follow-match-button{
   background: #fbfbfb;
   padding: 8px 15px;
   color: gray;
@@ -743,11 +751,21 @@ header{
   margin-right: 20px
 }
 
+.match-container button{
+  background: #fbfbfb;
+  padding: 8px 15px;
+  color: #212121;
+  font-size: 18px;
+  border: 1px solid #282B62;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
 .match-container button:focus{
   outline: none;
 }
 
-.match-container button:hover, .match-container-button-active, .match-card-row-with-button .followed{
+.match-card-row-with-button .followed{
   color: #F6D500;
 }
 
@@ -860,6 +878,46 @@ header{
   .match-container button {
     margin-bottom: 20px;
   }
+}
+
+/*/////////// Administrative Panel //////////*/
+
+.content-administrativePanel{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content-administrativePanel h1{
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #282B62;
+  font-size: 40px;
+  margin: 20px 0px;
+}
+
+.content-administrativePanel .adminPanel-button{
+  background: #fbfbfb;
+  padding: 8px 15px;
+  color: #212121;
+  font-size: 18px;
+  border: 1px solid #282B62;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.content-administrativePanel .adminPanel-button-active{
+  background: #F6D500;
+  border: 1px solid #F6D500;
+  padding: 8px 15px;
+  color: #212121;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.content-administrativePanel .adminPanel-button:focus, .content-administrativePanel .adminPanel-button-active:focus{
+  outline: none;
 }
 
 /*/////////// Matches Board View //////////*/

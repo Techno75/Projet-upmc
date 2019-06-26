@@ -52,6 +52,15 @@ class FirstNav extends Component {
                         </NavLink>
                     }
                 </li>
+                <li>
+                    {
+                      sessionStorage.getItem('userData') &&
+                        JSON.parse(sessionStorage.getItem('userData')).isAdmin &&
+                        <NavLink to={this.props.routesList[15].path} activeClassName="active">
+                            {this.props.routesList[15].name}
+                        </NavLink>
+                    }
+                </li>
               </ul>
               <ul>
                   <li>

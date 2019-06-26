@@ -121,7 +121,7 @@ class Bet extends Component {
 
   }
 
-  dynamicFollowButtons(match, bet) {
+  dynamicPronoButtons(match, bet) {
     if(sessionStorage.getItem('userData')) {
       let matchIsPronosticed = false;
         this.state.matchPronosticed.forEach((matchPronosticed) => {
@@ -136,7 +136,7 @@ class Bet extends Component {
         )
       } else {
         return(
-          <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed">{bet}</button>
+          <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed-true">{bet}</button>
         )
       }
     }
@@ -178,9 +178,9 @@ class Bet extends Component {
                      </div>
                    </div>
                      <div className="content-betButtons">
-                       {this.dynamicFollowButtons(match, match.home_team.code)}
-                       {this.dynamicFollowButtons(match, '0')}
-                       {this.dynamicFollowButtons(match, match.away_team.code)}
+                       {this.dynamicPronoButtons(match, match.home_team.code)}
+                       {this.dynamicPronoButtons(match, 'Draw')}
+                       {this.dynamicPronoButtons(match, match.away_team.code)}
                      </div>
                   </div>
               </div>
