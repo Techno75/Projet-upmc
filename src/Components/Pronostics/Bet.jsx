@@ -10,6 +10,7 @@ class Bet extends Component {
 
   state = {
     errorMessage: '',
+    matchPronosticed: [],
     //matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
   }
 
@@ -26,7 +27,7 @@ class Bet extends Component {
     return value;
   }
 
-  bet(home_team, away_team, datetime, betTeam, matchId) {
+  bet(match, betTeam) {
     fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -34,11 +35,11 @@ class Bet extends Component {
             'Authorization': 'Bearer ' +  this.getStorageData('token'),
         },
         body : JSON.stringify({
-          home_team: home_team,
-          away_team: away_team,
-          datetime: datetime,
+          home_team: match.home_team.code,
+          away_team: match.away_team.code,
+          datetime: moment(match.datetime).format('MM-DD-YYYY'),
           pronostic: betTeam,
-          matchId: matchId
+          matchId: match.fifa_id
         })
     })
         .then((response) => {
@@ -62,7 +63,6 @@ class Bet extends Component {
         .catch((err) => {
             console.log('error', err);
         });
-
   }
 
   getPronostics() {
@@ -84,7 +84,7 @@ class Bet extends Component {
         .then((data)=>{
             this.setState({errorMessage: data.error});
             this.setState({matchPronosticed: data})
-            // console.log(this.state.matchPronosticed);
+            console.log(this.state.matchPronosticed);
         })
 
         .catch((err) => {
@@ -125,26 +125,26 @@ class Bet extends Component {
   }
 
 
-  dynamicPronoButtons(match, bet) {
-    if(sessionStorage.getItem('userData') && this.state.matchPronosticed) {
-      let matchIsPronosticed = false;
-        this.state.matchPronosticed.forEach((matchPronosticed) => {
-          if(matchPronosticed.matchId === match.fifa_id) {
-            matchIsPronosticed = true;
-            console.log('pronosticed');
-          }
-        })
-      if (!matchIsPronosticed) {
-        return(
-          <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), bet, match.fifa_id)} className="betButtons">{bet}</button>
-        )
-      } else {
-        return(
-          <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed-true">{bet}</button>
-        )
-      }
-    }
-  }
+  // dynamicPronoButtons(match, bet) {
+  //   if(sessionStorage.getItem('userData') && this.state.matchPronosticed) {
+  //     let matchIsPronosticed = false;
+  //       this.state.matchPronosticed.forEach((matchPronosticed) => {
+  //         if(matchPronosticed.matchId === match.fifa_id) {
+  //           matchIsPronosticed = true;
+  //           console.log('pronosticed');
+  //         }
+  //       })
+  //     if (!matchIsPronosticed) {
+  //       return(
+  //         <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), bet, match.fifa_id)} className="betButtons">{bet}</button>
+  //       )
+  //     } else {
+  //       return(
+  //         <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed-true">{bet}</button>
+  //       )
+  //     }
+  //   }
+  // }
   render() {
     const mappedMatchList = this.props.matchDataList.map((match) => {
       match.home_team['isSelected'] = false;
@@ -157,7 +157,7 @@ class Bet extends Component {
       }
     })
 
-    console.log(matchFuture);
+    // console.log(matchFuture);
     // console.log(formatedData);
     return(
       <div className='content-groupe-general'>
@@ -183,18 +183,18 @@ class Bet extends Component {
                    </div>
                      <div className="content-betButtons">
                        <button
-                        onClick={this.bet(match.home_team, match.away_team, moment(match.datetime).format('MM-DD-YYYY'), match.home_team, match.fifa_id)}
+                        onClick={() => this.bet(match, match.home_team.code)}
                         className={match.home_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}
                         >
-                          {match.home_team}
+                          {match.home_team.code}
                         </button>
                        <button
-                        onClick={this.bet(match.home_team, match.away_team, moment(match.datetime).format('MM-DD-YYYY'), 0, match.fifa_id)}
+                        onClick={() => this.bet(match, 0)}
                         className="betButtons"
                        >DRAW</button>
                        <button
-                        onClick={this.bet(match.home_team, match.away_team, moment(match.datetime).format('MM-DD-YYYY'), match.away_team, match.fifa_id)}
-                        className={match.away_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}>{match.away_team}</button>
+                        onClick={() => this.bet(match, match.away_team.code)}
+                        className={match.away_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}>{match.away_team.code}</button>
                         <button className="betButtons">Cancel</button>
                      </div>
                   </div>
