@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import ListComment from './ListComment';
 import UserUpdate from './UserUpdate';
 import {REST_ROUTE} from "../../Constantes/ApiRoute";
+import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 
 class AdministrativePanel extends Component {
   constructor(props){
     super(props)
     this.state = {
       viewAdmin: 'ListComment',
+      listComments: [],
     }
   }
 
@@ -17,12 +19,9 @@ class AdministrativePanel extends Component {
 
   getAllComments () {
     console.log('true');
-    fetch(REST_ROUTE + 'comments/',  { mode: 'cors', method : 'get',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' +  this.getStorageData('token'),
-        },
+    fetchDataToApi(REST_ROUTE + 'comments/', 'GET')
+    .then((listComments)=>{
+      this.setState({listComments});
     })
         .then((response) => {
           console.log(response);
@@ -60,7 +59,7 @@ class AdministrativePanel extends Component {
             Update user
           </button>
 
-          {this.state.viewAdmin === "ListComment" ? <ListComment /> : <UserUpdate />}
+          {this.state.viewAdmin === "ListComment" ? <ListComment getAllComments={this.getAllComments.bind(this)} listComments={this.state.listComments} /> : <UserUpdate />}
       </div>
     )
   }
