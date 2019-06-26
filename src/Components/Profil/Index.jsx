@@ -4,18 +4,47 @@ import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
 import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import {API_ROUTE} from "../../Constantes/ApiRoute";
+import { fetchDataToApi } from './../../Functions/FetchToApi.js';
+import moment from "moment";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 class Profil extends Component {
     state = {
         storage: null,
         teamList: null,
         teamCode: '',
+        curentUser : JSON.parse(sessionStorage.getItem('userData')),
+        favoriteMatchList : [],
+        favoriteMatchListToDisplay : [],
     };
 
     componentWillMount() {
+
         // this.setState({storage: sessionStorage.getItem('userData')});
         // console.log(JSON.parse(this.state.storage));
         this.getStorageData();
+        fetchDataToApi('http://localhost:8080/api/notifications/' + JSON.parse(sessionStorage.getItem('userData')).username , 'GET')
+        .then((matchLiked)=>{
+            const allMatchIdList = matchLiked.map((match)=>{
+              return match.matchId;
+            })
+            this.setState({favoriteMatchList : allMatchIdList})
+        })
+        .then(()=>{
+          return fetchDataToApi(API_ROUTE + "matches", 'GET')
+        })
+        .then((allMatchList)=>{
+          let favoriteMatchListToDisplay = [];
+          allMatchList.forEach((match)=>{
+            this.state.favoriteMatchList.forEach((matchToCompare)=>{
+              if (match.fifa_id === matchToCompare.toString()) {
+                favoriteMatchListToDisplay.push(match);
+              }
+            })
+          })
+          this.setState({favoriteMatchListToDisplay})
+        })
     }
 
     teamCode() {
@@ -55,6 +84,13 @@ class Profil extends Component {
         console.log(testData);
     }
 
+    // deleateFavoriteMatch(matchId){
+    //   fetchDataToApi("" ,'POST', {})
+    //   .then((res)=>{
+    //
+    //   })
+    // }
+
     render() {
         return (
             <div className="content-profil">
@@ -68,6 +104,35 @@ class Profil extends Component {
                 </div>
                 <div className="lineData">
                     <span className="label">favorite team</span><img src={require("./../../Assets/Images/Flags/" + this.teamCode() + ".jpg")} width="40px" height="25px" alt="flag"/><span className="teamCode">{' ' + this.teamCode()}</span>
+                </div>
+                <div>
+                  {
+                    this.state.favoriteMatchListToDisplay.map((match, index)=>{
+                      console.log(match);
+                      return(
+                        <div key={index}>
+                          <div>
+                            <img src={require('./../../Assets/Images/Flags/' + match.home_team.code + ".jpg")} alt="flag"/>
+                            <p>{match.home_team_country}</p>
+                          </div>
+                          <div>
+                            <p>{moment(match.datetime).format("MM-DD-YYYY")}</p>
+                            <p>{moment(match.datetime).format("hh:mm a")}</p>
+                          </div>
+                          <div>
+                            <div>
+                              <img src={require('./../../Assets/Images/Flags/' + match.away_team.code + ".jpg")} alt="flag"/>
+                              <p>{match.away_team_country}</p>
+                            </div>
+                          </div>
+                          <button onClick={this.deleateFavoriteMatch.bind(this, match.fifa_id)}>
+                            <FontAwesomeIcon icon={faTrashAlt}/>
+                          </button>
+                        </div>
+                      )
+
+                    })
+                  }
                 </div>
             </div>
         )
