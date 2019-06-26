@@ -26,6 +26,7 @@ class Home extends Component {
         fetchDataToApi('https://graph.facebook.com/v3.3/fifawomensworldcup?fields=location%7Blatitude%2Clongitude%7D%2Cis_permanently_closed&limit=30000&access_token=' + TOKEN_FB, "GET")
         .then((article)=>{
           console.log(article);
+          
         })
     }
 
