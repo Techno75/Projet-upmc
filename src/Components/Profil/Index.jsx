@@ -17,6 +17,7 @@ class Profil extends Component {
         curentUser : JSON.parse(sessionStorage.getItem('userData')),
         favoriteMatchList : [],
         favoriteMatchListToDisplay : [],
+        notificationIsOpen : false
     };
 
     componentWillMount() {
@@ -95,6 +96,17 @@ class Profil extends Component {
       })
     }
 
+    changeNotificationsDisplay(){
+      if (this.state.notificationIsOpen === true) {
+        this.setState({notificationIsOpen : false});
+      }
+      else {
+        {
+          this.setState({notificationIsOpen : true});
+        }
+      }
+    }
+
     render() {
         return (
             <div className="content-profil">
@@ -109,7 +121,8 @@ class Profil extends Component {
                 <div className="lineData">
                     <span className="label">favorite team</span><img src={require("./../../Assets/Images/Flags/" + this.teamCode() + ".jpg")} width="40px" height="25px" alt="flag"/><span className="teamCode">{' ' + this.teamCode()}</span>
                 </div>
-                <div>
+                <button onClick={this.changeNotificationsDisplay.bind(this)}>Display your favorite matches</button>
+                <div className={this.state.notificationIsOpen === true ? "notif-open" : "notif-closed"}>
                   {
                     this.state.favoriteMatchListToDisplay.map((match, index)=>{
                       console.log(match);
@@ -134,7 +147,6 @@ class Profil extends Component {
                           </button>
                         </div>
                       )
-
                     })
                   }
                 </div>
