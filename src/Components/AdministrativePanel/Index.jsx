@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ListComment from './ListComment';
 import UserUpdate from './UserUpdate';
-import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class AdministrativePanel extends Component {
   constructor(props){

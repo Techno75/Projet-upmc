@@ -11,6 +11,7 @@ class Bet extends Component {
   state = {
     errorMessage: '',
     matchPronosticed: null,
+    matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
   }
 
   componentDidMount() {
@@ -131,11 +132,11 @@ class Bet extends Component {
   }
 
 
-  dynamicFollowButtons(match, bet) {
+  dynamicPronoButtons(match, bet) {
     if(sessionStorage.getItem('userData') && this.state.matchPronosticed) {
       let matchIsPronosticed = false;
         this.state.matchPronosticed.forEach((matchPronosticed) => {
-          if(matchPronosticed.matchId == match.fifa_id) {
+          if(matchPronosticed.matchId === match.fifa_id) {
             matchIsPronosticed = true;
             console.log('pronosticed');
           }
@@ -155,21 +156,18 @@ class Bet extends Component {
 
   render() {
 
-    const matchNotPlayedList = this.props.matchDataList.filter((match)=>{
+    this.state.matchNotPlayedList = this.props.matchDataList.filter((match)=>{
       if(match.status === "future"){
         return match
       }
       return false;
     })
 
-    console.log(matchNotPlayedList);
-
-
     return(
       <div className='content-groupe-general'>
         <h2>Bet</h2>
         {
-          matchNotPlayedList.map((match, index) => {
+          this.state.matchNotPlayedList.map((match, index) => {
             return(
               <div className="match-card-row-with-button" key={index}>
                   <div className="match-card-row">
@@ -188,40 +186,23 @@ class Bet extends Component {
                      </div>
                    </div>
                      <div className="content-betButtons">
-                       {this.dynamicPronoButtons(match, match.home_team.code)}
-                       {this.dynamicPronoButtons(match, 'Draw')}
-                       {this.dynamicPronoButtons(match, match.away_team.code)}
+                       <button
+                        onClick={this.bet(match.home_team, match.away_team, moment(match.datetime).format('MM-DD-YYYY'), match.home_team, match.fifa_id)}
+                        className={match.home_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}
+                        >
+                          {match.home_team}
+                        </button>
+                       <button
+                        onClick={this.bet(match.home_team, match.away_team, moment(match.datetime).format('MM-DD-YYYY'), 0, match.fifa_id)}
+                        className="betButtons"
+                       >DRAW</button>
+                       <button
+                        onClick={this.bet(match.home_team, match.away_team, moment(match.datetime).format('MM-DD-YYYY'), match.away_team, match.fifa_id)}
+                        className={match.away_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}>{match.away_team}</button>
+                        <button className="betButtons">Cancel</button>
                      </div>
                   </div>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             )
           })
         }

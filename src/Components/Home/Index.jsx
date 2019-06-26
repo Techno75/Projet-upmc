@@ -3,10 +3,10 @@ import homeImage from './../../Assets/Images/home.jpg';
 import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
 import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
+import {postList} from '../../Constantes/Post.js';
 import { API_ROUTE } from '../../Constantes/ApiRoute.js'
 import ScoreTimeCard from './../Match/ScoreTimeCard.jsx'
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
-import { TOKEN_FB } from './../../Constantes/TokenFb.js';
 
 class Home extends Component {
 
@@ -23,19 +23,12 @@ class Home extends Component {
             this.setState({redirect: false});
         }
         this.fetchMatchesData();
-        fetchDataToApi('https://graph.facebook.com/v3.3/fifawomensworldcup?fields=location%7Blatitude%2Clongitude%7D%2Cis_permanently_closed&limit=30000&access_token=' + TOKEN_FB, "GET")
-        .then((article)=>{
-          console.log(article);
-          
-        })
     }
 
     getStorageData() {
         const testData = JSON.parse(sessionStorage.getItem('userData'));
         this.setState({storage: testData});
     }
-
-
 
     fetchMatchesData(){
       fetch(API_ROUTE + 'matches',  {mode: 'cors', method: 'GET',
@@ -96,17 +89,26 @@ class Home extends Component {
             </div>
             <div className="content-home-actu">
               <h2>News</h2>
-              <Link to={{pathname : routesList[13].path}} key={'add_key_here'}>
-                <div className="articles-box">
-                  <img src={imgArticleDev} alt="img_article_a_remplacer_par_une_var_pour_le_referencement" />
-                  <div className="art-content-text">
-                    <h3>Lorem ipsum dolor sit emmet !</h3>
-                    <p className="art-author">by John Doe - 06-20-2019</p>
-                    <p className='article-resume'>Nulla facilisi. Duis eget risus feugiat, dictum augue sit amet, pellentesque purus. In dignissim commodo porta. Praesent efficitur hendrerit nulla porttitor laoreet. Etiam sodales tellus vitae sagittis tincidunt. Ut lobortis mauris vitae turpis iaculis, eu congue quam consectetur. Duis faucibus nisi ante, at dignissim nisi interdum ut. Nam varius orci ut augue malesuada mollis.</p>
-                  </div>
-                </div>
-                <hr />
-              </Link>
+              {
+                postList.map((article, index)=>{
+                  return(
+                    <Link
+                      to={{pathname : routesList[13].path, aboutProps : {article : article}}}
+                      key={index}
+                    >
+                      <div className="articles-box">
+                        <img src={article.image} alt="article Images" />
+                        <div className="art-content-text">
+                          <h3>{article.title}</h3>
+                          <p className="art-author">by {article.author} - {article.date}</p>
+                          <p className='article-resume'>{article.message}</p>
+                        </div>
+                      </div>
+                      <hr />
+                    </Link>
+                  )
+                })
+              }
             </div>
           </div>
     )
