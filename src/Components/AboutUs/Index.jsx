@@ -6,22 +6,10 @@ class AboutUs extends Component {
           <div className="content-about-us">
             <h2>About Us</h2>
             <div className="text-about-us">
-              <p className="text-para">Dans le monde actuel, de trop nombreuses femmes se voient interdire l’accès au sport à cause
-                d’une politique répressive dans leur pays ou de leur contexte familial.</p>
-              <p className="text-para">Étant soucieux de faire changer les mentalités dans le bon sens, FootFem a décidé de prendre
-                part à ce combat pour les droits des femmes à travers le monde.
-              </p>
-              <p className="text-para">Nous profitons donc de la coupe du monde de football féminin pour mettre à disposition de
-                toutes et tous, une application web afin de de faciliter le suivi dans les meilleures conditions de
-                ce grand événement sportif.
-              </p>
-              <p className="text-para">Notre but à travers cette plateforme numérique est de promouvoir et améliorer l’essor du sport
-                féminin. Grâce aux différentes fonctionnalités de notre site web, vous vivrez au plus près de
-                la compétition et vous pourrez facilement apprécier l’excellence sportive dont font preuve
-                ces footballeuses venues de 24 nations à travers le monde. Nous souhaitons faciliter l’accès à
-                l’information et à la discussion afin que tout le monde puisse prendre conscience du bonheur
-                qu’apporte la performance de ces sportives de haut niveau.
-              </p>
+              <p className="text-para">In today's world, too many women are denied access to sport because of a repressive policy of their country or family context.</p>
+              <p className="text-para">Eager to change attitudes in the right direction, FootFem has decided to take part in this fight for women's rights around the world.</p>
+              <p className="text-para">We therefore take advantage of the Women's World Cup to provide to all, a web application facilitating follwing in the best conditions of this great sporting event.</p>
+              <p className="text-para">Our goal through this digital platform is to promote and enhance the growth of women's sport. Thanks to the different functionalities of our website, you will live closer to the competition and will be able to easily appreciate the sports excellence of these footballers from 24 nations around the world. We want to facilitate access to information and discussion so that everyone can be aware of the happiness of the performance of these high performance athletes.</p>
             </div>
           </div>
     )

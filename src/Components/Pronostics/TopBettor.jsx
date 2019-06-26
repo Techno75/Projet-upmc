@@ -6,7 +6,7 @@ class TopBettor extends Component {
   render() {
     return(
       <div>
-        <h2>TopBettor</h2>
+        <h2>Top Bettor</h2>
       </div>
     )
   }

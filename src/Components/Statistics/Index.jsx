@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import { API_ROUTE } from './../../Constantes/ApiRoute.js';
+import mugshotPlayeuse from './../../Assets/Images/FemalPic.png';
 
 class Statistics extends Component {
   constructor(props){
@@ -71,29 +72,42 @@ class Statistics extends Component {
   render() {
     const goalPerMatch = Math.round((this.state.numberOfGoalScored / this.state.numberOfMatchPlayed) * 10) / 10;
     return (
-          <div>
-            <h1>Statistics</h1>
-            <div>
+          <div className='content-statistics-bck'>
+          <div className='content-statistics'>
+            <h3>Top 6 scorers</h3>
+            <div className='content-top6'>
               {
                 this.state.scorerList.map((scorer, index)=>{
                   if (index < 6) {
                     return(
-                      <div key={index}>
-                        <p>#{index + 1}</p>
-                        <p>{scorer.name}</p>
-                        <p>{scorer.country}</p>
-                        <p>{scorer.goalList.length} goals</p>
+                      <div key={index} className="box-playeuse-goal">
+                        <img src={mugshotPlayeuse} alt="playeuse_portrait" />
+                        <div className='stats-playeuse'>
+                        <p className='name'>{scorer.name}</p>
+                        <p className='country'>{scorer.country}</p>
+                        <p className='nbGoal'><span className='goal'>{scorer.goalList.length}</span> goals</p>
+                        </div>
                       </div>
                     )
                   }
                 })
               }
             </div>
-            <div>
-              <h2>Number of Match played : {this.state.numberOfMatchPlayed}</h2>
-              <h2>Number of goals scored : {this.state.numberOfGoalScored}</h2>
-              <h2>Goal per match : {goalPerMatch}</h2>
+            <div className='content-global-stats'>
+              <div className='stat-global'>
+                <h2>Number of Match played</h2>
+                <p>{this.state.numberOfMatchPlayed}</p>
+              </div>
+              <div className='stat-global'>
+                <h2>Number of goals scored</h2>
+                <p>{this.state.numberOfGoalScored}</p>
+              </div>
+              <div className='stat-global'>
+                <h2>Goal per match</h2>
+                <p>{goalPerMatch}</p>
+              </div>
             </div>
+          </div>
           </div>
     )
   }

@@ -103,6 +103,90 @@ header{
   color: #E52528;
 }
 
+/*////////// Statistics ////////////////*/
+
+.content-statistics-bck{
+  background: #282B62;
+  width: 100%;
+}
+
+.content-statistics{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content-statistics h3{
+  font-family: Oswald;
+  color: #F9D500;
+  font-weight: 300;
+  font-size: 30px;
+}
+
+.content-statistics .content-top6{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal{
+  display: flex;
+  margin: 20px;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal img{
+  width: 100px;
+  border: 1px solid #F9D500;
+  margin-right: 10px;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse{
+    font-family: Oswald;
+    font-weight: 300;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .name{
+  font-size: 20px;
+  color: #FBFBFB;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .country{
+  font-style: italic;
+  color: #F9D500;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .nbGoal{
+      margin-top: 18px;
+      color: #FBFBFB;
+}
+
+.content-statistics .content-top6 .box-playeuse-goal .stats-playeuse .nbGoal .goal{
+  color: #F9D500;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.content-statistics .content-global-stats{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.content-statistics .content-global-stats .stat-global{
+  font-family: Oswald;
+}
+
+.content-statistics .content-global-stats .stat-global h2{
+  color: #F9D500;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.content-statistics .content-global-stats .stat-global p{
+  color: #FBFBFB;
+  font-size: 100px;
+}
+
 /*////////// ARTICLE ////////////////*/
 
 .content-article{
@@ -494,6 +578,10 @@ header{
   cursor: pointer;
 }
 
+.content-pronostics .content-groupe-general .match-card-row-with-button .match-card-row .content-betButtons .betButtons:focus{
+  outline: none;
+}
+
 .content-pronostic .content-group-pronostic{
   display: flex !important;
   justify-content: space-between;
@@ -556,6 +644,10 @@ header{
   color: #E52528;
   font-size: 30px;
   margin: 15px;
+}
+
+.pronosticed-true{
+  background: #E52528;
 }
 
 .content-pronostics .match-card-row:hover{
@@ -636,41 +728,6 @@ header{
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*////////// Matches List ////////////////*/
 
 .match-container{
@@ -684,6 +741,16 @@ header{
   margin: 30px auto;
 }
 
+.match-container .follow-match-button{
+  background: #fbfbfb;
+  padding: 8px 15px;
+  color: gray;
+  font-size: 25px;
+  border:none;
+  cursor: pointer;
+  margin-right: 20px
+}
+
 .match-container button{
   background: #fbfbfb;
   padding: 8px 15px;
@@ -691,17 +758,15 @@ header{
   font-size: 18px;
   border: 1px solid #282B62;
   cursor: pointer;
-  margin-right: 20px
+  margin-right: 20px;
 }
 
 .match-container button:focus{
   outline: none;
 }
 
-.match-container button:hover, .match-container-button-active{
-  background: #F6D500 !important;
-  color: #212121;
-  border: 1px solid #F6D500 !important;
+.match-card-row-with-button .followed{
+  color: #F6D500;
 }
 
 .match-container h1{
@@ -776,12 +841,6 @@ header{
   position: relative;
 }
 
-.match-card-row-with-button .followed{
-  background: #F6D500 !important;
-  color: #212121;
-  border: 1px solid #F6D500 !important;
-}
-
 .match-card-row-with-button .follow-match-button{
   position: absolute;
   right: 0;
@@ -819,6 +878,46 @@ header{
   .match-container button {
     margin-bottom: 20px;
   }
+}
+
+/*/////////// Administrative Panel //////////*/
+
+.content-administrativePanel{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content-administrativePanel h1{
+  font-family: Oswald;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #282B62;
+  font-size: 40px;
+  margin: 20px 0px;
+}
+
+.content-administrativePanel .adminPanel-button{
+  background: #fbfbfb;
+  padding: 8px 15px;
+  color: #212121;
+  font-size: 18px;
+  border: 1px solid #282B62;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.content-administrativePanel .adminPanel-button-active{
+  background: #F6D500;
+  border: 1px solid #F6D500;
+  padding: 8px 15px;
+  color: #212121;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.content-administrativePanel .adminPanel-button:focus, .content-administrativePanel .adminPanel-button-active:focus{
+  outline: none;
 }
 
 /*/////////// Matches Board View //////////*/

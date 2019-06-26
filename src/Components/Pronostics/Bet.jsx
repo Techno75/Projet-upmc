@@ -5,10 +5,6 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 
-
-
-
-
 class Bet extends Component {
 
   state = {
@@ -17,7 +13,15 @@ class Bet extends Component {
   }
 
   componentDidMount() {
-    this.getPronostics();
+    if(sessionStorage.getItem('userData')) {
+      this.getPronostics();
+    }
+  }
+
+  componentWillMount() {
+    if(sessionStorage.getItem('userData')) {
+      this.getPronostics();
+    }
   }
 
   getStorageData(value) {
@@ -39,7 +43,7 @@ class Bet extends Component {
           away_team: away_team,
           datetime: datetime,
           pronostic: betTeam,
-          matchId: 23335432
+          matchId: matchId
         })
     })
         .then((response) => {
@@ -93,11 +97,11 @@ class Bet extends Component {
         })
   }
 
-  deletePronostic(id) {
-    console.log(id)
+  deletePronostic(matchId) {
+    console.log(matchId)
     this.state.matchPronosticed.map((matchPronosticed) => {
-      if(matchPronosticed.matchId == id) {
-        fetch('http://localhost:8080/api/pronostics/delete/' + id,  { mode: 'cors', method : 'post',
+      if(matchPronosticed.matchId == matchId) {
+        fetch('http://localhost:8080/api/pronostics/delete/' + matchId,  { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
@@ -125,22 +129,23 @@ class Bet extends Component {
 
   }
 
+
   dynamicFollowButtons(match, bet) {
-    if(sessionStorage.getItem('userData')) {
+    if(sessionStorage.getItem('userData') && this.state.matchPronosticed) {
       let matchIsPronosticed = false;
         this.state.matchPronosticed.forEach((matchPronosticed) => {
-          if(matchPronosticed.matchId == match.matchId) {
+          if(matchPronosticed.matchId == match.fifa_id) {
             matchIsPronosticed = true;
             console.log('pronosticed');
           }
         })
       if (!matchIsPronosticed) {
         return(
-          <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), bet)} className="betButtons">{bet}</button>
+          <button onClick={() => this.bet(match.home_team.code, match.away_team.code, moment(match.datetime).format('MM-DD-YYYY'), bet, match.fifa_id)} className="betButtons">{bet}</button>
         )
       } else {
         return(
-          <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed">{bet}</button>
+          <button onClick={() => this.deletePronostic(match.fifa_id)} className="betButtons pronosticed-true">{bet}</button>
         )
       }
     }
@@ -182,9 +187,9 @@ class Bet extends Component {
                      </div>
                    </div>
                      <div className="content-betButtons">
-                       {this.dynamicFollowButtons(match, match.home_team.code)}
-                       {this.dynamicFollowButtons(match, '0')}
-                       {this.dynamicFollowButtons(match, match.away_team.code)}
+                       {this.dynamicPronoButtons(match, match.home_team.code)}
+                       {this.dynamicPronoButtons(match, 'Draw')}
+                       {this.dynamicPronoButtons(match, match.away_team.code)}
                      </div>
                   </div>
               </div>
