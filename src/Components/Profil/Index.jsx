@@ -7,7 +7,7 @@ import {API_ROUTE, REST_ROUTE} from "../../Constantes/ApiRoute";
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import moment from "moment";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 class Profil extends Component {
     state = {
@@ -121,27 +121,27 @@ class Profil extends Component {
                 <div className="lineData">
                     <span className="label">favorite team</span><img src={require("./../../Assets/Images/Flags/" + this.teamCode() + ".jpg")} width="40px" height="25px" alt="flag"/><span className="teamCode">{' ' + this.teamCode()}</span>
                 </div>
-                <button onClick={this.changeNotificationsDisplay.bind(this)} className="toggle-button">Display your favorite matches</button>
+                <div className="content-match-profil-follow">
+                <button onClick={this.changeNotificationsDisplay.bind(this)} className="toggle-button">Display your favorite matches<FontAwesomeIcon icon={faAngleDown} className={this.state.notificationIsOpen === true ? "arrow-toggle rotate-toggle" : "arrow-toggle"}/></button>
                 <div className={this.state.notificationIsOpen === true ? "notif-open" : "notif-closed"}>
                   {
                     this.state.favoriteMatchListToDisplay.map((match, index)=>{
-                      console.log(match);
                       return(
-                        <div key={index}>
-                          <div>
+                        <div key={index} className="content-followed-match-profil">
+                        <div className="space-button-follow">
+                          <div className="country-card-profil">
                             <img src={require('./../../Assets/Images/Flags/' + match.home_team.code + ".jpg")} alt="flag"/>
                             <p>{match.home_team_country}</p>
                           </div>
-                          <div>
+                          <div className="date-of-match">
                             <p>{moment(match.datetime).format("MM-DD-YYYY")}</p>
                             <p>{moment(match.datetime).format("hh:mm a")}</p>
                           </div>
-                          <div>
-                            <div>
-                              <img src={require('./../../Assets/Images/Flags/' + match.away_team.code + ".jpg")} alt="flag"/>
+                            <div className="country-card-profil right">
                               <p>{match.away_team_country}</p>
+                              <img src={require('./../../Assets/Images/Flags/' + match.away_team.code + ".jpg")} alt="flag"/>
                             </div>
-                          </div>
+                            </div>
                           <button onClick={this.deleteFavoriteMatch.bind(this, match.fifa_id)}>
                             <FontAwesomeIcon icon={faTrashAlt}/>
                           </button>
@@ -149,6 +149,7 @@ class Profil extends Component {
                       )
                     })
                   }
+                </div>
                 </div>
             </div>
         )

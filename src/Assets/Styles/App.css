@@ -1889,7 +1889,9 @@ tbody tr:hover{
     padding-left: 120px;
     font-family: Oswald;
     font-weight: lighter;
-    height: 68.5vh;
+    height: 100%;
+    min-height: 100vh;
+    padding-bottom: 30px;
 }
 .content-profil h1 {
     color: #F9D500;
@@ -1930,17 +1932,120 @@ tbody tr:hover{
     font-family: Oswald;
     font-weight: 300;
     font-size: 20px;
-    width: 50%;
+    width: 100%;
     margin-top: 30px;
     text-align: left;
+    display: flex;
+    cursor: pointer;
+    justify-content: space-between;
+    background: none;
+    border: 1px solid #F9D500;
+    color: #FBFBFB;
 }
 
-.notif-open{
+.content-profil .content-match-profil-follow .toggle-button .arrow-toggle{
+  color: #F9D500;
+  font-size: 30px;
+  margin-right: 10px;
+  transition: 0.5s;
+}
+
+.content-profil .content-match-profil-follow{
+  width: 80%;
+}
+
+.content-profil .content-match-profil-follow .toggle-button .rotate-toggle{
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+
+.content-profil .content-match-profil-follow .notif-open{
   height: auto;
   overflow: auto;
+  transition: 0.5s;
 }
 
-.notif-closed{
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: solid 1px lightgray;
+  margin: auto;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: #FBFBFB;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.content-profil .content-match-profil-follow .notif-open .none{
+  justify-content: center;
+  font-weight: 500;
+  font-family: Raleway;
+  color: #E52528;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .space-button-follow{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .space-button-follow .date-of-match{
+  font-family: Oswald;
+  text-align: center;
+  font-size: 40px;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .space-button-follow .date-of-match p:first-child{
+  font-size: 25px;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .space-button-follow .date-of-match p{
+  font-weight: 500;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .space-button-follow .country-card-profil{
+  display: flex;
+  align-items: center;
+  font-family: Raleway;
+  margin: 0px 30px 0px 0px;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .country-card-profil img{
+    width: 80px;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .country-card-profil p{
+  margin: 0 15px;
+  font-size: 18px;
+}
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil button{
+  color: gray;
+  border: none;
+  background: #FBFBFB;
+  font-size: 18px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil button:hover{
+  color: #E52528;
+  transition: 0.5s;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil button:focus, .content-profil .content-match-profil-follow .toggle-button:focus{
+  outline: none;
+}
+
+.content-profil .notif-closed{
   overflow: hidden;
   height: 0;
 }
