@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
-import { API_ROUTE } from './../../Constantes/ApiRoute.js';
+import { API_ROUTE, URL } from './../../Constantes/ApiRoute.js';
 
 class Team extends Component {
   constructor(props){
@@ -15,7 +15,7 @@ class Team extends Component {
 
   componentWillMount(){
     if (this.props.location.aboutProps === undefined) {
-      window.location="http://localhost:3000/Matches"
+      window.location= URL + "Matches"
     }else{
       this.setState({team : this.props.location.aboutProps.team});
       fetchDataToApi(API_ROUTE + "matches/country?fifa_code=" + this.props.location.aboutProps.team.fifa_code)

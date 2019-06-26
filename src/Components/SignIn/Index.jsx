@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router';
 import {routesList} from "../../Constantes/Routes";
+import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class SignIn extends Component {
 
@@ -18,7 +19,7 @@ class SignIn extends Component {
         this.setState({errorMessage: ''});
         e.preventDefault();
         console.log(this.state);
-        fetch('http://localhost:8080/api/users/login', { mode: 'cors', method : 'post',
+        fetch(REST_ROUTE + 'users/login', { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
