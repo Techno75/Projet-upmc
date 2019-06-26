@@ -4,13 +4,14 @@
 *** body = object     // si utilisation de méthode Post
 */
 
-export const fetchDataToApi = (route, method, body) => {
+export const fetchDataToApi = (route, method, body, authorization) => {
     if (body === undefined) {
       return fetch(route,  {mode: 'cors', method: method,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin' : "*"
+          'Access-Control-Allow-Origin' : "*",
+          'Authorization': 'Bearer ' +  authorization,
         },
       })
       .then((res)=>{
@@ -25,7 +26,8 @@ export const fetchDataToApi = (route, method, body) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin' : "*"
+          'Access-Control-Allow-Origin' : "*",
+          'Authorization': 'Bearer ' +  authorization,
         },
         body : JSON.stringify(body)
       })

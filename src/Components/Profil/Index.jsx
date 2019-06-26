@@ -3,7 +3,7 @@ import homeImage from './../../Assets/Images/home.jpg';
 import imgArticleDev from './../../Assets/Images/img_article_dev.jpg';
 import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
-import {API_ROUTE} from "../../Constantes/ApiRoute";
+import {API_ROUTE, REST_ROUTE} from "../../Constantes/ApiRoute";
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import moment from "moment";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,6 +17,7 @@ class Profil extends Component {
         curentUser : JSON.parse(sessionStorage.getItem('userData')),
         favoriteMatchList : [],
         favoriteMatchListToDisplay : [],
+        notificationIsOpen : false
     };
 
     componentWillMount() {
@@ -24,27 +25,32 @@ class Profil extends Component {
         // this.setState({storage: sessionStorage.getItem('userData')});
         // console.log(JSON.parse(this.state.storage));
         this.getStorageData();
-        fetchDataToApi('http://localhost:8080/api/notifications/' + JSON.parse(sessionStorage.getItem('userData')).username , 'GET')
-        .then((matchLiked)=>{
-            const allMatchIdList = matchLiked.map((match)=>{
-              return match.matchId;
-            })
-            this.setState({favoriteMatchList : allMatchIdList})
-        })
-        .then(()=>{
-          return fetchDataToApi(API_ROUTE + "matches", 'GET')
-        })
-        .then((allMatchList)=>{
-          let favoriteMatchListToDisplay = [];
-          allMatchList.forEach((match)=>{
-            this.state.favoriteMatchList.forEach((matchToCompare)=>{
-              if (match.fifa_id === matchToCompare.toString()) {
-                favoriteMatchListToDisplay.push(match);
-              }
-            })
+        this.getUserNotifications();
+    }
+
+    getUserNotifications(){
+      fetchDataToApi('http://localhost:8080/api/notifications/' + JSON.parse(sessionStorage.getItem('userData')).username , 'GET')
+      .then((matchLiked)=>{
+          const allMatchIdList = matchLiked.map((match)=>{
+            return match.matchId;
           })
-          this.setState({favoriteMatchListToDisplay})
+          this.setState({favoriteMatchList : matchLiked})
+          return true;
+      })
+      .then(()=>{
+        return fetchDataToApi(API_ROUTE + "matches", 'GET')
+      })
+      .then((allMatchList)=>{
+        let favoriteMatchListToDisplay = [];
+        allMatchList.forEach((match)=>{
+          this.state.favoriteMatchList.forEach((matchToCompare)=>{
+            if (match.fifa_id === matchToCompare.matchId.toString()) {
+              favoriteMatchListToDisplay.push(match);
+            }
+          })
         })
+        this.setState({favoriteMatchListToDisplay})
+      })
     }
 
     teamCode() {
@@ -73,7 +79,6 @@ class Profil extends Component {
             case 22: return 'THA';
             case 23: return 'CHI';
             case 24: return 'SWE';
-
         }
     }
 
@@ -84,12 +89,23 @@ class Profil extends Component {
         console.log(testData);
     }
 
-    // deleateFavoriteMatch(matchId){
-    //   fetchDataToApi("" ,'POST', {})
-    //   .then((res)=>{
-    //
-    //   })
-    // }
+    deleteFavoriteMatch(matchId){
+      fetchDataToApi(REST_ROUTE + "notifications/delete/" + matchId ,'POST', undefined, this.state.storage.token)
+      .then((res)=>{
+        this.getUserNotifications()
+      })
+    }
+
+    changeNotificationsDisplay(){
+      if (this.state.notificationIsOpen === true) {
+        this.setState({notificationIsOpen : false});
+      }
+      else {
+        {
+          this.setState({notificationIsOpen : true});
+        }
+      }
+    }
 
     render() {
         return (
@@ -105,7 +121,8 @@ class Profil extends Component {
                 <div className="lineData">
                     <span className="label">favorite team</span><img src={require("./../../Assets/Images/Flags/" + this.teamCode() + ".jpg")} width="40px" height="25px" alt="flag"/><span className="teamCode">{' ' + this.teamCode()}</span>
                 </div>
-                <div>
+                <button onClick={this.changeNotificationsDisplay.bind(this)}>Display your favorite matches</button>
+                <div className={this.state.notificationIsOpen === true ? "notif-open" : "notif-closed"}>
                   {
                     this.state.favoriteMatchListToDisplay.map((match, index)=>{
                       console.log(match);
@@ -125,12 +142,11 @@ class Profil extends Component {
                               <p>{match.away_team_country}</p>
                             </div>
                           </div>
-                          <button onClick={this.deleateFavoriteMatch.bind(this, match.fifa_id)}>
+                          <button onClick={this.deleteFavoriteMatch.bind(this, match.fifa_id)}>
                             <FontAwesomeIcon icon={faTrashAlt}/>
                           </button>
                         </div>
                       )
-
                     })
                   }
                 </div>

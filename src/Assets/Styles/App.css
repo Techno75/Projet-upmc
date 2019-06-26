@@ -1925,6 +1925,15 @@ tbody tr:hover{
     text-transform: none;
 }
 
+.notif-open{
+  height: auto;
+  overflow: auto;
+}
+
+.notif-closed{
+  overflow: hidden;
+  height: 0;
+}
 
 /*////////// Legals Notices ////////////////*/
 
