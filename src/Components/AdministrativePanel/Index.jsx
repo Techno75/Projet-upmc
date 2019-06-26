@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import ListComment from './ListComment';
 import UserUpdate from './UserUpdate';
 
@@ -7,6 +8,7 @@ class AdministrativePanel extends Component {
     super(props)
     this.state = {
       viewAdmin: 'ListComment',
+      listComments: [],
     }
   }
 
@@ -15,29 +17,10 @@ class AdministrativePanel extends Component {
   }
 
   getAllComments () {
-    console.log('true');
-    fetch('http://localhost:8080/api/comments/',  { mode: 'cors', method : 'get',
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' +  this.getStorageData('token'),
-        },
+    fetchDataToApi('http://localhost:8080/api/comments/', 'GET')
+    .then((listComments)=>{
+      this.setState({listComments});
     })
-        .then((response) => {
-          console.log(response);
-            if(!(response.status >= 200 && response.status <= 300)) {
-                return response.json();
-            } else {
-                return response.json()
-            }
-        })
-        .then((data)=>{
-            console.log(data);
-        })
-
-        .catch((err) => {
-            console.log('error', err);
-        })
   }
 
   render() {
@@ -59,7 +42,7 @@ class AdministrativePanel extends Component {
             Update user
           </button>
 
-          {this.state.viewAdmin === "ListComment" ? <ListComment /> : <UserUpdate />}
+          {this.state.viewAdmin === "ListComment" ? <ListComment getAllComments={this.getAllComments.bind(this)} listComments={this.state.listComments} /> : <UserUpdate />}
       </div>
     )
   }
