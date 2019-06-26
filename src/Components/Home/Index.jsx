@@ -6,7 +6,6 @@ import {routesList} from '../../Constantes/Routes.js';
 import { API_ROUTE } from '../../Constantes/ApiRoute.js'
 import ScoreTimeCard from './../Match/ScoreTimeCard.jsx'
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
-import { TOKEN_FB } from './../../Constantes/TokenFb.js';
 
 class Home extends Component {
 
