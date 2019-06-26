@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 import { fetchDataToApi } from './../../Functions/FetchToApi.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 class ListComment extends Component {
 
-
+  getStorageData(value) {
+      const testData = JSON.parse(sessionStorage.getItem('userData'));
+      console.log(testData);
+      value = testData[value];
+      return value;
+  }
 
   deleteComment(idComment){
-    fetchDataToApi('http://localhost:8080/api/comments/delete/' + idComment, 'POST', {id: idComment})
+    fetchDataToApi(REST_ROUTE + 'comments/delete/' + idComment, 'POST', {id: idComment})
     .then((response)=>{
       this.props.getAllComments();
       console.log('success Delete');
