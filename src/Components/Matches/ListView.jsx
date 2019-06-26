@@ -130,7 +130,7 @@ class ListView extends Component {
     }
 
     dynamicFollowButtons(match) {
-      if(sessionStorage.getItem('userData')) {
+      if(sessionStorage.getItem('userData') && this.state.matchFollowed) {
         let matchIsFollowed = false;
           this.state.matchFollowed.forEach((matchFollowed) => {
             if(matchFollowed.matchId == match.fifa_id) {
