@@ -720,41 +720,6 @@ header{
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*////////// Matches List ////////////////*/
 
 .match-container{
@@ -771,9 +736,9 @@ header{
 .match-container button{
   background: #fbfbfb;
   padding: 8px 15px;
-  color: #212121;
-  font-size: 18px;
-  border: 1px solid #282B62;
+  color: gray;
+  font-size: 25px;
+  border:none;
   cursor: pointer;
   margin-right: 20px
 }
@@ -782,10 +747,8 @@ header{
   outline: none;
 }
 
-.match-container button:hover, .match-container-button-active{
-  background: #F6D500 !important;
-  color: #212121;
-  border: 1px solid #F6D500 !important;
+.match-container button:hover, .match-container-button-active, .match-card-row-with-button .followed{
+  color: #F6D500;
 }
 
 .match-container h1{
@@ -858,12 +821,6 @@ header{
 
 .match-card-row-with-button{
   position: relative;
-}
-
-.match-card-row-with-button .followed{
-  background: #F6D500 !important;
-  color: #212121;
-  border: 1px solid #F6D500 !important;
 }
 
 .match-card-row-with-button .follow-match-button{
