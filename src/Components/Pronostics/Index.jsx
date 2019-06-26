@@ -15,12 +15,14 @@ class Pronostics extends Component {
     this.state = {
       view : "bet",
       matchDataList : [],
+      matchToProvide: null,
     }
     this.fetchMatchesData = this.fetchMatchesData.bind(this);
   }
 
   componentDidMount(){
     this.fetchMatchesData();
+    console.log(this.state.matchDataList)
     this.fetchUpdate = setInterval(this.fetchMatchesData, 25000);
   }
 
@@ -41,7 +43,7 @@ class Pronostics extends Component {
         }
         return res.json()
       })
-      .then((data) => this.setState({ matchDataList : data }));
+      .then((data) => this.setState({ matchDataList : data }))
   }
 
   smallRouter() {
@@ -63,8 +65,6 @@ class Pronostics extends Component {
   }
 
   render() {
-
-
     return (
       <div className="content-pronostics">
         <div className="content-pronostics-buttons">
@@ -87,8 +87,7 @@ class Pronostics extends Component {
             Top Bettors
           </button>
         </div>
-
-          {this.smallRouter()}
+        {this.smallRouter()}
       </div>
     )
   }

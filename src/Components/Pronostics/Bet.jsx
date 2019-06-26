@@ -10,17 +10,10 @@ class Bet extends Component {
 
   state = {
     errorMessage: '',
-    matchPronosticed: null,
-    matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
+    //matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
   }
 
   componentDidMount() {
-    if(sessionStorage.getItem('userData')) {
-      this.getPronostics();
-    }
-  }
-
-  componentWillMount() {
     if(sessionStorage.getItem('userData')) {
       this.getPronostics();
     }
@@ -91,7 +84,7 @@ class Bet extends Component {
         .then((data)=>{
             this.setState({errorMessage: data.error});
             this.setState({matchPronosticed: data})
-            console.log(this.state.matchPronosticed);
+            // console.log(this.state.matchPronosticed);
         })
 
         .catch((err) => {
@@ -152,22 +145,25 @@ class Bet extends Component {
       }
     }
   }
-
-
   render() {
-
-    this.state.matchNotPlayedList = this.props.matchDataList.filter((match)=>{
-      if(match.status === "future"){
-        return match
+    const mappedMatchList = this.props.matchDataList.map((match) => {
+      match.home_team['isSelected'] = false;
+      match.away_team['isSelected'] = false;
+      return match;
+    })
+    const matchFuture = mappedMatchList.filter((match) => {
+      if(match.status === 'future') {
+        return match;
       }
-      return false;
     })
 
+    console.log(matchFuture);
+    // console.log(formatedData);
     return(
       <div className='content-groupe-general'>
         <h2>Bet</h2>
         {
-          this.state.matchNotPlayedList.map((match, index) => {
+          matchFuture.map((match, index) => {
             return(
               <div className="match-card-row-with-button" key={index}>
                   <div className="match-card-row">
