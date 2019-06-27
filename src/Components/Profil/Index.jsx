@@ -124,6 +124,7 @@ class Profil extends Component {
                 <div className="content-match-profil-follow">
                 <button onClick={this.changeNotificationsDisplay.bind(this)} className="toggle-button">Display your favorite matches<FontAwesomeIcon icon={faAngleDown} className={this.state.notificationIsOpen === true ? "arrow-toggle rotate-toggle" : "arrow-toggle"}/></button>
                 <div className={this.state.notificationIsOpen === true ? "notif-open" : "notif-closed"}>
+                  {this.state.favoriteMatchListToDisplay.length === 0 ? <div className="content-followed-match-profil none">You don't have any favorite matched</div> : ""}
                   {
                     this.state.favoriteMatchListToDisplay.map((match, index)=>{
                       return(
