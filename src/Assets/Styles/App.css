@@ -882,6 +882,18 @@ header{
   .match-container button {
     margin-bottom: 20px;
   }
+
+  .country-card{
+  }
+
+  .match-card-row-with-button .follow-match-button {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    justify-content: center;
+    background: none;
+    right: 100px;
+  }
 }
 
 /*/////////// Administrative Panel //////////*/
