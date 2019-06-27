@@ -171,6 +171,8 @@ class Bet extends Component {
                      </button>
                   </div>
                   <div>
+                    <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
+                    <p>{moment(match.datetime).format('hh:mm a')}</p>
                     <button
                      onClick={() => this.bet(match, match.null_team, index)}
                      className={match.null_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
