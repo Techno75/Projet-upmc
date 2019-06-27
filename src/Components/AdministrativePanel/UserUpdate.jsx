@@ -37,7 +37,7 @@ modifAdmin(id, admin){
           this.props.listUsers.map((users, index)=>{
             console.log(users.isAdmin);
             return(
-                <tbody>
+                <tbody key={index}>
                   <tr>
                     <td><p className='rsp-table-admin'>Firstname</p>{users.firstname}</td>
                     <td><p className='rsp-table-admin'>LastName</p>{users.lastname}</td>
