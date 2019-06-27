@@ -47,5 +47,8 @@
 
 **Mueen Hossain** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Front-End & Back-End Developer*
 &nbsp;
+
 **Guillaume Depretz** &nbsp;&nbsp;&nbsp;*Front-End Developer*
+&nbsp;
+
 **Robin Palmier** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*Front-End & Back-End Developer* *(Project Manager)*
