@@ -45,9 +45,7 @@ onSubmit = (e) => {
                 .catch(function(err) {
                   console.log(err)
                  });
-    this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.'});
-    this.setState({isSent: true});
-    this.setState({userData: {...this.state.userData, message: ''}});
+    this.setState({successMessage: 'Your message has been sent successfully, thank you for your feedback.', isSent: true, userData: {...this.state.userData, message: ''}});
   }
 }
 
@@ -102,7 +100,6 @@ onSubmit = (e) => {
                   </div>
                 </form>
             }
-
           </div>
     )
   }

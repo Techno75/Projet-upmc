@@ -14,7 +14,6 @@ modifAdmin(id, admin){
   fetchDataToApi(REST_ROUTE + 'users/setAdmin/' + id, 'PUT', {isAdmin: admin})
   .then((response)=>{
     this.props.getAllUsers();
-    console.log('success update');
   })
 
 }
@@ -35,7 +34,6 @@ modifAdmin(id, admin){
           </thead>
         {
           this.props.listUsers.map((users, index)=>{
-            console.log(users.isAdmin);
             return(
                 <tbody key={index}>
                   <tr>

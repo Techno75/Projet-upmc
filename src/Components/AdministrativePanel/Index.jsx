@@ -24,8 +24,7 @@ class AdministrativePanel extends Component {
     .then((listComments)=>{
       this.setState({listComments});
     })
-        .then((response) => {
-          console.log(response);
+    .then((response) => {
             if(!(response.status >= 200 && response.status <= 300)) {
                 return response.json();
             } else {
@@ -33,12 +32,10 @@ class AdministrativePanel extends Component {
             }
         })
         .then((data)=>{
-            console.log(data);
         })
-
         .catch((err) => {
             console.log('error', err);
-        })
+      })
   }
 
   getAllUsers(){
@@ -46,8 +43,7 @@ class AdministrativePanel extends Component {
     .then((listUsers)=>{
       this.setState({listUsers});
     })
-        .then((response) => {
-          console.log(response);
+    .then((response) => {
             if(!(response.status >= 200 && response.status <= 300)) {
                 return response.json();
             } else {
@@ -55,9 +51,8 @@ class AdministrativePanel extends Component {
             }
         })
         .then((data)=>{
-            console.log(data);
-        })
 
+        })
         .catch((err) => {
             console.log('error', err);
         })
@@ -67,21 +62,18 @@ class AdministrativePanel extends Component {
     return (
       <div className='content-administrativePanel'>
           <h1>Administrative Panel</h1>
-
           <button
             className={this.state.viewAdmin === "ListComment" ? "adminPanel-button-active" : "adminPanel-button"}
             onClick={()=>this.setState({viewAdmin : 'ListComment'})}
           >
             Comment list
           </button>
-
           <button
             className={this.state.viewAdmin === "UserUpdate" ? "adminPanel-button-active" : "adminPanel-button"}
             onClick={()=>this.setState({viewAdmin : 'UserUpdate'})}
           >
             Update user
           </button>
-
           {this.state.viewAdmin === "ListComment" ? <ListComment getAllComments={this.getAllComments.bind(this)} listComments={this.state.listComments} /> : <UserUpdate getAllUsers={this.getAllUsers.bind(this)} listUsers={this.state.listUsers}/>}
       </div>
     )

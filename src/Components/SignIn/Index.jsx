@@ -31,14 +31,10 @@ class SignIn extends Component {
                 if(!(response.status >= 200 && response.status <= 300)) {
                     return response.json();
                 } else {
-                    // alert('User succsessfully created');
-                    //console.log(response.json());
-                    //this.props.history.push(`${routesList[0].path}`);
                     return response.json()
                 }
             })
             .then((data)=>{
-                // console.log(data);
                 if ('error' in data) {
                     this.setState({errorMessage: data.error});
                 }

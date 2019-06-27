@@ -22,7 +22,6 @@ class Pronostics extends Component {
 
   componentDidMount(){
     this.fetchMatchesData();
-    console.log(this.state.matchDataList)
     this.fetchUpdate = setInterval(this.fetchMatchesData, 25000);
   }
 

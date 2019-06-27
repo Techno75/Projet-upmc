@@ -8,7 +8,6 @@ class ListComment extends Component {
 
   getStorageData(value) {
       const testData = JSON.parse(sessionStorage.getItem('userData'));
-      console.log(testData);
       value = testData[value];
       return value;
   }
@@ -17,7 +16,6 @@ class ListComment extends Component {
     fetchDataToApi(REST_ROUTE + 'comments/delete/' + idComment, 'POST', {id: idComment})
     .then((response)=>{
       this.props.getAllComments();
-      console.log('success Delete');
     })
   }
 

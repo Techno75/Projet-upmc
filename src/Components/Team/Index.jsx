@@ -9,7 +9,6 @@ class Team extends Component {
       team : {},
       teamPlayerList : [],
       goalsNubuer : 0,
-
     };
   }
 

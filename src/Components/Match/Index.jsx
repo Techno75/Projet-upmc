@@ -22,7 +22,6 @@ class Match extends Component {
   componentDidMount(){
     if(sessionStorage.getItem('username')) {
       this.setState({commentsData: {...this.state.commentsData, comment_author: this.getStorageData('userdata')}});
-      console.log(this.state.commentsData.comment_author);
     }
     if (this.props.location.aboutProps === undefined) {
       window.location= URL + "Matches"
@@ -78,20 +77,14 @@ class Match extends Component {
         },
     })
         .then((response) => {
-            // console.log(response.json());
             if(!(response.status >= 200 && response.status <= 300)) {
-              // console.log(response.json());
               return response.json();
             } else {
-              // console.log(response.json());
               return response.json();
             }
         })
         .then((data)=>{
-            // this.setState({errorMessage: data.error});
-            console.log(data);
             this.setState({commentsOfTheMatchList: data});
-            console.log(this.state.commentsOfTheMatchList);
         })
 
         .catch((err) => {
@@ -101,7 +94,6 @@ class Match extends Component {
 
   submitForm(evt){
       evt.preventDefault();
-      console.log(this.state.commentsData);
       if(this.state.commentsData.description === '' || this.state.commentsData.comment_author === '') {
         this.setState({errorMessage: 'Please complete all the fields.'});
       } else {
@@ -115,12 +107,9 @@ class Match extends Component {
         })
             .then((response) => {
                 this.setState({commentsData: {...this.state.commentsData, description: ''}});
-                console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
-                  console.log(response.json());
                   return response.json();
                 } else {
-                    console.log(response);
                     return response.json();
                 }
             })

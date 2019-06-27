@@ -61,7 +61,6 @@ onSubmit = (e) => {
     e.preventDefault();
 
     if(this.confirmPasswordHandler() === true) {
-        console.log(this.state);
         fetch(REST_ROUTE + 'users/register', { mode: 'cors', method : 'post',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -70,12 +69,10 @@ onSubmit = (e) => {
             body : JSON.stringify(this.state.userData)
         })
             .then((response) => {
-                console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
                     return response.json();
                 } else {
                     alert('User succsessfully created');
-                    // this.setState({redirect: true});
                     this.props.history.push(`${routesList[3].path}`);
                     return response.json()
                 }
@@ -83,13 +80,10 @@ onSubmit = (e) => {
             .then((data)=>{
                 this.setState({errorMessage: data.error});
             })
-
             .catch((err) => {
                 console.log('error', err);
             });
     }
-
-
 };
 
   render() {
@@ -174,7 +168,6 @@ onSubmit = (e) => {
                         placeholder='Choose your favorite team'
                         components={{ DropdownIndicator: () => null, IndicatorsContainer: () => null }}
                       />
-
                   <div className='submit-content'>
                       <input
                           type='submit'
