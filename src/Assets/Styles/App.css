@@ -582,6 +582,10 @@ header{
   outline: none;
 }
 
+.content-pronostics .content-groupe-general .match-card-row-with-button .match-card-row .content-betButtons .betButtons.pronosticed-true {
+  background: #E52528;
+}
+
 .content-pronostic .content-group-pronostic{
   display: flex !important;
   justify-content: space-between;

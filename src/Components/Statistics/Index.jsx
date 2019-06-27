@@ -104,7 +104,7 @@ class Statistics extends Component {
               </div>
               <div className='stat-global'>
                 <h2>Goal per match</h2>
-                <p>{goalPerMatch}</p>
+                <p>{goalPerMatch.toString()}</p>
               </div>
             </div>
           </div>
