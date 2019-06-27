@@ -213,6 +213,27 @@ header{
 .content-article .content-article-info p{
   font-family: Raleway;
   color:#212121;
+  padding: 0px 20px;
+  max-width: 700px;
+}
+
+@media screen and (max-width: 880px) {
+    .content-article .content-article-info{
+      display: block;
+    }
+
+    .content-article .content-article-info p {
+      padding: 20px 0px;
+    }
+
+    .content-article .content-article-info img{
+      width: 100%;
+    }
+
+    .content-article{
+      width: 80%;
+      margin: 0 auto;
+    }
 }
 
 /*////////// HOME ////////////////*/
@@ -881,9 +902,6 @@ header{
   }
   .match-container button {
     margin-bottom: 20px;
-  }
-
-  .country-card{
   }
 
   .match-card-row-with-button .follow-match-button {
