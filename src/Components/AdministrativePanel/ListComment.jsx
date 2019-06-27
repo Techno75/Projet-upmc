@@ -37,7 +37,7 @@ class ListComment extends Component {
         {
           this.props.listComments.map((comment, index)=>{
             return(
-                <tbody>
+                <tbody key={index}>
                   <tr>
                     <td><p className='rsp-table-admin'>Id</p>{comment.id}</td>
                     <td><p className='rsp-table-admin'>Author</p>{comment.comment_author}</td>
