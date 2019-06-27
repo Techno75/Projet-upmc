@@ -25,11 +25,8 @@ class Videos extends Component {
         return res.json()
     })
     .then((data) => {
-
-        // console.log(data.items);
         const youtubeDatas = data.items;
         this.setState({youtubePlaylistDatas: youtubeDatas});
-        console.log(this.state.youtubePlaylistDatas);
         // this.setState({ match : match[0], matchId : match[0].fifa_id});
         // this.setState({commentsData: {...this.state.commentsData, matchId: this.state.fifaId}});
         // this.getMatchComments(this.state.fifaId);

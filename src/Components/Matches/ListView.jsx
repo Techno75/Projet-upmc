@@ -29,7 +29,6 @@ class ListView extends Component {
 
     getStorageData(value) {
         const testData = JSON.parse(sessionStorage.getItem('userData'));
-        console.log(testData);
         value = testData[value];
         return value;
     }
@@ -50,12 +49,9 @@ class ListView extends Component {
             })
         })
             .then((response) => {
-                //console.log(response);
                 if(!(response.status >= 200 && response.status <= 300)) {
                     return response.json();
                 } else {
-                    //console.log('notification created');
-                    //console.log(response.json());
                     this.getNotifications();
                     return response.json()
                 }
@@ -72,7 +68,6 @@ class ListView extends Component {
     }
 
     deleteNotification(fifa_id) {
-      console.log(fifa_id)
       this.state.matchFollowed.map((matchFollowed) => {
         if(matchFollowed.matchId == fifa_id) {
           fetch(REST_ROUTE + 'notifications/delete/' + fifa_id,  { mode: 'cors', method : 'post',
@@ -92,7 +87,6 @@ class ListView extends Component {
               })
               .then((data)=>{
                   this.setState({errorMessage: data.error});
-                  console.log(this.state.matchFollowed);
               })
 
               .catch((err) => {
@@ -122,9 +116,7 @@ class ListView extends Component {
             .then((data)=>{
                 this.setState({errorMessage: data.error});
                 this.setState({matchFollowed: data})
-                console.log(this.state.matchFollowed);
             })
-
             .catch((err) => {
                 console.log('error', err);
             })
@@ -136,7 +128,6 @@ class ListView extends Component {
           this.state.matchFollowed.forEach((matchFollowed) => {
             if(matchFollowed.matchId == match.fifa_id) {
               matchIsFollowed = true;
-              console.log('followed');
             }
           })
         if (!matchIsFollowed) {

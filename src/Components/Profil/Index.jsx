@@ -21,9 +21,6 @@ class Profil extends Component {
     };
 
     componentWillMount() {
-
-        // this.setState({storage: sessionStorage.getItem('userData')});
-        // console.log(JSON.parse(this.state.storage));
         this.getStorageData();
         this.getUserNotifications();
     }
@@ -84,9 +81,7 @@ class Profil extends Component {
 
     getStorageData() {
         const testData = JSON.parse(sessionStorage.getItem('userData'));
-        console.log(sessionStorage.getItem('userData'));
         this.setState({storage: testData});
-        console.log(testData);
     }
 
     deleteFavoriteMatch(matchId){

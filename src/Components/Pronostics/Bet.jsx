@@ -23,7 +23,6 @@ class Bet extends Component {
 
   getStorageData(value) {
     const testData = JSON.parse(sessionStorage.getItem('userData'));
-    console.log(testData);
     value = testData[value];
     return value;
   }
@@ -45,12 +44,10 @@ class Bet extends Component {
         })
     })
         .then((response) => {
-            console.log(response);
             if(!(response.status >= 200 && response.status <= 300)) {
                 return response.json();
             } else {
                 //alert('User succsessfully created');
-                console.log('pronostic created');
                 // this.setState({redirect: true});
                 // this.props.history.push(`${routesList[3].path}`);
                 this.getPronostics();
@@ -58,10 +55,8 @@ class Bet extends Component {
             }
         })
         .then((data)=>{
-          console.log(data);
             //this.setState({errorMessage: data.error});
         })
-
         .catch((err) => {
             console.log('error', err);
         });
@@ -86,16 +81,13 @@ class Bet extends Component {
         .then((data)=>{
             this.setState({errorMessage: data.error});
             this.setState({matchPronosticed: data})
-            console.log(this.state.matchPronosticed);
         })
-
         .catch((err) => {
             console.log('error', err);
         })
   }
 
   deletePronostic(matchId) {
-    console.log(matchId)
     this.state.matchPronosticed.map((matchPronosticed) => {
       if(matchPronosticed.matchId == matchId) {
         fetch(REST_ROUTE + 'pronostics/delete/' + matchId,  { mode: 'cors', method : 'post',
@@ -115,9 +107,7 @@ class Bet extends Component {
             })
             .then((data)=>{
                 this.setState({errorMessage: data.error});
-                // console.log(this.state.matchFollowed);
             })
-
             .catch((err) => {
                 console.log('error', err);
             })
@@ -161,7 +151,7 @@ class Bet extends Component {
     })
 
     console.log(matchFuture);
-    // console.log(formatedData);
+
     return(
       <div className='content-groupe-general'>
         <h2>Bet</h2>
