@@ -47,8 +47,8 @@ class Videos extends Component {
               {this.state.youtubePlaylistDatas &&
                 this.state.youtubePlaylistDatas.map((video, index) => {
                   return(
-                    <div className='video-box'>
-                      <iframe src={"https://www.youtube.com/embed/"+ video.snippet.resourceId.videoId} frameborder={"0"} allow={"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"} allowfullscreen></iframe>
+                    <div className='video-box' key={index}>
+                      <iframe src={"https://www.youtube.com/embed/"+ video.snippet.resourceId.videoId} frameBorder={"0"} allow={"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"} allowFullScreen></iframe>
                       <h3>{video.snippet.title}</h3>
                     </div>
                   )

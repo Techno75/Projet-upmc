@@ -11,6 +11,7 @@ class Bet extends Component {
   state = {
     errorMessage: '',
     matchPronosticed: [],
+    drawPronoHandler: false,
     //matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
   }
 
@@ -28,6 +29,12 @@ class Bet extends Component {
   }
 
   bet(match, betTeam) {
+    if(betTeam === 0){
+      this.setState({drawPronoHandler: !this.state.drawPronoHandler})
+    }
+    // this.state.matchPronosticed.forEach((matchPronosticed) => {
+    //   if(matchPronosticed.pronostic === )
+    // })
     fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -190,7 +197,7 @@ class Bet extends Component {
                         </button>
                        <button
                         onClick={() => this.bet(match, 0)}
-                        className="betButtons"
+                        className={this.state.drawPronoHandler ? "betButtons pronosticed-true" : "betButtons"}
                        >DRAW</button>
                        <button
                         onClick={() => this.bet(match, match.away_team.code)}
