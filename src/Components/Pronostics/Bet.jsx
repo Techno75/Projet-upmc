@@ -27,7 +27,8 @@ class Bet extends Component {
     return value;
   }
 
-  bet(match, betTeam) {
+  bet(match, betTeam, index) {
+
     betTeam.isSelected = !betTeam.isSelected;
     fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
@@ -159,37 +160,33 @@ class Bet extends Component {
           matchFuture.map((match, index) => {
             return(
               <div className="match-card-row-with-button" key={index}>
-                  <div className="match-card-row">
-                    <div className='content-group-pronostic'>
-                     <div className="country-card">
-                      <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
-                        <p>{match.home_team_country}</p>
-                     </div>
-                    <div className="match-card-row-date">
-                        <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
-                        <p>{moment(match.datetime).format('hh:mm a')}</p>
-                     </div>
-                     <div className="country-card">
-                        <p>{match.away_team_country}</p>
-                        <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
-                     </div>
-                   </div>
-                     <div className="content-betButtons">
-                       <button
-                        onClick={() => this.bet(match, match.home_team)}
-                        className={match.home_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}
-                        >
-                          {match.home_team.code}
-                        </button>
-                       <button
-                        onClick={() => this.bet(match, match.null_team)}
-                        className={match.null_team.isSelected ? "betButtons pronosticed-true" : 'betButtons'}
-                       >DRAW</button>
-                       <button
-                        onClick={() => this.bet(match, match.away_team)}
-                        className={match.away_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}>{match.away_team.code}</button>
-                        <button className="betButtons">Cancel</button>
-                     </div>
+                  <div>
+                    <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
+                    {match.home_team_country}
+                    <button
+                     onClick={() => this.bet(match, match.home_team, index)}
+                     className={match.home_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
+                     >
+                     {match.home_team.code }
+                     </button>
+                  </div>
+                  <div>
+                    <button
+                     onClick={() => this.bet(match, match.null_team, index)}
+                     className={match.null_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
+                     >
+                      Draw
+                     </button>
+                  </div>
+                  <div>
+                    <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
+                    {match.away_team_country}
+                    <button
+                     onClick={() => this.bet(match, match.away_team, index)}
+                     className={match.away_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
+                     >
+                      {match.away_team.code }
+                     </button>
                   </div>
               </div>
             )
