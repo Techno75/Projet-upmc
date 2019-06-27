@@ -29,12 +29,7 @@ class Bet extends Component {
   }
 
   bet(match, betTeam) {
-    if(betTeam === 0){
-      this.setState({drawPronoHandler: !this.state.drawPronoHandler})
-    }
-    // this.state.matchPronosticed.forEach((matchPronosticed) => {
-    //   if(matchPronosticed.pronostic === )
-    // })
+    betTeam.isSelected = !betTeam.isSelected;
     fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -45,7 +40,7 @@ class Bet extends Component {
           home_team: match.home_team.code,
           away_team: match.away_team.code,
           datetime: moment(match.datetime).format('MM-DD-YYYY'),
-          pronostic: betTeam,
+          pronostic: betTeam.code,
           matchId: match.fifa_id
         })
     })
@@ -154,6 +149,7 @@ class Bet extends Component {
   // }
   render() {
     const mappedMatchList = this.props.matchDataList.map((match) => {
+      match['null_team'] = {isSelected: false, code: 0};
       match.home_team['isSelected'] = false;
       match.away_team['isSelected'] = false;
       return match;
@@ -164,7 +160,7 @@ class Bet extends Component {
       }
     })
 
-    // console.log(matchFuture);
+    console.log(matchFuture);
     // console.log(formatedData);
     return(
       <div className='content-groupe-general'>
@@ -190,17 +186,17 @@ class Bet extends Component {
                    </div>
                      <div className="content-betButtons">
                        <button
-                        onClick={() => this.bet(match, match.home_team.code)}
+                        onClick={() => this.bet(match, match.home_team)}
                         className={match.home_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}
                         >
                           {match.home_team.code}
                         </button>
                        <button
-                        onClick={() => this.bet(match, 0)}
-                        className={this.state.drawPronoHandler ? "betButtons pronosticed-true" : "betButtons"}
+                        onClick={() => this.bet(match, match.null_team)}
+                        className={match.null_team.isSelected ? "betButtons pronosticed-true" : 'betButtons'}
                        >DRAW</button>
                        <button
-                        onClick={() => this.bet(match, match.away_team.code)}
+                        onClick={() => this.bet(match, match.away_team)}
                         className={match.away_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}>{match.away_team.code}</button>
                         <button className="betButtons">Cancel</button>
                      </div>
