@@ -1669,6 +1669,10 @@ tbody tr:hover{
   color: #FBFBFB;
 }
 
+.content-groups .prev-button-group, .content-groups .next-button-group:hover {
+  cursor: pointer;
+}
+
 .content-groups .prev-button-group svg{
   margin-right: 20px;
 }
