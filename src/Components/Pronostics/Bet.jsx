@@ -11,11 +11,13 @@ class Bet extends Component {
 
   state = {
     errorMessage: '',
+    successMessage: '',
     matchPronosticed: [],
     //matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
   }
 
   componentDidMount() {
+    this.props.resetMessage();
     if(sessionStorage.getItem('userData')) {
       this.getPronostics();
     }
@@ -164,6 +166,7 @@ class Bet extends Component {
     return(
       <div className='content-groupe-general'>
         <h2>Bet</h2>
+        <p className="successMessage">{this.props.successMessage}</p>
         {
           matchFuture.map((match, index) => {
             return(

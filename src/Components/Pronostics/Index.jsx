@@ -16,6 +16,7 @@ class Pronostics extends Component {
       view : "bet",
       matchDataList : [],
       matchToProvide: null,
+      successMessage: '',
     }
     this.fetchMatchesData = this.fetchMatchesData.bind(this);
     this.deleteABet = this.deleteABet.bind(this)
@@ -23,7 +24,7 @@ class Pronostics extends Component {
 
   componentDidMount(){
     this.fetchMatchesData();
-    this.fetchUpdate = setInterval(this.fetchMatchesData, 25000);
+    // this.fetchUpdate = setInterval(this.fetchMatchesData, 25000);
   }
 
   componentWillUnmount(){
@@ -52,18 +53,22 @@ class Pronostics extends Component {
        return match
      }
    });
-   this.setState({matchDataList : matchDataListTmp})
-   alert("Your bet is registered");
+   this.setState({matchDataList : matchDataListTmp, successMessage: 'Your bet has been added.'})
+   // alert("Your bet is registered");
+ }
+
+ resetMessage() {
+   this.setState({successMessage: ''});
  }
 
   smallRouter() {
     if (this.state.view === 'bet') {
       return(
-        <Bet matchDataList={this.state.matchDataList} deleteABet={this.deleteABet}/>
+        <Bet matchDataList={this.state.matchDataList} resetMessage={this.resetMessage.bind(this)} fetchMatchesData={this.fetchMatchesData.bind(this)} deleteABet={this.deleteABet} successMessage={this.state.successMessage}/>
       )
     } else if(this.state.view === 'mybets') {
       return(
-        <MyBets/>
+        <MyBets fetchMatchesData={this.fetchMatchesData.bind(this)}/>
       )
     } else if(this.state.view === 'topbettor'){
       return(

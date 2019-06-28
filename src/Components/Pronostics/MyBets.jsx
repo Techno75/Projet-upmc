@@ -72,6 +72,7 @@ deletePronostic(matchId) {
                   return response.json();
               } else {
                 this.getPronostics();
+                this.props.fetchMatchesData();
                 return response.json()
               }
           })
