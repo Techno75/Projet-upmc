@@ -26,6 +26,9 @@ getStorageData(value) {
   return value;
 }
 
+deletePronostic() {
+
+}
 
 getPronostics() {
   const recupUsername = JSON.parse(sessionStorage.getItem('userData'));
@@ -54,6 +57,35 @@ getPronostics() {
       })
 }
 
+deletePronostic(matchId) {
+  this.state.matchPronosticed.map((matchPronosticed) => {
+    if(matchPronosticed.matchId == matchId) {
+      fetch(REST_ROUTE + 'pronostics/delete/' + matchId,  { mode: 'cors', method : 'post',
+          headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' +  this.getStorageData('token'),
+          },
+      })
+          .then((response) => {
+              if(!(response.status >= 200 && response.status <= 300)) {
+                  return response.json();
+              } else {
+                this.getPronostics();
+                return response.json()
+              }
+          })
+          .then((data)=>{
+              this.setState({errorMessage: data.error});
+          })
+          .catch((err) => {
+              console.log('error', err);
+          })
+    }
+  })
+
+}
+
   render() {
     return(
       <div>
@@ -75,14 +107,12 @@ getPronostics() {
                    </div>
                  </div>
                  <p>{match.pronostic === '0' ? 'DRAW' : match.pronostic}</p>
-                 <button>delete</button>
+                 <button onClick={() => this.deletePronostic(match.matchId)}>delete</button>
                  </div>
                </div>
             )
           })
         }
-
-
         </div>
       </div>
     )
