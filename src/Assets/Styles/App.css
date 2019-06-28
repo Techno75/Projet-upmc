@@ -753,6 +753,131 @@ header{
   }
 }
 
+/*////////// Top bettor ////////////////*/
+
+.top-bettor-content{
+  width: 50%;
+}
+
+.top-bettor-content h2{
+  margin-bottom: 20px;
+}
+
+.top-bettor-content table{
+    margin-bottom: 30px;
+}
+
+.top-bettor-content table thead tr th{
+  width: 50%;
+  text-align: center;
+}
+
+.top-bettor-content table thead tr th:first-child{
+  font-size: 20px;
+}
+
+.top-bettor-content table tbody tr td .rsp-table-topbettor{
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  .top-bettor-content table tbody tr td .rsp-table-topbettor{
+    display: block;
+    color: #282B62;
+    font-size: 18px;
+  }
+
+  .top-bettor-content {
+    margin: 0 auto;
+  }
+}
+
+/*////////// My Bet ////////////////*/
+
+.my-bet-all{
+      margin-bottom: 40px;
+}
+
+.my-bet-all h2{
+  color: #fbfbfb;
+background: #282B62;
+width: 80%;
+margin: 40px auto 0px;
+padding: 15px;
+box-sizing: border-box;
+font-family: Oswald;
+font-weight: 200;
+font-size: 30px;
+}
+
+.content-myBet-all{
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-myBet-all .content-card-bet{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.content-myBet-all .content-card-bet .card-bet{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: solid 1px lightgray;
+    margin: auto;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.content-myBet-all .content-card-bet .card-bet:hover{
+  box-shadow: grey 0px 0px 8px;
+}
+
+.content-myBet-all .content-card-bet .card-bet button{
+  color: gray;
+  border: none;
+  background: #FBFBFB;
+  font-size: 18px;
+  transition: 0.5s;
+}
+
+.content-myBet-all .content-card-bet .card-bet button:hover{
+  cursor: pointer;
+  color: #E52528;
+  transition: 0.5s;
+}
+
+.content-myBet-all .content-card-bet .card-bet .card-country-myBet {
+  display: flex;
+  align-items: center;
+  font-family: Raleway;
+}
+
+.content-myBet-all .content-card-bet .card-bet .my-pronostic{
+  text-align: center;
+  margin-right: 50px;
+  font-family: Raleway;
+}
+
+.content-myBet-all .content-card-bet .card-bet .versus{
+  font-family: oswald;
+  font-weight: 800;
+  font-size: 20px;
+  color: #E52528;
+  }
+
+.content-myBet-all .content-card-bet .card-bet .card-country-myBet img{
+  width: 80px;
+}
+
+.content-myBet-all .content-card-bet .card-bet .card-country-myBet p{
+  margin: 0 15px;
+  font-size: 18px;
+}
 /*////////// Matches List ////////////////*/
 
 .match-container{
@@ -2051,6 +2176,10 @@ tbody tr:hover{
   align-items: center;
   font-family: Raleway;
   margin: 0px 30px 0px 0px;
+}
+
+.content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .space-button-follow .card-g{
+  width: 200px;
 }
 
 .content-profil .content-match-profil-follow .notif-open .content-followed-match-profil .country-card-profil img{

@@ -125,7 +125,7 @@ class Profil extends Component {
                       return(
                         <div key={index} className="content-followed-match-profil">
                         <div className="space-button-follow">
-                          <div className="country-card-profil">
+                          <div className="country-card-profil card-g">
                             <img src={require('./../../Assets/Images/Flags/' + match.home_team.code + ".jpg")} alt="flag"/>
                             <p>{match.home_team_country}</p>
                           </div>

@@ -44,9 +44,6 @@ class TopBettor extends Component {
   }
   console.log(finalTab);
   this.sortArray(finalTab);
-  // finalTab.sort((a,b)=>{
-  //   return a.nbMatchProno - b.nbMatchProno;
-  // })
   this.setState({displayTab: finalTab});
   console.log(this.state.displayTab);
 
@@ -103,18 +100,28 @@ occurence (array) {
 
   render() {
     return(
-      <div>
+      <div className='top-bettor-content'>
         <h2>Top Bettor</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Nb Pronostic</th>
+              </tr>
+            </thead>
+            <tbody>
         {
           this.state.displayTab && this.state.displayTab.map((player, index) => {
             return(
-              <div key={index}>
-                <p>{player.username}</p>
-                <p>{player.nbMatchProno}</p>
-              </div>
+              <tr key={index}>
+                <td><p className='rsp-table-topbettor'>Username</p>{player.username}</td>
+                <td><p className='rsp-table-topbettor'>Nb Pronostic</p>{player.nbMatchProno}</td>
+              </tr>
             )
           })
         }
+        </tbody>
+        </table>
       </div>
     )
   }

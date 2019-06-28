@@ -3,7 +3,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import {REST_ROUTE} from "../../Constantes/ApiRoute";
 
 
@@ -88,26 +88,25 @@ deletePronostic(matchId) {
 
   render() {
     return(
-      <div>
+      <div className='my-bet-all'>
         <h2>MyBets</h2>
-        <div>
+        <div className="content-myBet-all">
         {
           this.state.matchPronosticed.map((match, index) => {
             return(
-              <div key={index}>
-                <div className="">
-                  <div className=''>
-                   <div className="">
+              <div key={index} className='content-card-bet'>
+                  <div className='card-bet'>
+                   <div className="card-country-myBet">
                     <img src={require("./../../Assets/Images/Flags/" + match.home_team + ".jpg")} alt="flag"/>
                     <p>{match.home_team}</p>
                    </div>
-                   <div className="">
+                   <p className="versus">VS</p>
+                   <div className="card-country-myBet">
+                     <p>{match.away_team}</p>
                     <img src={require("./../../Assets/Images/Flags/" + match.away_team + ".jpg")} alt="flag"/>
-                    <p>{match.away_team}</p>
                    </div>
-                 </div>
-                 <p>{match.pronostic === '0' ? 'DRAW' : match.pronostic}</p>
-                 <button onClick={() => this.deletePronostic(match.matchId)}>delete</button>
+                   <p className="my-pronostic">My pronostic : {match.pronostic === '0' ? 'DRAW' : match.pronostic}</p>
+                   <button onClick={() => this.deletePronostic(match.matchId)}><FontAwesomeIcon icon={faTrashAlt} /></button>
                  </div>
                </div>
             )
