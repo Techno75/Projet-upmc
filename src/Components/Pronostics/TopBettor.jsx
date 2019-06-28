@@ -43,12 +43,19 @@ class TopBettor extends Component {
    });
   }
   console.log(finalTab);
-  finalTab.sort((a,b)=>{
-    return a.nbMatchProno - b.nbMatchProno;
-  })
+  this.sortArray(finalTab);
+  // finalTab.sort((a,b)=>{
+  //   return a.nbMatchProno - b.nbMatchProno;
+  // })
   this.setState({displayTab: finalTab});
   console.log(this.state.displayTab);
 
+  }
+
+  sortArray(array) {
+    array.sort((a,b) => {
+      return b.nbMatchProno - a.nbMatchProno;
+    })
   }
 
 occurence (array) {
