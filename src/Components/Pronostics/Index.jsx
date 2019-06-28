@@ -18,6 +18,7 @@ class Pronostics extends Component {
       matchToProvide: null,
     }
     this.fetchMatchesData = this.fetchMatchesData.bind(this);
+    this.deleteABet = this.deleteABet.bind(this)
   }
 
   componentDidMount(){
@@ -45,10 +46,20 @@ class Pronostics extends Component {
       .then((data) => this.setState({ matchDataList : data }))
   }
 
+ deleteABet(match){
+   let matchDataListTmp = this.state.matchDataList.filter((matchBet)=>{
+     if (matchBet.fifa_id !== match.fifa_id) {
+       return match
+     }
+   });
+   this.setState({matchDataList : matchDataListTmp})
+   alert("Your bet is registered");
+ }
+
   smallRouter() {
     if (this.state.view === 'bet') {
       return(
-        <Bet matchDataList={this.state.matchDataList}/>
+        <Bet matchDataList={this.state.matchDataList} deleteABet={this.deleteABet}/>
       )
     } else if(this.state.view === 'mybets') {
       return(

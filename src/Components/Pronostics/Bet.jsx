@@ -29,6 +29,7 @@ class Bet extends Component {
   }
 
   bet(match, betTeam) {
+    this.props.deleteABet(match)
     fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -147,12 +148,12 @@ class Bet extends Component {
   //   }
   // }
   render() {
-    const mappedMatchList = this.props.matchDataList.map((match) => {
+    let mappedMatchList = this.props.matchDataList.map((match) => {
       match.home_team['isSelected'] = false;
       match.away_team['isSelected'] = false;
       return match;
     })
-    const matchFuture = mappedMatchList.filter((match) => {
+    let matchFuture = mappedMatchList.filter((match) => {
       if(match.status === 'future') {
         return match;
       }
