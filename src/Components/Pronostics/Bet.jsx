@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {routesList} from '../../Constantes/Routes.js';
@@ -11,7 +12,6 @@ class Bet extends Component {
   state = {
     errorMessage: '',
     matchPronosticed: [],
-    drawPronoHandler: false,
     //matchNotPlayedListFinal: [{home_team : {isSelected : false, code: "TBD"}, away_team: {isSelected : false, code : "TBD"}}]
   }
 
@@ -23,13 +23,12 @@ class Bet extends Component {
 
   getStorageData(value) {
     const testData = JSON.parse(sessionStorage.getItem('userData'));
+    console.log(testData);
     value = testData[value];
     return value;
   }
 
-  bet(match, betTeam, index) {
-
-    betTeam.isSelected = !betTeam.isSelected;
+  bet(match, betTeam) {
     fetch(REST_ROUTE + 'pronostics/new', { mode: 'cors', method : 'post',
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -40,15 +39,17 @@ class Bet extends Component {
           home_team: match.home_team.code,
           away_team: match.away_team.code,
           datetime: moment(match.datetime).format('MM-DD-YYYY'),
-          pronostic: betTeam.code,
+          pronostic: betTeam,
           matchId: match.fifa_id
         })
     })
         .then((response) => {
+            console.log(response);
             if(!(response.status >= 200 && response.status <= 300)) {
                 return response.json();
             } else {
                 //alert('User succsessfully created');
+                console.log('pronostic created');
                 // this.setState({redirect: true});
                 // this.props.history.push(`${routesList[3].path}`);
                 this.getPronostics();
@@ -56,8 +57,10 @@ class Bet extends Component {
             }
         })
         .then((data)=>{
+          console.log(data);
             //this.setState({errorMessage: data.error});
         })
+
         .catch((err) => {
             console.log('error', err);
         });
@@ -82,13 +85,16 @@ class Bet extends Component {
         .then((data)=>{
             this.setState({errorMessage: data.error});
             this.setState({matchPronosticed: data})
+            console.log(this.state.matchPronosticed);
         })
+
         .catch((err) => {
             console.log('error', err);
         })
   }
 
   deletePronostic(matchId) {
+    console.log(matchId)
     this.state.matchPronosticed.map((matchPronosticed) => {
       if(matchPronosticed.matchId == matchId) {
         fetch(REST_ROUTE + 'pronostics/delete/' + matchId,  { mode: 'cors', method : 'post',
@@ -108,7 +114,9 @@ class Bet extends Component {
             })
             .then((data)=>{
                 this.setState({errorMessage: data.error});
+                // console.log(this.state.matchFollowed);
             })
+
             .catch((err) => {
                 console.log('error', err);
             })
@@ -140,7 +148,6 @@ class Bet extends Component {
   // }
   render() {
     const mappedMatchList = this.props.matchDataList.map((match) => {
-      match['null_team'] = {isSelected: false, code: 0};
       match.home_team['isSelected'] = false;
       match.away_team['isSelected'] = false;
       return match;
@@ -151,8 +158,8 @@ class Bet extends Component {
       }
     })
 
-    console.log(matchFuture);
-
+    // console.log(matchFuture);
+    // console.log(formatedData);
     return(
       <div className='content-groupe-general'>
         <h2>Bet</h2>
@@ -160,35 +167,36 @@ class Bet extends Component {
           matchFuture.map((match, index) => {
             return(
               <div className="match-card-row-with-button" key={index}>
-                  <div>
-                    <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
-                    {match.home_team_country}
-                    <button
-                     onClick={() => this.bet(match, match.home_team, index)}
-                     className={match.home_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
-                     >
-                     {match.home_team.code }
-                     </button>
-                  </div>
-                  <div>
-                    <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
-                    <p>{moment(match.datetime).format('hh:mm a')}</p>
-                    <button
-                     onClick={() => this.bet(match, match.null_team, index)}
-                     className={match.null_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
-                     >
-                      Draw
-                     </button>
-                  </div>
-                  <div>
-                    <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
-                    {match.away_team_country}
-                    <button
-                     onClick={() => this.bet(match, match.away_team, index)}
-                     className={match.away_team.isSelected === true ? "betButtons pronosticed-true" : "betButtons"}
-                     >
-                      {match.away_team.code }
-                     </button>
+                  <div className="match-card-row">
+                    <div className='content-group-pronostic'>
+                     <div className="country-card">
+                      <img src={require("./../../Assets/Images/Flags/" + match.home_team.code + ".jpg")} alt="flag"/>
+                        <p>{match.home_team_country}</p>
+                     </div>
+                    <div className="match-card-row-date">
+                        <p>{moment(match.datetime).format('MM-DD-YYYY')}</p>
+                        <p>{moment(match.datetime).format('hh:mm a')}</p>
+                     </div>
+                     <div className="country-card">
+                        <p>{match.away_team_country}</p>
+                        <img src={require("./../../Assets/Images/Flags/" + match.away_team.code + ".jpg")} alt="flag"/>
+                     </div>
+                   </div>
+                     <div className="content-betButtons">
+                       <button
+                        onClick={() => this.bet(match, match.home_team.code)}
+                        className={match.home_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}
+                        >
+                          {match.home_team.code}
+                        </button>
+                       <button
+                        onClick={() => this.bet(match, 0)}
+                        className="betButtons"
+                       >DRAW</button>
+                       <button
+                        onClick={() => this.bet(match, match.away_team.code)}
+                        className={match.away_team.isSelected ? "betButtons pronosticed-true" : "betButtons"}>{match.away_team.code}</button>
+                     </div>
                   </div>
               </div>
             )
