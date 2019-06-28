@@ -11,7 +11,7 @@ class Videos extends Component {
   }
 
   getYoutubeDatas() {
-    fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PLCGIzmTE4d0ic-x5M9c0C1MvQla301_zo&key=AIzaSyBcpblMXYwaU0gCg7QoPMZmONE-Sj8_jNs",  {method: 'GET',
+    fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=15&playlistId=PLCGIzmTE4d0ic-x5M9c0C1MvQla301_zo&key=AIzaSyBcpblMXYwaU0gCg7QoPMZmONE-Sj8_jNs",  {method: 'GET',
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json, text/plain, */*',
